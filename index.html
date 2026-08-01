@@ -94,10 +94,7 @@
     padding:120px 0 90px; overflow:hidden;
   }
   .hero-bg{position:absolute; inset:0; z-index:0}
-  .hero-bg video{
-    width:100%; height:100%; object-fit:cover;
-    opacity:.62; filter:saturate(1.05) contrast(1.02);
-  }
+  .hero-bg canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
   .hero-bg::after{ /* vignette + readability wash */
     content:""; position:absolute; inset:0;
     background:
@@ -272,9 +269,7 @@
 <!-- ========== HERO ========== -->
 <header class="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline poster="hintergrund-poster.jpg">
-      <source src="hintergrund.mp4" type="video/mp4" />
-    </video>
+    <canvas id="cosmosCanvas"></canvas>
   </div>
 
   <div class="wrap hero-inner">
@@ -416,6 +411,63 @@
 </footer>
 
 <script>
+  // Lebendiger kosmischer Hintergrund (Sternen-Netz) — original, ohne Video/Lizenz
+  (function(){
+    var canvas=document.getElementById('cosmosCanvas');
+    if(!canvas) return;
+    var ctx=canvas.getContext('2d');
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var w,h,dpr,parts,LINK;
+    var GOLD='233,207,156', MIST='188,178,214';
+    function rnd(a,b){return a+Math.random()*(b-a);}
+    function init(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      w=canvas.clientWidth; h=canvas.clientHeight;
+      canvas.width=w*dpr; canvas.height=h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var count=Math.round(Math.min(150, Math.max(46,(w*h)/13000)));
+      LINK=Math.min(160, Math.max(96, w/11));
+      parts=[];
+      for(var i=0;i<count;i++){
+        parts.push({x:Math.random()*w,y:Math.random()*h,
+          vx:rnd(-0.13,0.13),vy:rnd(-0.13,0.13),
+          r:rnd(0.6,1.9),gold:Math.random()<0.13,tw:Math.random()*6.28});
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<parts.length;i++){
+        var p=parts[i];
+        for(var j=i+1;j<parts.length;j++){
+          var q=parts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<LINK){
+            var a=(1-d/LINK)*0.20;
+            ctx.strokeStyle='rgba('+MIST+','+a.toFixed(3)+')';
+            ctx.lineWidth=0.6; ctx.beginPath();
+            ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+          }
+        }
+      }
+      for(var k=0;k<parts.length;k++){
+        var n=parts[k]; n.tw+=0.018;
+        var tw=0.6+0.4*Math.sin(n.tw);
+        if(n.gold){ctx.shadowColor='rgba('+GOLD+',0.85)'; ctx.shadowBlur=8;
+          ctx.fillStyle='rgba('+GOLD+','+(0.9*tw).toFixed(3)+')';}
+        else {ctx.shadowBlur=0; ctx.fillStyle='rgba('+MIST+','+(0.5*tw).toFixed(3)+')';}
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
+      }
+      ctx.shadowBlur=0;
+    }
+    function step(){
+      for(var i=0;i<parts.length;i++){var p=parts[i];p.x+=p.vx;p.y+=p.vy;
+        if(p.x<-12)p.x=w+12; if(p.x>w+12)p.x=-12;
+        if(p.y<-12)p.y=h+12; if(p.y>h+12)p.y=-12;}
+      draw(); if(!reduce) requestAnimationFrame(step);
+    }
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(init,200);});
+    init(); if(reduce){draw();} else {requestAnimationFrame(step);}
+  })();
+
   // App-Video: Tap-to-Play mit Ton
   (function(){
     var v = document.getElementById('appVideo');
