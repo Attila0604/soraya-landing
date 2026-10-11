@@ -6,6 +6,11 @@
 <title>Soraya — Dein Luxury Astro Guide</title>
 <meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
 <meta name="theme-color" content="#070817" />
+<link rel="alternate" hreflang="de" href="https://soraya-landing.vercel.app/?lang=de" />
+<link rel="alternate" hreflang="en" href="https://soraya-landing.vercel.app/?lang=en" />
+<link rel="alternate" hreflang="hu" href="https://soraya-landing.vercel.app/?lang=hu" />
+<link rel="alternate" hreflang="it" href="https://soraya-landing.vercel.app/?lang=it" />
+<link rel="alternate" hreflang="x-default" href="https://soraya-landing.vercel.app/" />
 <link rel="icon" href="icon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
@@ -87,6 +92,12 @@
     transition:.25s;
   }
   .nav .to-app:hover{color:var(--gold-soft); border-color:var(--gold-dim); background:var(--panel)}
+
+  .langs{display:flex; gap:4px}
+  .langs a{font-family:var(--ui); font-size:11.5px; font-weight:600; letter-spacing:.08em; color:var(--mist-dim);
+    padding:6px 9px; border-radius:var(--r-pill); border:1px solid transparent; transition:.2s}
+  .langs a:hover{color:var(--gold-soft)}
+  .langs a.active{color:var(--gold-soft); border-color:var(--gold-dim); background:var(--panel)}
 
   /* ---------- hero ---------- */
   .hero{
@@ -272,6 +283,12 @@
     <span class="sigil">✵</span>
     <span class="name">SORAYA</span>
   </div>
+  <nav class="langs" aria-label="Sprache · Language · Nyelv · Lingua">
+    <a href="?lang=de" data-lang="de" lang="de">DE</a>
+    <a href="?lang=en" data-lang="en" lang="en">EN</a>
+    <a href="?lang=hu" data-lang="hu" lang="hu">HU</a>
+    <a href="?lang=it" data-lang="it" lang="it">IT</a>
+  </nav>
 </div>
 
 <!-- ========== HERO ========== -->
@@ -284,68 +301,68 @@
     <div class="sigil-lg">✵</div>
     <h1 class="word">SORAYA</h1>
     <div class="kicker">Luxury Astro Guide</div>
-    <p class="sub">Der Himmel, gelesen für dich allein.</p>
+    <p class="sub" data-t="hero.sub">Der Himmel, gelesen für dich allein.</p>
 
     <div class="stores">
-      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden">
+      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden" data-t-aria="store.play.aria">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
-        <span class="st-txt"><span class="st-small">Jetzt bei</span><span class="st-big">Google Play</span></span>
+        <span class="st-txt"><span class="st-small" data-t="store.play.small">Jetzt bei</span><span class="st-big">Google Play</span></span>
       </a>
-      <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen">
+      <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen" data-t-aria="store.ios.aria">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
-        <span class="st-txt"><span class="st-small">Auf dem iPhone</span><span class="st-big">Im Browser öffnen</span></span>
+        <span class="st-txt"><span class="st-small" data-t="store.ios.small">Auf dem iPhone</span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
       </a>
     </div>
-    <p class="ios-hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
+    <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
   </div>
 
-  <div class="scroll-cue"><span>Entdecken</span><span class="line"></span></div>
+  <div class="scroll-cue"><span data-t="cue">Entdecken</span><span class="line"></span></div>
 </header>
 
 <!-- ========== FEATURES ========== -->
 <section class="block" id="features">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Was Soraya kann</span>
-      <h2 class="head">Deine Sterne, <span class="gold">klar gelesen</span></h2>
-      <p class="lede">Geburtshoroskop, Horoskop, Chat und Synastrie — präzise berechnet, elegant gestaltet, ganz auf dich abgestimmt.</p>
+      <span class="eyebrow" data-t="feat.eyebrow">Was Soraya kann</span>
+      <h2 class="head" data-t="feat.head">Deine Sterne, <span class="gold">klar gelesen</span></h2>
+      <p class="lede" data-t="feat.lede">Geburtshoroskop, Horoskop, Chat und Synastrie — präzise berechnet, elegant gestaltet, ganz auf dich abgestimmt.</p>
     </div>
 
     <div class="grid">
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><line x1="12" y1="3" x2="12" y2="8.6"/><line x1="12" y1="15.4" x2="12" y2="21"/><line x1="3" y1="12" x2="8.6" y2="12"/><line x1="15.4" y1="12" x2="21" y2="12"/></svg></div>
-        <h3>Geburtshoroskop</h3>
-        <p>Dein persönliches Birth Chart, exakt aus Geburtsdatum, -zeit und -ort berechnet.</p>
+        <h3 data-t="f1.h">Geburtshoroskop</h3>
+        <p data-t="f1.p">Dein persönliches Birth Chart, exakt aus Geburtsdatum, -zeit und -ort berechnet.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 13.5A8 8 0 1 1 10.5 5a6.3 6.3 0 0 0 8.5 8.5z"/><circle cx="16" cy="7" r=".7" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Horoskop</h3>
-        <p>Tages- und Zeitraum-Horoskope aus deinen aktuellen Transiten — nie generisch.</p>
+        <h3 data-t="f2.h">Horoskop</h3>
+        <p data-t="f2.p">Tages- und Zeitraum-Horoskope aus deinen aktuellen Transiten — nie generisch.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9l-4 4v-4H4z"/></svg></div>
-        <h3>Chat</h3>
-        <p>Frag Soraya alles. Persönliche Antworten, direkt aus deinem Chart.</p>
+        <h3 data-t="f3.h">Chat</h3>
+        <p data-t="f3.p">Frag Soraya alles. Persönliche Antworten, direkt aus deinem Chart.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="9" cy="12" r="5.4"/><circle cx="15" cy="12" r="5.4"/></svg></div>
-        <h3>Synastrie</h3>
-        <p>Beziehungs-Analyse: wie eure Charts zusammenspielen — Nähe, Reibung, Resonanz.</p>
+        <h3 data-t="f4.h">Synastrie</h3>
+        <p data-t="f4.p">Beziehungs-Analyse: wie eure Charts zusammenspielen — Nähe, Reibung, Resonanz.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3.5c.5 4.2 1.6 5.3 5.8 5.8-4.2.5-5.3 1.6-5.8 5.8-.5-4.2-1.6-5.3-5.8-5.8C10.4 8.8 11.5 7.7 12 3.5z"/></svg></div>
-        <h3>Tagesfokus</h3>
-        <p>Dein täglicher Impuls — ein klarer Gedanke aus den Bewegungen des Himmels.</p>
+        <h3 data-t="f5.h">Tagesfokus</h3>
+        <p data-t="f5.p">Dein täglicher Impuls — ein klarer Gedanke aus den Bewegungen des Himmels.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 5.5l1.7 4.8L18.5 12l-4.8 1.7L12 18.5l-1.7-4.8L5.5 12l4.8-1.7z" fill="currentColor" fill-opacity=".18"/></svg></div>
-        <h3>Ganz du</h3>
-        <p>Ein Profil, alles verbunden: Analyse, Horoskop und Synastrie bauen aufeinander auf.</p>
+        <h3 data-t="f6.h">Ganz du</h3>
+        <p data-t="f6.p">Ein Profil, alles verbunden: Analyse, Horoskop und Synastrie bauen aufeinander auf.</p>
       </article>
     </div>
   </div>
@@ -368,13 +385,13 @@
       </div>
 
       <div class="copy reveal">
-        <span class="eyebrow">Ein Blick in Soraya</span>
-        <h2 class="head">Schön von der <span class="gold">ersten Sekunde</span></h2>
-        <p class="lede">Kein überladenes Astro-Tool, sondern ein ruhiger, luxuriöser Raum für deine Fragen an den Himmel.</p>
+        <span class="eyebrow" data-t="show.eyebrow">Ein Blick in Soraya</span>
+        <h2 class="head" data-t="show.head">Schön von der <span class="gold">ersten Sekunde</span></h2>
+        <p class="lede" data-t="show.lede">Kein überladenes Astro-Tool, sondern ein ruhiger, luxuriöser Raum für deine Fragen an den Himmel.</p>
         <ul>
-          <li><span class="dot"></span><span>Elegante Oberfläche, die sich wie ein Ritual anfühlt</span></li>
-          <li><span class="dot"></span><span>Antworten in Klartext — verständlich statt kryptisch</span></li>
-          <li><span class="dot"></span><span>Als App auf Android und iPhone, direkt vom Homescreen</span></li>
+          <li><span class="dot"></span><span data-t="show.l1">Elegante Oberfläche, die sich wie ein Ritual anfühlt</span></li>
+          <li><span class="dot"></span><span data-t="show.l2">Antworten in Klartext — verständlich statt kryptisch</span></li>
+          <li><span class="dot"></span><span data-t="show.l3">Als App auf Android und iPhone, direkt vom Homescreen</span></li>
         </ul>
       </div>
     </div>
@@ -386,19 +403,19 @@
   <div class="wrap">
     <div class="cta reveal">
       <div class="sigil-lg">✵</div>
-      <h2>Dein Himmel wartet.</h2>
-      <p>Lade Soraya für Android oder öffne sie auf dem iPhone direkt im Browser – und beginne mit deinem persönlichen Geburtshoroskop.</p>
+      <h2 data-t="cta.head">Dein Himmel wartet.</h2>
+      <p data-t="cta.p">Lade Soraya für Android oder öffne sie auf dem iPhone direkt im Browser – und beginne mit deinem persönlichen Geburtshoroskop.</p>
       <div class="stores">
-        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden">
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden" data-t-aria="store.play.aria">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
-          <span class="st-txt"><span class="st-small">Jetzt bei</span><span class="st-big">Google Play</span></span>
+          <span class="st-txt"><span class="st-small" data-t="store.play.small">Jetzt bei</span><span class="st-big">Google Play</span></span>
         </a>
-        <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen">
+        <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen" data-t-aria="store.ios.aria">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
-          <span class="st-txt"><span class="st-small">Auf dem iPhone</span><span class="st-big">Im Browser öffnen</span></span>
+          <span class="st-txt"><span class="st-small" data-t="store.ios.small">Auf dem iPhone</span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
         </a>
       </div>
-      <p class="ios-hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
+      <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
     </div>
   </div>
 </section>
@@ -408,8 +425,8 @@
   <div class="wrap foot">
     <span class="name">SORAYA</span>
     <nav>
-      <a href="https://soraya-web.vercel.app/impressum">Impressum</a>
-      <a href="https://soraya-web.vercel.app/datenschutz">Datenschutz</a>
+      <a href="https://app.sorayaluxuryastroguide.com/impressum" data-legal="impressum" data-t="foot.imprint">Impressum</a>
+      <a href="https://app.sorayaluxuryastroguide.com/datenschutz" data-legal="datenschutz" data-t="foot.privacy">Datenschutz</a>
     </nav>
     <span class="copy">© 2026 Soraya · Luxury Astro Guide</span>
     <span class="powered"><svg class="pw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5l2.4 6.6L21 11.5l-6.6 2.4L12 20.5l-2.4-6.6L3 11.5l6.6-2.4z"/><circle cx="18.5" cy="4.5" r="1" fill="currentColor" stroke="none"/><circle cx="5" cy="17" r=".8" fill="currentColor" stroke="none"/></svg>Powered by <strong>Attila</strong></span>
@@ -417,6 +434,113 @@
 </footer>
 
 <script>
+  // Sprachen: ?lang= > gespeicherte Wahl > Geraetesprache > Englisch (wie in der App)
+  (function(){
+    var L = {
+      en: {
+        "title": "Soraya — Your Luxury Astro Guide",
+        "hero.sub": "The sky, read for you alone.",
+        "store.play.small": "Get it on", "store.ios.small": "On iPhone", "store.ios.big": "Open in browser",
+        "store.play.aria": "Get it on Google Play", "store.ios.aria": "Open Soraya on iPhone in the browser",
+        "ios.hint": "On iPhone, Soraya opens in Safari. Tap <b>Share</b> there and then <b>“Add to Home Screen”</b> – and Soraya is on your phone like an app.",
+        "cue": "Discover",
+        "feat.eyebrow": "What Soraya does",
+        "feat.head": "Your stars, <span class=\"gold\">clearly read</span>",
+        "feat.lede": "Birth chart, horoscope, chat and synastry — precisely calculated, elegantly designed, tailored entirely to you.",
+        "f1.h": "Birth chart", "f1.p": "Your personal birth chart, calculated exactly from your date, time and place of birth.",
+        "f2.h": "Horoscope", "f2.p": "Daily and weekly horoscopes from your current transits — never generic.",
+        "f3.h": "Chat", "f3.p": "Ask Soraya anything. Personal answers, straight from your chart.",
+        "f4.h": "Synastry", "f4.p": "Relationship analysis: how your charts interact — closeness, friction, resonance.",
+        "f5.h": "Daily focus", "f5.p": "Your daily impulse — one clear thought from the movements of the sky.",
+        "f6.h": "All you", "f6.p": "One profile, everything connected: analysis, horoscope and synastry build on each other.",
+        "show.eyebrow": "A look inside Soraya",
+        "show.head": "Beautiful from the <span class=\"gold\">very first second</span>",
+        "show.lede": "Not a cluttered astro tool, but a calm, luxurious space for your questions to the sky.",
+        "show.l1": "An elegant interface that feels like a ritual",
+        "show.l2": "Answers in plain language — clear instead of cryptic",
+        "show.l3": "An app for Android and iPhone, right from your home screen",
+        "cta.head": "Your sky is waiting.",
+        "cta.p": "Get Soraya for Android or open it on iPhone right in your browser – and start with your personal birth chart.",
+        "foot.imprint": "Legal notice", "foot.privacy": "Privacy"
+      },
+      hu: {
+        "title": "Soraya — A te luxus asztro-kalauzod",
+        "hero.sub": "Az égbolt, csak neked kiolvasva.",
+        "store.play.small": "Töltsd le:", "store.ios.small": "iPhone-on", "store.ios.big": "Megnyitás böngészőben",
+        "store.play.aria": "Letöltés a Google Playről", "store.ios.aria": "Soraya megnyitása iPhone-on a böngészőben",
+        "ios.hint": "iPhone-on a Soraya a Safariban nyílik meg. Koppints ott a <b>Megosztás</b> gombra, majd a <b>„Főképernyőhöz adás”</b> lehetőségre – és máris alkalmazásként használhatod.",
+        "cue": "Fedezd fel",
+        "feat.eyebrow": "Mit tud a Soraya",
+        "feat.head": "A csillagaid, <span class=\"gold\">világosan</span>",
+        "feat.lede": "Születési képlet, horoszkóp, chat és szinasztria — pontosan kiszámolva, elegánsan megtervezve, teljesen rád szabva.",
+        "f1.h": "Születési képlet", "f1.p": "A személyes születési képleted, pontosan a születési dátumodból, idődből és helyedből számolva.",
+        "f2.h": "Horoszkóp", "f2.p": "Napi és heti horoszkópok az aktuális tranzitjaidból — sosem általánosak.",
+        "f3.h": "Chat", "f3.p": "Kérdezz bármit Sorayától. Személyes válaszok, egyenesen a képletedből.",
+        "f4.h": "Szinasztria", "f4.p": "Kapcsolatelemzés: hogyan hatnak egymásra a képleteitek — közelség, súrlódás, rezonancia.",
+        "f5.h": "Napi fókusz", "f5.p": "A napi impulzusod — egy világos gondolat az égbolt mozgásaiból.",
+        "f6.h": "Teljesen te", "f6.p": "Egy profil, minden összekapcsolva: az elemzés, a horoszkóp és a szinasztria egymásra épül.",
+        "show.eyebrow": "Bepillantás a Sorayába",
+        "show.head": "Szép az <span class=\"gold\">első pillanattól</span>",
+        "show.lede": "Nem egy zsúfolt asztro-eszköz, hanem nyugodt, luxus tér az égnek feltett kérdéseidhez.",
+        "show.l1": "Elegáns felület, amely olyan, mint egy rituálé",
+        "show.l2": "Érthető válaszok — világosan, nem rejtélyesen",
+        "show.l3": "Alkalmazásként Androidon és iPhone-on, egyenesen a kezdőképernyőről",
+        "cta.head": "Az égbolt vár rád.",
+        "cta.p": "Töltsd le a Sorayát Androidra, vagy nyisd meg iPhone-on közvetlenül a böngészőben – és kezdd a személyes születési képleteddel.",
+        "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem"
+      },
+      it: {
+        "title": "Soraya — La tua guida astrologica di lusso",
+        "hero.sub": "Il cielo, letto solo per te.",
+        "store.play.small": "Disponibile su", "store.ios.small": "Su iPhone", "store.ios.big": "Apri nel browser",
+        "store.play.aria": "Scarica da Google Play", "store.ios.aria": "Apri Soraya su iPhone nel browser",
+        "ios.hint": "Su iPhone Soraya si apre in Safari. Tocca <b>Condividi</b> e poi <b>«Aggiungi alla schermata Home»</b> – ed ecco Soraya come app.",
+        "cue": "Scopri",
+        "feat.eyebrow": "Cosa fa Soraya",
+        "feat.head": "Le tue stelle, <span class=\"gold\">lette con chiarezza</span>",
+        "feat.lede": "Tema natale, oroscopo, chat e sinastria — calcolati con precisione, dal design elegante, pensati interamente per te.",
+        "f1.h": "Tema natale", "f1.p": "Il tuo tema natale personale, calcolato con esattezza da data, ora e luogo di nascita.",
+        "f2.h": "Oroscopo", "f2.p": "Oroscopi del giorno e della settimana dai tuoi transiti attuali — mai generici.",
+        "f3.h": "Chat", "f3.p": "Chiedi qualsiasi cosa a Soraya. Risposte personali, direttamente dal tuo tema.",
+        "f4.h": "Sinastria", "f4.p": "Analisi di coppia: come interagiscono i vostri temi — vicinanza, attrito, risonanza.",
+        "f5.h": "Focus del giorno", "f5.p": "Il tuo impulso quotidiano — un pensiero chiaro dai movimenti del cielo.",
+        "f6.h": "Tutto su di te", "f6.p": "Un profilo, tutto collegato: analisi, oroscopo e sinastria si completano a vicenda.",
+        "show.eyebrow": "Uno sguardo a Soraya",
+        "show.head": "Bella dal <span class=\"gold\">primo istante</span>",
+        "show.lede": "Non uno strumento astrologico sovraccarico, ma uno spazio calmo e lussuoso per le tue domande al cielo.",
+        "show.l1": "Un'interfaccia elegante che sa di rituale",
+        "show.l2": "Risposte chiare — comprensibili, non criptiche",
+        "show.l3": "Come app su Android e iPhone, direttamente dalla schermata Home",
+        "cta.head": "Il tuo cielo ti aspetta.",
+        "cta.p": "Scarica Soraya per Android o aprila su iPhone direttamente nel browser – e inizia con il tuo tema natale personale.",
+        "foot.imprint": "Note legali", "foot.privacy": "Privacy"
+      }
+    };
+    var LANGS = ["de", "en", "hu", "it"];
+    var lang = "";
+    try { var q = new URLSearchParams(location.search).get("lang"); if (LANGS.indexOf(q) >= 0) { lang = q; localStorage.setItem("soraya_lang", q); } } catch (e) {}
+    if (!lang) { try { var st = localStorage.getItem("soraya_lang"); if (LANGS.indexOf(st) >= 0) lang = st; } catch (e) {} }
+    if (!lang) {
+      var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      for (var i = 0; i < list.length && !lang; i++) { var c = String(list[i]).slice(0, 2).toLowerCase(); if (LANGS.indexOf(c) >= 0) lang = c; }
+    }
+    if (!lang) lang = "en";
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".langs a").forEach(function (a) {
+      var on = a.getAttribute("data-lang") === lang;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "true");
+    });
+    // Play Store in der passenden Sprache, Rechtstexte in der passenden Fassung
+    document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) { a.href = a.href.split("&hl=")[0] + "&hl=" + lang; });
+    if (lang !== "de") document.querySelectorAll("[data-legal]").forEach(function (a) { a.href = "https://app.sorayaluxuryastroguide.com/" + a.getAttribute("data-legal") + "-" + lang; });
+    var T = L[lang];
+    if (!T) return;
+    document.title = T.title;
+    document.querySelectorAll("[data-t]").forEach(function (el) { var v = T[el.getAttribute("data-t")]; if (v) el.innerHTML = v; });
+    document.querySelectorAll("[data-t-aria]").forEach(function (el) { var v = T[el.getAttribute("data-t-aria")]; if (v) el.setAttribute("aria-label", v); });
+  })();
+
   // Geraeteerkennung fuer die Download-Knoepfe (iPadOS gibt sich als Mac aus)
   (function(){
     var ua = navigator.userAgent || "";
