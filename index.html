@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Soraya — Dein Luxury Astro Guide</title>
-<meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich. Jetzt im Google Play Store." />
+<meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
 <meta name="theme-color" content="#070817" />
 <link rel="icon" href="icon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -140,6 +140,12 @@
   .store-btn .st-txt{display:flex; flex-direction:column; line-height:1.15; text-align:left}
   .store-btn .st-small{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--mist-dim)}
   .store-btn .st-big{font-family:var(--display); font-weight:600; font-size:18px; color:var(--gold-soft)}
+  /* Geraeteerkennung: Android -> nur Play, iPhone -> nur Browser, Desktop -> beides */
+  .ios-hint{display:none; max-width:34ch; margin:16px auto 0; font-size:13.5px; line-height:1.55; color:var(--mist-dim)}
+  .ios-hint b{color:var(--gold-soft); font-weight:600}
+  html.is-ios .ios-hint{display:block}
+  html.is-ios .store-btn:not(.ios-btn){display:none}
+  html.is-android .ios-btn{display:none}
 
   .scroll-cue{
     position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:3;
@@ -285,7 +291,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
         <span class="st-txt"><span class="st-small">Jetzt bei</span><span class="st-big">Google Play</span></span>
       </a>
+      <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
+        <span class="st-txt"><span class="st-small">Auf dem iPhone</span><span class="st-big">Im Browser öffnen</span></span>
+      </a>
     </div>
+    <p class="ios-hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
   </div>
 
   <div class="scroll-cue"><span>Entdecken</span><span class="line"></span></div>
@@ -363,7 +374,7 @@
         <ul>
           <li><span class="dot"></span><span>Elegante Oberfläche, die sich wie ein Ritual anfühlt</span></li>
           <li><span class="dot"></span><span>Antworten in Klartext — verständlich statt kryptisch</span></li>
-          <li><span class="dot"></span><span>Als App auf deinem Android-Handy, direkt vom Homescreen</span></li>
+          <li><span class="dot"></span><span>Als App auf Android und iPhone, direkt vom Homescreen</span></li>
         </ul>
       </div>
     </div>
@@ -376,13 +387,18 @@
     <div class="cta reveal">
       <div class="sigil-lg">✵</div>
       <h2>Dein Himmel wartet.</h2>
-      <p>Lade Soraya und beginne mit deinem persönlichen Geburtshoroskop.</p>
+      <p>Lade Soraya für Android oder öffne sie auf dem iPhone direkt im Browser – und beginne mit deinem persönlichen Geburtshoroskop.</p>
       <div class="stores">
         <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
           <span class="st-txt"><span class="st-small">Jetzt bei</span><span class="st-big">Google Play</span></span>
         </a>
+        <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
+          <span class="st-txt"><span class="st-small">Auf dem iPhone</span><span class="st-big">Im Browser öffnen</span></span>
+        </a>
       </div>
+      <p class="ios-hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
     </div>
   </div>
 </section>
@@ -401,6 +417,14 @@
 </footer>
 
 <script>
+  // Geraeteerkennung fuer die Download-Knoepfe (iPadOS gibt sich als Mac aus)
+  (function(){
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var android = /Android/i.test(ua);
+    document.documentElement.classList.add(ios ? "is-ios" : android ? "is-android" : "is-desktop");
+  })();
+
   // Lebendiger kosmischer Hintergrund (Sternen-Netz) — original, ohne Video/Lizenz
   (function(){
     var canvas=document.getElementById('cosmosCanvas');
