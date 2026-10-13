@@ -11,7 +11,8 @@
 <link rel="alternate" hreflang="hu" href="https://soraya-landing.vercel.app/?lang=hu" />
 <link rel="alternate" hreflang="it" href="https://soraya-landing.vercel.app/?lang=it" />
 <link rel="alternate" hreflang="x-default" href="https://soraya-landing.vercel.app/" />
-<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
 <!-- Open Graph / Social -->
@@ -80,7 +81,7 @@
     padding:22px clamp(20px,5vw,40px);
   }
   .nav .mark{display:flex; align-items:center; gap:11px}
-  .nav .sigil{color:var(--gold); font-size:15px; opacity:.85}
+  .nav .sigil{display:block; height:auto}
   .nav .name{
     font-family:var(--wordmark); font-weight:600; font-size:16px;
     letter-spacing:.36em; text-indent:.36em; color:var(--gold-soft);
@@ -114,8 +115,8 @@
   }
   .hero-inner{position:relative; z-index:2; width:100%}
   .hero .sigil-lg{
-    font-size:26px; color:var(--gold); opacity:.9; margin-bottom:12px;
-    text-shadow:0 0 22px rgba(201,168,106,.5);
+    display:block; margin:0 auto 14px; height:auto;
+    filter:drop-shadow(0 0 22px rgba(201,168,106,.35));
   }
   .hero .word{
     font-family:var(--wordmark); font-weight:600;
@@ -236,7 +237,7 @@
       linear-gradient(160deg, var(--panel-2), var(--panel));
     position:relative; overflow:hidden;
   }
-  .cta .sigil-lg{font-size:22px; color:var(--gold); opacity:.9; margin-bottom:14px}
+  .cta .sigil-lg{display:block; margin:0 auto 14px; height:auto}
   .cta h2{font-family:var(--display); font-weight:600; font-size:clamp(28px,4.6vw,44px); margin:0 0 14px; color:var(--mist)}
   .cta p{color:var(--mist-dim); max-width:44ch; margin:0 auto 30px}
 
@@ -280,7 +281,7 @@
 <!-- ========== NAV ========== -->
 <div class="nav">
   <div class="mark">
-    <span class="sigil">✵</span>
+    <img class="sigil" src="brand/zeichen.svg" alt="" width="26" height="25">
     <span class="name">SORAYA</span>
   </div>
   <nav class="langs" aria-label="Sprache · Language · Nyelv · Lingua">
@@ -298,7 +299,7 @@
   </div>
 
   <div class="wrap hero-inner">
-    <div class="sigil-lg">✵</div>
+    <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="110" height="104">
     <h1 class="word">SORAYA</h1>
     <div class="kicker">Luxury Astro Guide</div>
     <p class="sub" data-t="hero.sub">Der Himmel, gelesen für dich allein.</p>
@@ -402,7 +403,7 @@
 <section class="block" id="download">
   <div class="wrap">
     <div class="cta reveal">
-      <div class="sigil-lg">✵</div>
+      <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="64" height="61">
       <h2 data-t="cta.head">Dein Himmel wartet.</h2>
       <p data-t="cta.p">Lade Soraya für Android oder öffne sie auf dem iPhone direkt im Browser – und beginne mit deinem persönlichen Geburtshoroskop.</p>
       <div class="stores">
