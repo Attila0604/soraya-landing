@@ -6,11 +6,13 @@
 <title>Soraya — Dein Luxury Astro Guide</title>
 <meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
 <meta name="theme-color" content="#070817" />
-<link rel="alternate" hreflang="de" href="https://soraya-landing.vercel.app/?lang=de" />
-<link rel="alternate" hreflang="en" href="https://soraya-landing.vercel.app/?lang=en" />
-<link rel="alternate" hreflang="hu" href="https://soraya-landing.vercel.app/?lang=hu" />
-<link rel="alternate" hreflang="it" href="https://soraya-landing.vercel.app/?lang=it" />
-<link rel="alternate" hreflang="x-default" href="https://soraya-landing.vercel.app/" />
+<link rel="alternate" hreflang="de" href="https://www.sorayaluxuryastroguide.com/?lang=de" />
+<link rel="alternate" hreflang="en" href="https://www.sorayaluxuryastroguide.com/?lang=en" />
+<link rel="alternate" hreflang="hu" href="https://www.sorayaluxuryastroguide.com/?lang=hu" />
+<link rel="alternate" hreflang="it" href="https://www.sorayaluxuryastroguide.com/?lang=it" />
+<link rel="alternate" hreflang="x-default" href="https://www.sorayaluxuryastroguide.com/" />
+<link rel="canonical" href="https://www.sorayaluxuryastroguide.com/" />
+<meta property="og:url" content="https://www.sorayaluxuryastroguide.com/" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -19,7 +21,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Soraya — Dein Luxury Astro Guide" />
 <meta property="og:description" content="Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich." />
-<meta property="og:image" content="https://soraya-landing.vercel.app/soraya-poster.jpg" />
+<meta property="og:image" content="https://www.sorayaluxuryastroguide.com/soraya-poster.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,6 +29,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
+  /* Sternzeichen-Symbole in Gold statt bunter Emojis (wie in der App) */
+  @font-face{font-family:"SorayaZeichen";src:url("fonts/soraya-zeichen.woff2") format("woff2");font-display:block;
+    unicode-range:U+2648-2653,U+263D-263F,U+2640,U+2642-2647,U+260A,U+26B7-26B8}
   :root{
     --void:#0b0713; --void-2:#140b22;
     --gold:#c9a86a; --gold-soft:#e6cf9c; --gold-deep:#a9863f;
@@ -35,9 +40,9 @@
     --panel:rgba(26,17,44,.44); --panel-2:rgba(32,21,54,.62);
     --line:rgba(201,168,106,.20); --line-soft:rgba(195,183,218,.12);
     --line-violet:rgba(168,107,255,.18);
-    --display:"Cormorant Garamond",Georgia,serif;
+    --display:"SorayaZeichen","Cormorant Garamond",Georgia,serif;
     --wordmark:"Cinzel",serif;
-    --ui:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --ui:"SorayaZeichen","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
     --r-card:20px; --r-sm:14px; --r-pill:999px;
     --maxw:1120px;
   }
@@ -105,7 +110,8 @@
     position:relative; min-height:100svh; display:flex; align-items:center;
     padding:120px 0 90px; overflow:hidden;
   }
-  .hero-bg{position:absolute; inset:0; z-index:0}
+  .hero-bg{position:absolute; inset:0; z-index:0;
+    -webkit-mask-image:linear-gradient(180deg,#000 78%,transparent); mask-image:linear-gradient(180deg,#000 78%,transparent)}
   .hero-bg canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
   .hero-bg::after{ /* vignette + readability wash */
     content:""; position:absolute; inset:0;
@@ -277,13 +283,17 @@
   .ergebnis:empty{display:none}
   .lichter{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px}
   .licht{border:1px solid var(--line); border-radius:16px; padding:14px; text-align:center; background:rgba(201,168,106,.05)}
-  .licht .sym{font-size:26px; color:var(--gold-soft); line-height:1}
+  .licht .sym{font-family:var(--ui); font-size:34px; color:var(--gold-soft); line-height:1; text-shadow:0 0 18px rgba(201,168,106,.45)}
+  .licht .elem{display:inline-block; margin-top:8px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-soft);
+               border:1px solid var(--gold-dim); border-radius:var(--r-pill); padding:3px 10px}
   .licht .was{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mist-dim); margin-top:6px}
   .licht .zeichen{font-family:var(--display); font-size:28px; font-weight:600; color:#f4eedd; line-height:1.15}
   .licht .klein{font-size:12.5px; color:var(--mist-dim)}
   .weiter{display:block; text-align:center; margin-top:4px}
   .fehler{color:#f0c4bc; font-size:14px; margin-top:10px}
   .chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
+  .chip .z{color:var(--gold-soft); margin-right:5px}
+  .chip.on .z{color:#1a1209}
   .chip{border:1px solid var(--line-soft); background:transparent; color:var(--mist); border-radius:var(--r-pill);
         padding:8px 13px; font:500 13.5px var(--ui); cursor:pointer}
   .chip:hover{border-color:var(--gold-dim)}
@@ -844,6 +854,8 @@
                    it: {Feuer:"fuoco",Erde:"terra",Luft:"aria",Wasser:"acqua"}};
     var namen = NAMEN[lang] || NAMEN.de;
     function name(key){ var i = KEYS.indexOf(key); return i < 0 ? key : namen[i]; }
+    var GLYPH = "♈♉♊♋♌♍♎♏♐♑♒♓";
+    function glyph(key){ var i = KEYS.indexOf(key); return i < 0 ? "" : GLYPH[i] + "\uFE0E"; }
     function nameDe(de){ var i = NAMEN.de.indexOf(de); return i < 0 ? de : namen[i]; }
     function esc(t){ return String(t == null ? "" : t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
     function wahl(key){ try { localStorage.setItem("soraya_zeichen", key); } catch (e) {} }
@@ -861,26 +873,28 @@
       fetch(ENGINE + "/public/preview", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})
         .then(function(r){ return r.json(); })
         .then(function(res){
-          if (!res || !res.ok) throw new Error((res && res.error) || "");
+          if (!res || !res.ok) { var fe = new Error((res && res.error) || ""); fe.engine = true; throw fe; }
           var a = res.data, el = function(pt){ return pt.element_de ? ((ELEMENT[lang] || {})[pt.element_de] || pt.element_de) : ""; };
           function licht(sym, was, sinn, pt){
             var alt = pt.uncertain && pt.alternatives ? '<div class="klein">' + esc(tr("js.oder", "oder")) + " " +
               esc(pt.alternatives.map(nameDe).filter(function(n){ return n !== name(pt.sign); }).join(", ")) + " – " + esc(tr("js.unsicher", "ohne Uhrzeit nicht ganz sicher")) + "</div>" : "";
-            return '<div class="licht"><div class="sym">' + sym + '</div><div class="was">' + esc(was) + '</div><div class="zeichen">' +
-              esc(name(pt.sign)) + '</div><div class="klein">' + esc(sinn) + (el(pt) ? " · " + esc(el(pt)) : "") + "</div>" + alt + "</div>";
+            return '<div class="licht"><div class="sym">' + glyph(pt.sign) + '</div><div class="was">' + sym + " " + esc(was) + '</div><div class="zeichen">' +
+              esc(name(pt.sign)) + '</div><div class="klein">' + esc(sinn) + "</div>" + (el(pt) ? '<div class="elem">' + esc(el(pt)) + "</div>" : "") + alt + "</div>";
           }
           box.innerHTML = '<div class="lichter">' + licht("☉", tr("js.sonne", "Sonne"), tr("js.kern", "dein Wesenskern"), a.sun) +
             licht("☽", tr("js.mond", "Mond"), tr("js.gefuehl", "deine Gefühlswelt"), a.moon) + "</div>";
-          document.getElementById("pvWeiter").hidden = false;
+          var weiter = document.getElementById("pvWeiter");
+          try { var wu = new URL(weiter.href); wu.searchParams.set("geb", d); if (/^\d{2}:\d{2}/.test(z)) wu.searchParams.set("zeit", z.slice(0, 5)); else wu.searchParams.delete("zeit"); weiter.href = wu.toString(); } catch (e2) {}
+          weiter.hidden = false;
           wahl(a.sun.sign); zeigeHoroskop(a.sun.sign);
         })
-        .catch(function(e){ box.innerHTML = '<p class="fehler">' + esc((lang === "de" && e.message) || tr("js.fehler", "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.")) + "</p>"; })
+        .catch(function(e){ box.innerHTML = '<p class="fehler">' + esc((lang === "de" && e.engine && e.message) || tr("js.fehler", "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.")) + "</p>"; })
         .then(function(){ knopf.disabled = false; });
     });
 
     // --- Tageshoroskop
     var chips = document.getElementById("thZeichen"), aktuell = null;
-    if (chips) chips.innerHTML = KEYS.map(function(k){ return '<button type="button" class="chip" data-zeichen="' + k + '">' + esc(name(k)) + "</button>"; }).join("");
+    if (chips) chips.innerHTML = KEYS.map(function(k){ return '<button type="button" class="chip" data-zeichen="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span>" + esc(name(k)) + "</button>"; }).join("");
     function zeigeHoroskop(key){
       if (!chips || aktuell === key) return;
       aktuell = key;
@@ -891,13 +905,13 @@
         .then(function(r){ return r.json(); })
         .then(function(res){
           if (aktuell !== key) return;
-          if (!res || !res.ok) throw new Error((res && res.error) || "");
+          if (!res || !res.ok) { var fe = new Error((res && res.error) || ""); fe.engine = true; throw fe; }
           var h = res.data;
           box.innerHTML = (h.stimmung ? "<h4>" + esc(h.stimmung) + "</h4>" : "") + "<p>" + esc(h.text) + "</p>" +
             (h.tipp ? '<p class="tipp"><b>' + esc(tr("js.tipp", "Tipp")) + ":</b> " + esc(h.tipp) + "</p>" : "");
           document.getElementById("thWeiter").hidden = false;
         })
-        .catch(function(e){ if (aktuell === key) { aktuell = null; box.innerHTML = '<p class="fehler">' + esc((lang === "de" && e.message) || tr("js.fehler", "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.")) + "</p>"; } });
+        .catch(function(e){ if (aktuell === key) { aktuell = null; box.innerHTML = '<p class="fehler">' + esc((lang === "de" && e.engine && e.message) || tr("js.fehler", "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.")) + "</p>"; } });
     }
     if (chips) chips.addEventListener("click", function(ev){
       var c = ev.target.closest(".chip"); if (!c) return;
@@ -914,10 +928,11 @@
     // --- feste "Kostenlos starten"-Leiste am Handy: nach dem Hero, nicht ueber dem Schluss-Aufruf
     var leiste = document.getElementById("stickyCta"), hero = document.querySelector(".hero"), schluss = document.getElementById("download");
     if (leiste && hero && "IntersectionObserver" in window) {
-      var heroSicht = true, schlussSicht = false;
-      function setze(){ var an = !heroSicht && !schlussSicht; leiste.classList.toggle("zeigen", an); leiste.setAttribute("aria-hidden", an ? "false" : "true"); }
+      var heroSicht = true, schlussSicht = false, probierSicht = false, probier = document.getElementById("probieren");
+      function setze(){ var an = !heroSicht && !schlussSicht && !probierSicht; leiste.classList.toggle("zeigen", an); leiste.setAttribute("aria-hidden", an ? "false" : "true"); }
       new IntersectionObserver(function(es){ heroSicht = es[0].isIntersecting; setze(); }).observe(hero);
       if (schluss) new IntersectionObserver(function(es){ schlussSicht = es[0].isIntersecting; setze(); }).observe(schluss);
+      if (probier) new IntersectionObserver(function(es){ probierSicht = es[0].isIntersecting; setze(); }, {rootMargin: "-25% 0px -25% 0px"}).observe(probier);
     }
   })();
 
