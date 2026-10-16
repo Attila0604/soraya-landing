@@ -164,6 +164,9 @@
   html.is-ios .ios-hint{display:block}
   html.is-ios .store-btn:not(.ios-btn){display:none}
   html.is-android .ios-btn{display:none}
+  .alt-link{display:none; margin:14px auto 0; font-size:13px; color:var(--mist-dim)}
+  .alt-link a{color:var(--gold-soft); border-bottom:1px solid var(--gold-dim)}
+  html.is-android .alt-link.fuer-android, html.is-ios .alt-link.fuer-ios{display:block}
 
   .scroll-cue{
     position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:3;
@@ -299,6 +302,7 @@
   .chip:hover{border-color:var(--gold-dim)}
   .chip.on{border-color:var(--gold); color:#1a1209; background:var(--gold-soft)}
   .horo{min-height:40px}
+  .horo .leer{color:var(--mist-dim); font-size:14px; font-style:italic; margin:0}
   .horo h4{font-family:var(--display); font-size:24px; color:#f4eedd; margin:0 0 6px; font-weight:600}
   .horo p{margin:0 0 12px; color:var(--mist)}
   .horo .tipp{border-left:2px solid var(--gold); padding-left:12px; color:var(--gold-soft); font-size:14.5px}
@@ -393,6 +397,8 @@
       </a>
     </div>
     <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
+    <p class="alt-link fuer-android" data-t="alt.ios">iPhone? <a href="https://app.sorayaluxuryastroguide.com/">Soraya im Browser öffnen ›</a></p>
+    <p class="alt-link fuer-ios" data-t="alt.android">Android? <a href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa">Bei Google Play laden ›</a></p>
     <a class="try-link" href="#probieren" data-t="try.link">✦ Gratis: dein Sonnen- &amp; Mondzeichen in Sekunden</a>
   </div>
 
@@ -422,7 +428,7 @@
         <h3 data-t="th.h">Dein Tageshoroskop heute</h3>
         <p class="hint" data-t="th.p">Wähle dein Sternzeichen.</p>
         <div class="chips" id="thZeichen" role="group" aria-label="Sternzeichen"></div>
-        <div class="horo" id="thText" aria-live="polite"></div>
+        <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tippe auf dein Sternzeichen – Soraya liest dir den heutigen Tag.</p></div>
         <a class="weiter" id="thWeiter" href="https://app.sorayaluxuryastroguide.com/" hidden data-t="th.weiter">Persönlich statt für alle: dein Horoskop aus deinem Geburtshoroskop ›</a>
       </div>
     </div>
@@ -557,6 +563,8 @@
         </a>
       </div>
       <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
+      <p class="alt-link fuer-android" data-t="alt.ios">iPhone? <a href="https://app.sorayaluxuryastroguide.com/">Soraya im Browser öffnen ›</a></p>
+      <p class="alt-link fuer-ios" data-t="alt.android">Android? <a href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa">Bei Google Play laden ›</a></p>
     </div>
   </div>
 </section>
@@ -596,6 +604,7 @@
         "pv.weiter": "Your full horoscope – free",
         "th.h": "Your horoscope for today",
         "th.p": "Choose your sign.",
+        "th.leer": "Tap your sign – Soraya reads today for you.",
         "th.weiter": "Personal, not for everyone: your horoscope from your own birth chart ›",
         "how.eyebrow": "It's that simple",
         "how.head": "Three steps to <span class=\"gold\">your sky</span>",
@@ -648,6 +657,7 @@
         "show.l3": "An app for Android and iPhone, right from your home screen",
         "cta.head": "Your sky is waiting.",
         "cta.p": "Get Soraya for Android or open it on iPhone right in your browser – and start with your personal birth chart.",
+        "alt.ios": "iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Open Soraya in your browser ›</a>", "alt.android": "Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Get it on Google Play ›</a>",
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy"
       },
       hu: {
@@ -663,6 +673,7 @@
         "pv.weiter": "A teljes horoszkópod – ingyen",
         "th.h": "A mai horoszkópod",
         "th.p": "Válaszd ki a csillagjegyed.",
+        "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
         "th.weiter": "Személyesen, nem mindenkinek: a horoszkópod a saját születési képletedből ›",
         "how.eyebrow": "Ilyen egyszerű",
         "how.head": "Három lépésben <span class=\"gold\">a saját égboltodig</span>",
@@ -715,6 +726,7 @@
         "show.l3": "Alkalmazásként Androidon és iPhone-on, egyenesen a kezdőképernyőről",
         "cta.head": "Az égbolt vár rád.",
         "cta.p": "Töltsd le a Sorayát Androidra, vagy nyisd meg iPhone-on közvetlenül a böngészőben – és kezdd a személyes születési képleteddel.",
+        "alt.ios": "iPhone-od van? <a href=\"https://app.sorayaluxuryastroguide.com/\">Nyisd meg a Sorayát a böngészőben ›</a>", "alt.android": "Androidod van? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Töltsd le a Google Playről ›</a>",
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem"
       },
       it: {
@@ -730,6 +742,7 @@
         "pv.weiter": "Il tuo oroscopo completo – gratis",
         "th.h": "Il tuo oroscopo di oggi",
         "th.p": "Scegli il tuo segno.",
+        "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
         "th.weiter": "Personale, non per tutti: il tuo oroscopo dal tuo tema natale ›",
         "how.eyebrow": "È semplice",
         "how.head": "In tre passi verso <span class=\"gold\">il tuo cielo</span>",
@@ -782,6 +795,7 @@
         "show.l3": "Come app su Android e iPhone, direttamente dalla schermata Home",
         "cta.head": "Il tuo cielo ti aspetta.",
         "cta.p": "Scarica Soraya per Android o aprila su iPhone direttamente nel browser – e inizia con il tuo tema natale personale.",
+        "alt.ios": "Hai un iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Apri Soraya nel browser ›</a>", "alt.android": "Hai Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Scaricala da Google Play ›</a>",
         "foot.imprint": "Note legali", "foot.privacy": "Privacy"
       }
     };
@@ -809,6 +823,8 @@
     document.title = T.title;
     document.querySelectorAll("[data-t]").forEach(function (el) { var v = T[el.getAttribute("data-t")]; if (v) el.innerHTML = v; });
     document.querySelectorAll("[data-t-aria]").forEach(function (el) { var v = T[el.getAttribute("data-t-aria")]; if (v) el.setAttribute("aria-label", v); });
+    // uebersetzte Links (z. B. "Android? Bei Google Play laden") auch mit der Store-Sprache
+    document.querySelectorAll('[data-t] a[href*="play.google.com"]').forEach(function (a) { a.href = a.href.split("&hl=")[0] + "&hl=" + lang; });
   })();
 
   // Wirkung pro Post: Link-Kennung (?q=p123 / ?q=bio-ig) anonym zaehlen und an die App
@@ -917,13 +933,6 @@
       var c = ev.target.closest(".chip"); if (!c) return;
       var k = c.getAttribute("data-zeichen"); wahl(k); zeigeHoroskop(k);
     });
-    // zuletzt gewaehltes Zeichen gleich zeigen, sobald der Bereich sichtbar wird (spart Aufrufe)
-    var gemerkt = null; try { gemerkt = localStorage.getItem("soraya_zeichen"); } catch (e) {}
-    var th = document.getElementById("tageshoroskop");
-    if (th && gemerkt && KEYS.indexOf(gemerkt) >= 0 && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function(es){ if (es[0].isIntersecting) { io.disconnect(); zeigeHoroskop(gemerkt); } });
-      io.observe(th);
-    }
 
     // --- feste "Kostenlos starten"-Leiste am Handy: nach dem Hero, nicht ueber dem Schluss-Aufruf
     var leiste = document.getElementById("stickyCta"), hero = document.querySelector(".hero"), schluss = document.getElementById("download");
