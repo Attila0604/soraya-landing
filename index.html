@@ -305,6 +305,12 @@
   .chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
   .chip .z{color:var(--gold-soft); margin-right:5px}
   .chip.on .z{color:#1a1209}
+  .teilen-btn{display:block; margin:12px auto 0; background:transparent; border:1px solid var(--gold-dim); color:var(--gold-soft);
+              border-radius:var(--r-pill); padding:11px 20px; font:500 14px var(--ui); cursor:pointer}
+  .teilen-btn:hover{border-color:var(--gold-soft)}
+  .chips{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px!important}
+  .chip{text-align:center; line-height:1.25; padding-left:4px!important; padding-right:4px!important; overflow-wrap:anywhere}
+  @media (max-width:420px){ .chip{font-size:12.5px!important} }
   .chip{border:1px solid var(--line-soft); background:transparent; color:var(--mist); border-radius:var(--r-pill);
         padding:8px 13px; font:500 13.5px var(--ui); cursor:pointer}
   .chip:hover{border-color:var(--gold-dim)}
@@ -432,6 +438,7 @@
         <button class="gold-btn" type="submit" id="pvKnopf" data-t="pv.knopf">Zeigen</button>
         <div class="ergebnis" id="pvErgebnis" aria-live="polite"></div>
         <a class="gold-btn weiter" id="pvWeiter" href="https://app.sorayaluxuryastroguide.com/" hidden data-t="pv.weiter">Dein ganzes Horoskop – kostenlos</a>
+        <button type="button" class="teilen-btn" id="pvTeilen" hidden data-t="pv.teilen">Mit Freunden teilen ↗</button>
       </form>
       <div class="tcard reveal" id="tageshoroskop">
         <h3 data-t="th.h">Dein Tageshoroskop heute</h3>
@@ -611,6 +618,7 @@
         "pv.zeit": "Time (optional)",
         "pv.knopf": "Show me",
         "pv.weiter": "Your full horoscope – free",
+        "pv.teilen": "Share with friends ↗", "js.teiltext": "I'm a {sun} with my Moon in {moon} ✨ What are you? Find out free:", "js.kopiert": "Link copied ✓",
         "th.h": "Your horoscope for today",
         "th.p": "Choose your sign.",
         "th.leer": "Tap your sign – Soraya reads today for you.",
@@ -680,6 +688,7 @@
         "pv.zeit": "Időpont (nem kötelező)",
         "pv.knopf": "Mutasd",
         "pv.weiter": "A teljes horoszkópod – ingyen",
+        "pv.teilen": "Megosztás a barátaiddal ↗", "js.teiltext": "{sun} vagyok, a Holdam {moon} ✨ És te? Nézd meg ingyen:", "js.kopiert": "Link kimásolva ✓",
         "th.h": "A mai horoszkópod",
         "th.p": "Válaszd ki a csillagjegyed.",
         "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
@@ -749,6 +758,7 @@
         "pv.zeit": "Ora (facoltativa)",
         "pv.knopf": "Mostra",
         "pv.weiter": "Il tuo oroscopo completo – gratis",
+        "pv.teilen": "Condividi con gli amici ↗", "js.teiltext": "Sono {sun} con la Luna in {moon} ✨ E tu? Scoprilo gratis:", "js.kopiert": "Link copiato ✓",
         "th.h": "Il tuo oroscopo di oggi",
         "th.p": "Scegli il tuo segno.",
         "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
@@ -943,6 +953,17 @@
           var weiter = document.getElementById("pvWeiter");
           try { var wu = new URL(weiter.href); wu.searchParams.set("geb", d); if (/^\d{2}:\d{2}/.test(z)) wu.searchParams.set("zeit", z.slice(0, 5)); else wu.searchParams.delete("zeit"); weiter.href = wu.toString(); } catch (e2) {}
           weiter.hidden = false;
+          var teilen = document.getElementById("pvTeilen");
+          teilen.hidden = false;
+          teilen.onclick = function(){
+            var url = "https://www.sorayaluxuryastroguide.com/?q=teilen-landing&lang=" + lang;
+            var text = tr("js.teiltext", "Ich bin {sun} mit Mond in {moon} ✨ Und du? Hier gratis ausprobieren:")
+              .replace("{sun}", name(a.sun.sign)).replace("{moon}", name(a.moon.sign));
+            if (navigator.share) { navigator.share({text: text, url: url}).catch(function(){}); return; }
+            try { navigator.clipboard.writeText(text + " " + url).then(function(){
+              var alt = teilen.textContent; teilen.textContent = tr("js.kopiert", "Link kopiert ✓");
+              setTimeout(function(){ teilen.textContent = alt; }, 2200); }); } catch (e2) {}
+          };
           wahl(a.sun.sign); zeigeHoroskop(a.sun.sign);
         })
         .catch(function(e){ box.innerHTML = '<p class="fehler">' + esc((lang === "de" && e.engine && e.message) || tr("js.fehler", "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.")) + "</p>"; })
