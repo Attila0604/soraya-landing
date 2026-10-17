@@ -137,6 +137,14 @@
     letter-spacing:.42em; text-transform:uppercase; color:var(--mist); text-indent:.42em;
     margin:0 0 26px;
   }
+  .himmel-heute{display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; margin:-8px auto 22px;
+    padding:7px 16px; border:1px solid var(--line); border-radius:var(--r-pill); background:rgba(20,13,34,.55); backdrop-filter:blur(4px);
+    font-size:13px; color:var(--mist); letter-spacing:.02em; animation:einblenden .8s ease both}
+  .himmel-heute .mond{font-family:var(--ui); color:var(--gold-soft); font-size:15px}
+  .himmel-heute b{color:var(--gold-soft); font-weight:600}
+  .himmel-heute .trenn{color:var(--mist-faint)}
+  @media (max-width:520px){ .himmel-heute{font-size:12.5px; gap:6px; padding:6px 14px} .himmel-heute .naechst{display:none} }
+  @keyframes einblenden{from{opacity:0; transform:translateY(-4px)}to{opacity:1; transform:none}}
   .hero .sub{
     font-family:var(--display); font-weight:500; font-style:italic;
     font-size:clamp(19px,2.6vw,27px); color:var(--mist);
@@ -265,7 +273,7 @@
   /* ---------- reveal animation ---------- */
   /* ---------- Gratis ausprobieren ---------- */
   [hidden]{display:none!important}
-  .try-link{display:inline-block; margin-top:22px; font-size:14px; color:var(--gold-soft); border-bottom:1px solid var(--gold-dim); padding-bottom:2px}
+  .try-link{display:inline-block; margin-top:22px; font-size:14px; color:var(--gold-soft); text-decoration:underline; text-decoration-color:var(--gold-dim); text-underline-offset:4px; line-height:1.5}
   .try-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start}
   .tcard{background:var(--panel-2); border:1px solid var(--line); border-radius:var(--r-card); padding:clamp(20px,3vw,30px);
          position:relative; overflow:hidden}
@@ -384,6 +392,7 @@
     <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="110" height="104">
     <h1 class="word">SORAYA</h1>
     <div class="kicker">Luxury Astro Guide</div>
+    <p class="himmel-heute" id="himmelHeute" hidden></p>
     <p class="sub" data-t="hero.sub">Der Himmel, gelesen für dich allein.</p>
 
     <div class="stores">
@@ -875,6 +884,34 @@
     function nameDe(de){ var i = NAMEN.de.indexOf(de); return i < 0 ? de : namen[i]; }
     function esc(t){ return String(t == null ? "" : t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
     function wahl(key){ try { localStorage.setItem("soraya_zeichen", key); } catch (e) {} }
+
+    // --- Heute am Himmel (Zeile im Hero, gleiche Daten wie in der App)
+    var PHASEN = {
+      de: ["Neumond","Zunehmende Sichel","Erstes Viertel","Zunehmender Mond","Vollmond","Abnehmender Mond","Letztes Viertel","Abnehmende Sichel"],
+      en: ["New Moon","Waxing Crescent","First Quarter","Waxing Gibbous","Full Moon","Waning Gibbous","Last Quarter","Waning Crescent"],
+      hu: ["Újhold","Növő sarló","Első negyed","Növő hold","Telihold","Fogyó hold","Utolsó negyed","Fogyó sarló"],
+      it: ["Luna nuova","Falce crescente","Primo quarto","Gibbosa crescente","Luna piena","Gibbosa calante","Ultimo quarto","Falce calante"]};
+    var HIMMEL_T = {
+      de: {heute: "Heute", mondIn: "Mond in", voll: "Vollmond", neu: "Neumond", inT: function(n){ return n === 0 ? "heute" : n === 1 ? "morgen" : "in " + n + " Tagen"; }},
+      en: {heute: "Today", mondIn: "Moon in", voll: "Full Moon", neu: "New Moon", inT: function(n){ return n === 0 ? "today" : n === 1 ? "tomorrow" : "in " + n + " days"; }},
+      hu: {heute: "Ma", mondIn: "Hold:", voll: "Telihold", neu: "Újhold", inT: function(n){ return n === 0 ? "ma" : n === 1 ? "holnap" : n + " nap múlva"; }},
+      it: {heute: "Oggi", mondIn: "Luna in", voll: "Luna piena", neu: "Luna nuova", inT: function(n){ return n === 0 ? "oggi" : n === 1 ? "domani" : "tra " + n + " giorni"; }}};
+    (function himmelHeute(){
+      var box = document.getElementById("himmelHeute"); if (!box || !window.fetch) return;
+      var T = HIMMEL_T[lang] || HIMMEL_T.en, ph = PHASEN[lang] || PHASEN.en;
+      fetch(ENGINE + "/sky").then(function(r){ return r.json(); }).then(function(res){
+        var d = res && res.ok && res.data, m = d && d.moon; if (!m || !m.sign) return;
+        var heute = new Date(); heute.setHours(0, 0, 0, 0);
+        function tage(iso){ if (!iso) return 99; var t = new Date(iso); t.setHours(0, 0, 0, 0); return Math.round((t - heute) / 86400000); }
+        var nv = tage(d.next_full_moon), nn = tage(d.next_new_moon);
+        var naechst = nv <= nn ? T.voll + " " + T.inT(nv) : T.neu + " " + T.inT(nn);
+        box.innerHTML = '<span class="mond" aria-hidden="true">\u263D\uFE0E</span><span>' + esc(T.mondIn) + " <b>" + esc(name(m.sign)) + "</b></span>" +
+          '<span class="trenn">·</span><span>' + esc(ph[m.phase_index] || m.phase || "") + "</span>" +
+          (Math.min(nv, nn) <= 14 ? '<span class="trenn naechst">·</span><span class="naechst">' + esc(naechst) + "</span>" : "");
+        box.setAttribute("aria-label", T.heute + ": " + box.textContent);
+        box.hidden = false;
+      }).catch(function(){});
+    })();
 
     // --- Sonne & Mond
     var form = document.getElementById("vorschauForm");
