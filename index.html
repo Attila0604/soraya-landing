@@ -3,31 +3,70 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Soraya — Dein Luxury Astro Guide</title>
-<meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
-<meta name="theme-color" content="#070817" />
+<title>Soraya — Horoskop &amp; Geburtshoroskop | Luxury Astro Guide</title>
+<meta name="description" content="Dein persönlicher Astro-Guide: Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat – genau berechnet und klar erklärt. Kostenlos für Android und im Browser." />
+<meta name="theme-color" content="#0b0713" />
+<meta name="color-scheme" content="dark" />
 <link rel="alternate" hreflang="de" href="https://www.sorayaluxuryastroguide.com/?lang=de" />
 <link rel="alternate" hreflang="en" href="https://www.sorayaluxuryastroguide.com/?lang=en" />
 <link rel="alternate" hreflang="hu" href="https://www.sorayaluxuryastroguide.com/?lang=hu" />
 <link rel="alternate" hreflang="it" href="https://www.sorayaluxuryastroguide.com/?lang=it" />
 <link rel="alternate" hreflang="x-default" href="https://www.sorayaluxuryastroguide.com/" />
 <link rel="canonical" href="https://www.sorayaluxuryastroguide.com/" />
-<meta property="og:url" content="https://www.sorayaluxuryastroguide.com/" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-<!-- Open Graph / Social -->
+<!-- Open Graph / Social (Texte werden je Sprache per Script angepasst) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Soraya — Dein Luxury Astro Guide" />
-<meta property="og:description" content="Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich." />
-<meta property="og:image" content="https://www.sorayaluxuryastroguide.com/soraya-poster.jpg" />
+<meta property="og:site_name" content="Soraya" />
+<meta property="og:url" content="https://www.sorayaluxuryastroguide.com/" />
+<meta property="og:title" content="Soraya — Horoskop &amp; Geburtshoroskop | Luxury Astro Guide" />
+<meta property="og:description" content="Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat – genau berechnet und klar erklärt. Probier dein Sonnen- &amp; Mondzeichen gratis aus." />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:locale:alternate" content="en_GB" />
+<meta property="og:locale:alternate" content="hu_HU" />
+<meta property="og:locale:alternate" content="it_IT" />
+<meta property="og:image" content="https://www.sorayaluxuryastroguide.com/og-bild.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Soraya – Luxury Astro Guide" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Soraya — Horoskop &amp; Geburtshoroskop | Luxury Astro Guide" />
+<meta name="twitter:description" content="Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat – genau berechnet und klar erklärt." />
+<meta name="twitter:image" content="https://www.sorayaluxuryastroguide.com/og-bild.jpg" />
+<script type="application/ld+json" id="ldjson">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"https://www.sorayaluxuryastroguide.com/#website","url":"https://www.sorayaluxuryastroguide.com/","name":"Soraya","alternateName":"Soraya Luxury Astro Guide","inLanguage":"de"},
+ {"@type":"SoftwareApplication","name":"Soraya – Luxury Astro Guide","applicationCategory":"LifestyleApplication","operatingSystem":"Android, iOS, Web",
+  "url":"https://app.sorayaluxuryastroguide.com/","installUrl":"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa",
+  "image":"https://www.sorayaluxuryastroguide.com/og-bild.jpg","inLanguage":["de","en","hu","it"],
+  "description":"Dein persönlicher Astro-Guide: Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat – genau berechnet und klar erklärt.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+]}
+</script>
 
-<script>document.documentElement.classList.add("js")</script>
+<script>
+  // frueh: JS-Klasse, Geraet (fuer die passenden Download-Knoepfe ohne Flackern) und Sprache
+  (function(){
+    var h = document.documentElement; h.classList.add("js");
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    h.classList.add(ios ? "is-ios" : /Android/i.test(ua) ? "is-android" : "is-desktop");
+    // Nicht-deutsche Besucher: Seite kurz ausblenden, bis die Uebersetzung steht (kein deutsches Aufblitzen)
+    var LANGS = ["de", "en", "hu", "it"], lang = "";
+    try { var q = new URLSearchParams(location.search).get("lang"); if (LANGS.indexOf(q) >= 0) lang = q; } catch (e) {}
+    if (!lang) { try { var st = localStorage.getItem("soraya_lang"); if (LANGS.indexOf(st) >= 0) lang = st; } catch (e) {} }
+    if (!lang) { var l = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      for (var i = 0; i < l.length && !lang; i++) { var c = String(l[i]).slice(0, 2).toLowerCase(); if (LANGS.indexOf(c) >= 0) lang = c; } }
+    if ((lang || "en") !== "de") { h.classList.add("i18n-warten"); setTimeout(function(){ h.classList.remove("i18n-warten"); }, 2500); }
+  })();
+</script>
+<style>html.i18n-warten body{visibility:hidden}</style>
+<link rel="preload" href="fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   /* Sternzeichen-Symbole in Gold statt bunter Emojis (wie in der App) */
@@ -93,7 +132,7 @@
     letter-spacing:.36em; text-indent:.36em; color:var(--gold-soft);
   }
   .nav .to-app{
-    font-family:var(--ui); font-size:12px; font-weight:500; letter-spacing:.14em;
+    display:inline-block; font-family:var(--ui); font-size:12px; font-weight:500; letter-spacing:.14em;
     text-transform:uppercase; color:var(--mist-dim);
     border:1px solid var(--line); padding:9px 18px; border-radius:var(--r-pill);
     transition:.25s;
@@ -474,6 +513,41 @@
     .scroll-cue{display:none}
     #probieren{padding-top:44px}
   }
+  /* ---------- Runde 3: Kontrast, Konto-Mehrwert, Tageshoroskop, Desktop ---------- */
+  :root{--mist-faint:#837799}
+  footer .copy,.laedt .langsam{color:var(--mist-dim)}
+  .horo .tipp b{font-weight:600}
+  .nav-rechts{display:flex; align-items:center; gap:14px}
+  .nav .to-app.nur-android{display:none}
+  .is-android .nav .to-app.nur-andere{display:none}
+  @media (min-width:561px){ .is-android .nav .to-app.nur-android{display:inline-block} }
+  /* Web-Knopf: am Computer nicht "Auf dem iPhone" */
+  .store-btn .fuer-desk{display:none}
+  html.is-desktop .store-btn .fuer-desk{display:inline} html.is-desktop .store-btn .fuer-ios{display:none}
+  /* Ergebnis: was das kostenlose Konto dazu bringt */
+  .konto-plus{list-style:none; margin:4px 0 14px; padding:14px 16px; border:1px solid var(--line); border-radius:16px; background:rgba(201,168,106,.05)}
+  .konto-plus .kp-titel{display:block; font-family:var(--wordmark); font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin:0 0 8px; text-align:center}
+  .konto-plus li{display:flex; gap:9px; align-items:flex-start; font-size:14px; line-height:1.45; color:var(--mist); margin:6px 0 0}
+  .konto-plus li.kp-kopf{display:block; margin:0}
+  .konto-plus li.kp-kopf::before{content:none}
+  .konto-plus li::before{content:"✦"; flex:none; color:var(--gold-soft); font-size:11px; margin-top:3px}
+  .weiter-info{text-align:center; font-size:12.5px; color:var(--mist-dim); margin:8px 0 0}
+  .erg-titel{text-wrap:balance}
+  /* Tageshoroskop: Datum + klarer naechster Schritt */
+  .horo .horo-datum{display:block; font-family:var(--wordmark); font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin:0 0 6px}
+  #thWeiter{display:flex; justify-content:center; align-items:center; text-align:center; margin-top:16px; padding:12px 18px; font-size:14px; font-weight:500; line-height:1.4;
+    border:1px solid var(--gold-dim); border-radius:var(--r-pill); background:rgba(201,168,106,.07); transition:.25s}
+  #thWeiter:hover{border-color:var(--gold-soft); background:rgba(201,168,106,.13)}
+  #thWeiter:focus-visible{border-radius:var(--r-pill)}
+  /* lange ungarische/italienische Woerter sauber umbrechen */
+  h2.head,.feat h3,.tcard h3,.faq summary,.schritt b{overflow-wrap:break-word; hyphens:auto}
+  .faq a{color:var(--gold-soft); border-bottom:1px solid var(--gold-dim)}
+  .faq summary{line-height:1.3; align-items:flex-start}
+  .faq summary::after{line-height:1.3}
+  @media (max-width:420px){ .erg-kopf .erg-titel{letter-spacing:.2em} }
+  /* lange Feldnamen (z. B. ungarisch) duerfen umbrechen, die Eingabefelder bleiben auf einer Linie */
+  .felder{align-items:end}
+
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     html.js .reveal{opacity:1; transform:none; transition:none}
@@ -491,12 +565,16 @@
     <img class="sigil" src="brand/zeichen.svg" alt="" width="26" height="25">
     <span class="name">SORAYA</span>
   </div>
+  <div class="nav-rechts">
   <nav class="langs" aria-label="Sprache · Language · Nyelv · Lingua">
     <a href="?lang=de" data-lang="de" lang="de">DE</a>
     <a href="?lang=en" data-lang="en" lang="en">EN</a>
     <a href="?lang=hu" data-lang="hu" lang="hu">HU</a>
     <a href="?lang=it" data-lang="it" lang="it">IT</a>
   </nav>
+  <a class="to-app nur-andere" href="https://app.sorayaluxuryastroguide.com/" data-t="sticky">Kostenlos starten ✦</a>
+  <a class="to-app nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" data-t="sticky">Kostenlos starten ✦</a>
+  </div>
 </div>
 
 <!-- ========== HERO ========== -->
@@ -518,9 +596,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
         <span class="st-txt"><span class="st-small" data-t="store.play.small">Jetzt bei</span><span class="st-big">Google Play</span></span>
       </a>
-      <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen" data-t-aria="store.ios.aria">
+      <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya im Browser öffnen" data-t-aria="store.ios.aria">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
-        <span class="st-txt"><span class="st-small" data-t="store.ios.small">Auf dem iPhone</span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
+        <span class="st-txt"><span class="st-small"><span class="fuer-ios" data-t="store.ios.small">Auf dem iPhone</span><span class="fuer-desk" data-t="store.web.small">Am Computer &amp; iPhone</span></span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
       </a>
     </div>
     <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
@@ -553,8 +631,15 @@
           <div><label for="pvZeit" data-t="pv.zeit">Uhrzeit (optional)</label><input type="time" id="pvZeit"></div>
         </div>
         <button class="gold-btn" type="submit" id="pvKnopf" data-t="pv.knopf">Zeigen</button>
-        <div class="ergebnis" id="pvErgebnis" aria-live="polite"></div>
+        <div class="ergebnis" id="pvErgebnis" aria-live="polite" aria-atomic="true"></div>
+        <ul class="konto-plus" id="pvPlus" hidden>
+          <li class="kp-kopf"><span class="kp-titel" data-t="kp.titel">Mit deinem kostenlosen Konto</span></li>
+          <li data-t="kp.1">Geburtshoroskop mit Aszendent &amp; Häusern</li>
+          <li data-t="kp.2">Tageshoroskop aus deinem eigenen Geburtshoroskop</li>
+          <li data-t="kp.3">Chat mit Soraya zu Liebe, Beruf und Alltag</li>
+        </ul>
         <a class="gold-btn weiter" id="pvWeiter" href="https://app.sorayaluxuryastroguide.com/" hidden data-t="pv.weiter">Dein ganzes Horoskop – kostenlos</a>
+        <p class="weiter-info" id="pvWeiterInfo" hidden data-t="pv.weiterInfo">Dein Geburtsdatum wird direkt übernommen.</p>
         <button type="button" class="teilen-btn" id="pvTeilen" hidden data-t="pv.teilen">Mit Freunden teilen ↗</button>
         <a class="zum-horo" id="pvZumHoro" href="#tageshoroskop" hidden></a>
       </form>
@@ -678,7 +763,9 @@
       <details><summary data-t="faq.1q">Ist Soraya kostenlos?</summary><p data-t="faq.1a">Ja. Sonnen- und Mondzeichen siehst du sofort ohne Konto, dein persönliches Horoskop, das Geburtshoroskop und den Chat bekommst du mit einem kostenlosen Konto.</p></details>
       <details><summary data-t="faq.2q">Brauche ich meine Geburtszeit?</summary><p data-t="faq.2a">Nein, aber sie macht die Deutung genauer: Mit Uhrzeit und Ort berechnet Soraya auch deinen Aszendenten und die Häuser.</p></details>
       <details><summary data-t="faq.3q">Was passiert mit meinen Daten?</summary><p data-t="faq.3a">Deine Geburtsdaten nutzt Soraya nur für deine Berechnungen. Du kannst dein Konto mit allen Daten jederzeit löschen.</p></details>
+      <details><summary data-t="faq.5q">Was sagen Sonnen- und Mondzeichen aus?</summary><p data-t="faq.5a">Das Sonnenzeichen beschreibt deinen Wesenskern – wie du dich zeigst und was dich antreibt. Das Mondzeichen steht für deine Gefühlswelt: was dich berührt und was du brauchst, um dich geborgen zu fühlen. Zusammen mit dem Aszendenten bilden sie das Grundgerüst deines Geburtshoroskops.</p></details>
       <details><summary data-t="faq.4q">Gibt es Soraya auch fürs iPhone?</summary><p data-t="faq.4a">Ja. Öffne Soraya in Safari und tippe auf „Teilen“ → „Zum Home-Bildschirm“ – dann startet Soraya wie eine App.</p></details>
+      <details><summary data-t="faq.6q">Kann ich Soraya auch am Computer nutzen?</summary><p data-t="faq.6a">Ja. Soraya läuft direkt im Browser – öffne einfach <a href="https://app.sorayaluxuryastroguide.com/">app.sorayaluxuryastroguide.com</a>, ganz ohne Installation.</p></details>
     </div>
   </div>
 </section>
@@ -689,15 +776,15 @@
     <div class="cta reveal">
       <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="64" height="61">
       <h2 data-t="cta.head">Dein Himmel wartet.</h2>
-      <p data-t="cta.p">Kostenlos für Android oder direkt im Browser auf dem iPhone – beginne mit deinem persönlichen Geburtshoroskop.</p>
+      <p data-t="cta.p">Kostenlos für Android, auf dem iPhone und am Computer direkt im Browser – beginne mit deinem persönlichen Geburtshoroskop.</p>
       <div class="stores">
         <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden" data-t-aria="store.play.aria">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
           <span class="st-txt"><span class="st-small" data-t="store.play.small">Jetzt bei</span><span class="st-big">Google Play</span></span>
         </a>
-        <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya auf dem iPhone im Browser öffnen" data-t-aria="store.ios.aria">
+        <a class="store-btn ios-btn" href="https://app.sorayaluxuryastroguide.com/" aria-label="Soraya im Browser öffnen" data-t-aria="store.ios.aria">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
-          <span class="st-txt"><span class="st-small" data-t="store.ios.small">Auf dem iPhone</span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
+          <span class="st-txt"><span class="st-small"><span class="fuer-ios" data-t="store.ios.small">Auf dem iPhone</span><span class="fuer-desk" data-t="store.web.small">Am Computer &amp; iPhone</span></span><span class="st-big" data-t="store.ios.big">Im Browser öffnen</span></span>
         </a>
       </div>
       <p class="ios-hint" data-t="ios.hint">Auf dem iPhone: Soraya öffnet sich in Safari. Tippe dort auf <b>Teilen</b> und dann <b>„Zum Home-Bildschirm“</b> – schon hast du Soraya als App.</p>
@@ -754,7 +841,7 @@
   (function(){
     var L = {
       en: {
-        "title": "Soraya — Your Luxury Astro Guide",
+        "title": "Soraya — Horoscope & Birth Chart | Luxury Astro Guide",
         "try.link": "✦ Free: your Sun &amp; Moon sign in seconds",
         "try.eyebrow": "Free, no account",
         "try.head": "Try it <span class=\"gold\">right now</span>",
@@ -800,7 +887,7 @@
         "js.fehler": "That didn't work right now. Please try again in a moment.",
         "hero.sub": "The sky, read for you alone.",
         "store.play.small": "Get it on", "store.ios.small": "On iPhone", "store.ios.big": "Open in browser",
-        "store.play.aria": "Get it on Google Play", "store.ios.aria": "Open Soraya on iPhone in the browser",
+        "store.play.aria": "Get it on Google Play", "store.ios.aria": "Open Soraya in the browser",
         "ios.hint": "On iPhone, Soraya opens in Safari. Tap <b>Share</b> there and then <b>“Add to Home Screen”</b> – and Soraya is on your phone like an app.",
         "cue": "Discover",
         "feat.eyebrow": "What Soraya does",
@@ -815,7 +902,7 @@
         "hero.wert": "Birth chart, daily horoscope and partner match – calculated for you and explained in plain words.",
         "trust.1": "Free", "trust.2": "Try without an account", "trust.3": "Delete your data anytime",
         "how.cta": "Start now – it's free ✦", "th.aria": "Zodiac signs", "video.aria": "Play video",
-        "meta.desc": "Soraya is your personal astro guide: birth chart, daily horoscope, partner match and chat – clear, beautiful and personal. On Android via Google Play, on iPhone right in your browser.",
+        "meta.desc": "Your personal astro guide: birth chart, daily horoscope, partner match and chat – precisely calculated and clearly explained. Free on Android and in your browser.",
         "show.eyebrow": "A look inside Soraya",
         "show.head": "Beautiful from the <span class=\"gold\">very first second</span>",
         "show.lede": "Not a cluttered astro tool, but a calm, luxurious space for your questions to the sky.",
@@ -823,17 +910,29 @@
         "show.l2": "Answers in plain language — clear instead of cryptic",
         "show.l3": "An app for Android and iPhone, right from your home screen",
         "cta.head": "Your sky is waiting.",
-        "cta.p": "Free for Android, or right in your browser on iPhone – start with your personal birth chart.",
+        "cta.p": "Free for Android, and right in your browser on iPhone and computer – start with your personal birth chart.",
         "alt.ios": "iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Open Soraya in your browser ›</a>", "alt.android": "Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Get it on Google Play ›</a>",
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy",
         "foot.entdecken": "Discover", "foot.try": "Try for free", "foot.feat": "Features", "foot.faq": "FAQ", "foot.app": "Open the app", "foot.lang": "Language",
         "js.erg": "Your sky at birth", "js.langsam": "Taking a little longer than usual – just a moment …", "js.nochmal": "Try again",
         "js.datumZukunft": "That date is in the future – please check your date of birth.", "js.datumAlt": "Please enter a date between 1900 and today.",
         "js.unsicherMond": "Without a birth time your Moon isn't quite certain – it could also be {alt}.", "js.unsicherSonne": "Without a birth time your Sun isn't quite certain – it could also be {alt}.",
-        "js.zeitErgaenzen": "Add your birth time", "js.zumHoro": "Your horoscope today for {sign} ↓"
+        "js.zeitErgaenzen": "Add your birth time", "js.zumHoro": "Your horoscope today for {sign} ↓",
+        "og.desc": "Birth chart, daily horoscope, partner match and chat – precisely calculated and clearly explained. Try your Sun & Moon sign for free.",
+        "store.web.small": "On computer &amp; iPhone",
+        "kp.titel": "With your free account",
+        "kp.1": "Birth chart with ascendant &amp; houses",
+        "kp.2": "Daily horoscope from your own birth chart",
+        "kp.3": "Chat with Soraya about love, work and everyday life",
+        "pv.weiterInfo": "Your date of birth is carried over automatically.",
+        "faq.5q": "What do Sun and Moon signs tell you?",
+        "faq.5a": "Your Sun sign describes your core – how you show yourself and what drives you. Your Moon sign stands for your emotional world: what touches you and what you need to feel safe. Together with the ascendant they form the foundation of your birth chart.",
+        "faq.6q": "Can I use Soraya on my computer?",
+        "faq.6a": "Yes. Soraya runs right in your browser – just open <a href=\"https://app.sorayaluxuryastroguide.com/\">app.sorayaluxuryastroguide.com</a>, no installation needed.",
+        "js.heute": "Today"
       },
       hu: {
-        "title": "Soraya — A te luxus asztro-kalauzod",
+        "title": "Soraya — Horoszkóp és születési képlet | Luxury Astro Guide",
         "try.link": "✦ Ingyen: a Nap- és Hold-jegyed pár másodperc alatt",
         "try.eyebrow": "Ingyen, regisztráció nélkül",
         "try.head": "Próbáld ki <span class=\"gold\">most rögtön</span>",
@@ -879,7 +978,7 @@
         "js.fehler": "Ez most nem sikerült. Próbáld újra egy kicsit később.",
         "hero.sub": "Az égbolt, csak neked kiolvasva.",
         "store.play.small": "Töltsd le:", "store.ios.small": "iPhone-on", "store.ios.big": "Megnyitás böngészőben",
-        "store.play.aria": "Letöltés a Google Playről", "store.ios.aria": "Soraya megnyitása iPhone-on a böngészőben",
+        "store.play.aria": "Letöltés a Google Playről", "store.ios.aria": "Soraya megnyitása böngészőben",
         "ios.hint": "iPhone-on a Soraya a Safariban nyílik meg. Koppints ott a <b>Megosztás</b> gombra, majd a <b>„Főképernyőhöz adás”</b> lehetőségre – és máris alkalmazásként használhatod.",
         "cue": "Fedezd fel",
         "feat.eyebrow": "Mit tud a Soraya",
@@ -894,7 +993,7 @@
         "hero.wert": "Születési képlet, napi horoszkóp és párkapcsolati összevetés – személyesen neked kiszámolva, érthetően elmagyarázva.",
         "trust.1": "Ingyenes", "trust.2": "Kipróbálás regisztráció nélkül", "trust.3": "Adataid bármikor törölhetők",
         "how.cta": "Kezdd el most, ingyen ✦", "th.aria": "Csillagjegyek", "video.aria": "Videó lejátszása",
-        "meta.desc": "A Soraya a személyes asztro-kalauzod: születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – érthetően, szépen, személyesen. Androidra a Google Playen, iPhone-on közvetlenül a böngészőben.",
+        "meta.desc": "Személyes asztro-kalauzod: születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – pontosan kiszámolva, érthetően elmagyarázva. Ingyenes Androidon és böngészőben.",
         "show.eyebrow": "Bepillantás a Sorayába",
         "show.head": "Szép az <span class=\"gold\">első pillanattól</span>",
         "show.lede": "Nem egy zsúfolt asztro-eszköz, hanem nyugodt, luxus tér az égnek feltett kérdéseidhez.",
@@ -902,17 +1001,29 @@
         "show.l2": "Érthető válaszok — világosan, nem rejtélyesen",
         "show.l3": "Alkalmazásként Androidon és iPhone-on, egyenesen a kezdőképernyőről",
         "cta.head": "Az égbolt vár rád.",
-        "cta.p": "Ingyenes Androidra, iPhone-on pedig közvetlenül a böngészőben fut – kezdd a személyes születési képleteddel.",
+        "cta.p": "Ingyenes Androidra, iPhone-on és számítógépen pedig közvetlenül a böngészőben fut – kezdd a személyes születési képleteddel.",
         "alt.ios": "iPhone-od van? <a href=\"https://app.sorayaluxuryastroguide.com/\">Nyisd meg a Sorayát a böngészőben ›</a>", "alt.android": "Androidod van? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Töltsd le a Google Playről ›</a>",
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem",
         "foot.entdecken": "Fedezd fel", "foot.try": "Ingyenes kipróbálás", "foot.feat": "Funkciók", "foot.faq": "Kérdések", "foot.app": "Az app megnyitása", "foot.lang": "Nyelv",
         "js.erg": "Az égbolt a születésedkor", "js.langsam": "Most egy kicsit tovább tart – még egy pillanat …", "js.nochmal": "Próbáld újra",
         "js.datumZukunft": "Ez a dátum a jövőben van – kérlek, ellenőrizd a születési dátumodat.", "js.datumAlt": "Kérlek, 1900 és a mai nap közötti dátumot adj meg.",
         "js.unsicherMond": "Születési időpont nélkül a Holdad nem teljesen biztos – lehet {alt} is.", "js.unsicherSonne": "Születési időpont nélkül a Napod nem teljesen biztos – lehet {alt} is.",
-        "js.zeitErgaenzen": "Add meg az időpontot", "js.zumHoro": "A mai horoszkópod ({sign}) ↓"
+        "js.zeitErgaenzen": "Add meg az időpontot", "js.zumHoro": "A mai horoszkópod ({sign}) ↓",
+        "og.desc": "Születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – pontosan kiszámolva, érthetően elmagyarázva. Nézd meg ingyen a Nap- és Hold-jegyedet.",
+        "store.web.small": "Számítógépen és iPhone-on",
+        "kp.titel": "Ingyenes fiókkal",
+        "kp.1": "Születési képlet aszcendenssel és házakkal",
+        "kp.2": "Napi horoszkóp a saját születési képletedből",
+        "kp.3": "Chat Sorayával szerelemről, munkáról és a hétköznapokról",
+        "pv.weiterInfo": "A születési dátumodat automatikusan átvesszük.",
+        "faq.5q": "Mit árul el a Nap- és a Hold-jegy?",
+        "faq.5a": "A Nap-jegy a lényedet írja le – hogyan mutatod meg magad, és mi hajt előre. A Hold-jegy az érzelmi világodat jelzi: mi érint meg, és mire van szükséged ahhoz, hogy biztonságban érezd magad. Az aszcendenssel együtt ezek adják a születési képleted alapját.",
+        "faq.6q": "Használhatom a Sorayát számítógépen is?",
+        "faq.6a": "Igen. A Soraya közvetlenül a böngészőben fut – egyszerűen nyisd meg az <a href=\"https://app.sorayaluxuryastroguide.com/\">app.sorayaluxuryastroguide.com</a> oldalt, telepítés nélkül.",
+        "js.heute": "Ma"
       },
       it: {
-        "title": "Soraya — La tua guida astrologica di lusso",
+        "title": "Soraya — Oroscopo e tema natale | Luxury Astro Guide",
         "try.link": "✦ Gratis: il tuo segno solare e lunare in pochi secondi",
         "try.eyebrow": "Gratis, senza account",
         "try.head": "Provalo <span class=\"gold\">subito</span>",
@@ -958,7 +1069,7 @@
         "js.fehler": "Al momento non ha funzionato. Riprova tra poco.",
         "hero.sub": "Il cielo, letto solo per te.",
         "store.play.small": "Disponibile su", "store.ios.small": "Su iPhone", "store.ios.big": "Apri nel browser",
-        "store.play.aria": "Scarica da Google Play", "store.ios.aria": "Apri Soraya su iPhone nel browser",
+        "store.play.aria": "Scarica da Google Play", "store.ios.aria": "Apri Soraya nel browser",
         "ios.hint": "Su iPhone Soraya si apre in Safari. Tocca <b>Condividi</b> e poi <b>«Aggiungi alla schermata Home»</b> – ed ecco Soraya come app.",
         "cue": "Scopri",
         "feat.eyebrow": "Cosa fa Soraya",
@@ -973,7 +1084,7 @@
         "hero.wert": "Tema natale, oroscopo del giorno e affinità di coppia – calcolati per te e spiegati con parole semplici.",
         "trust.1": "Gratis", "trust.2": "Prova senza account", "trust.3": "Dati cancellabili in ogni momento",
         "how.cta": "Inizia ora, è gratis ✦", "th.aria": "Segni zodiacali", "video.aria": "Riproduci video",
-        "meta.desc": "Soraya è la tua guida astrologica personale: tema natale, oroscopo del giorno, affinità di coppia e chat – chiara, elegante e personale. Su Android da Google Play, su iPhone direttamente nel browser.",
+        "meta.desc": "La tua guida astrologica personale: tema natale, oroscopo del giorno, affinità di coppia e chat – calcolati con precisione e spiegati con chiarezza. Gratis su Android e nel browser.",
         "show.eyebrow": "Uno sguardo a Soraya",
         "show.head": "Bella dal <span class=\"gold\">primo istante</span>",
         "show.lede": "Non uno strumento astrologico sovraccarico, ma uno spazio calmo e lussuoso per le tue domande al cielo.",
@@ -981,14 +1092,26 @@
         "show.l2": "Risposte chiare — comprensibili, non criptiche",
         "show.l3": "Come app su Android e iPhone, direttamente dalla schermata Home",
         "cta.head": "Il tuo cielo ti aspetta.",
-        "cta.p": "Gratis per Android, o direttamente nel browser su iPhone – inizia con il tuo tema natale personale.",
+        "cta.p": "Gratis per Android, e direttamente nel browser su iPhone e computer – inizia con il tuo tema natale personale.",
         "alt.ios": "Hai un iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Apri Soraya nel browser ›</a>", "alt.android": "Hai Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Scaricala da Google Play ›</a>",
         "foot.imprint": "Note legali", "foot.privacy": "Privacy",
         "foot.entdecken": "Scopri", "foot.try": "Prova gratis", "foot.feat": "Funzioni", "foot.faq": "Domande", "foot.app": "Apri l'app", "foot.lang": "Lingua",
         "js.erg": "Il tuo cielo alla nascita", "js.langsam": "Ci vuole un po' più del solito – ancora un attimo …", "js.nochmal": "Riprova",
         "js.datumZukunft": "Questa data è nel futuro: controlla la tua data di nascita.", "js.datumAlt": "Inserisci una data tra il 1900 e oggi.",
         "js.unsicherMond": "Senza l'ora di nascita la tua Luna non è del tutto sicura – potrebbe essere anche {alt}.", "js.unsicherSonne": "Senza l'ora di nascita il tuo Sole non è del tutto sicuro – potrebbe essere anche {alt}.",
-        "js.zeitErgaenzen": "Aggiungi l'ora di nascita", "js.zumHoro": "Il tuo oroscopo di oggi per {sign} ↓"
+        "js.zeitErgaenzen": "Aggiungi l'ora di nascita", "js.zumHoro": "Il tuo oroscopo di oggi per {sign} ↓",
+        "og.desc": "Tema natale, oroscopo del giorno, affinità di coppia e chat – calcolati con precisione e spiegati con chiarezza. Scopri gratis il tuo segno solare e lunare.",
+        "store.web.small": "Su computer e iPhone",
+        "kp.titel": "Con il tuo account gratuito",
+        "kp.1": "Tema natale con ascendente e case",
+        "kp.2": "Oroscopo del giorno dal tuo tema natale",
+        "kp.3": "Chat con Soraya su amore, lavoro e vita quotidiana",
+        "pv.weiterInfo": "La tua data di nascita viene inserita automaticamente.",
+        "faq.5q": "Cosa dicono il segno solare e quello lunare?",
+        "faq.5a": "Il segno solare descrive la tua essenza – come ti mostri e cosa ti spinge. Il segno lunare rappresenta il tuo mondo emotivo: ciò che ti tocca e ciò di cui hai bisogno per sentirti al sicuro. Insieme all'ascendente formano la base del tuo tema natale.",
+        "faq.6q": "Posso usare Soraya anche sul computer?",
+        "faq.6a": "Sì. Soraya funziona direttamente nel browser: apri <a href=\"https://app.sorayaluxuryastroguide.com/\">app.sorayaluxuryastroguide.com</a>, senza installare nulla.",
+        "js.heute": "Oggi"
       }
     };
     var LANGS = ["de", "en", "hu", "it"];
@@ -1000,28 +1123,62 @@
       for (var i = 0; i < list.length && !lang; i++) { var c = String(list[i]).slice(0, 2).toLowerCase(); if (LANGS.indexOf(c) >= 0) lang = c; }
     }
     if (!lang) lang = "en";
-    document.documentElement.lang = lang;
-    document.querySelectorAll(".langs a").forEach(function (a) {
-      var on = a.getAttribute("data-lang") === lang;
-      a.classList.toggle("active", on);
-      if (on) a.setAttribute("aria-current", "true");
-    });
-    // Play Store in der passenden Sprache, Rechtstexte in der passenden Fassung
-    document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) { a.href = a.href.split("&hl=")[0] + "&hl=" + lang; });
-    // App in derselben Sprache oeffnen wie die Landingpage
-    document.querySelectorAll('a[href^="https://app.sorayaluxuryastroguide.com/"]:not([data-legal])').forEach(function (a) {
-      try { var u = new URL(a.href); u.searchParams.set("lang", lang); a.href = u.toString(); } catch (e) {}
-    });
-    if (lang !== "de") document.querySelectorAll("[data-legal]").forEach(function (a) { a.href = "https://app.sorayaluxuryastroguide.com/" + a.getAttribute("data-legal") + "-" + lang; });
+    var html = document.documentElement;
+    html.lang = lang;
     var T = L[lang];
     window.SORAYA = {lang: lang, T: T || {}};
-    if (!T) return;
-    document.title = T.title;
-    var md = document.querySelector('meta[name="description"]'); if (md && T["meta.desc"]) md.setAttribute("content", T["meta.desc"]);
-    document.querySelectorAll("[data-t]").forEach(function (el) { var v = T[el.getAttribute("data-t")]; if (v) el.innerHTML = v; });
-    document.querySelectorAll("[data-t-aria]").forEach(function (el) { var v = T[el.getAttribute("data-t-aria")]; if (v) el.setAttribute("aria-label", v); });
-    // uebersetzte Links (z. B. "Android? Bei Google Play laden") auch mit der Store-Sprache
-    document.querySelectorAll('[data-t] a[href*="play.google.com"]').forEach(function (a) { a.href = a.href.split("&hl=")[0] + "&hl=" + lang; });
+    try {
+      document.querySelectorAll(".langs a").forEach(function (a) {
+        var on = a.getAttribute("data-lang") === lang;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "true");
+      });
+      // 1) Texte uebersetzen (vor dem Anpassen der Links, damit auch Links in uebersetzten Texten stimmen)
+      if (T) {
+        document.title = T.title;
+        document.querySelectorAll("[data-t]").forEach(function (el) { var v = T[el.getAttribute("data-t")]; if (v) el.innerHTML = v; });
+        document.querySelectorAll("[data-t-aria]").forEach(function (el) { var v = T[el.getAttribute("data-t-aria")]; if (v) el.setAttribute("aria-label", v); });
+      }
+      // 2) Play Store in der passenden Sprache, App in derselben Sprache, Rechtstexte in der passenden Fassung
+      document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) { a.href = a.href.split("&hl=")[0] + "&hl=" + lang; });
+      document.querySelectorAll('a[href^="https://app.sorayaluxuryastroguide.com/"]:not([data-legal])').forEach(function (a) {
+        try { var u = new URL(a.href); u.searchParams.set("lang", lang); a.href = u.toString(); } catch (e) {}
+      });
+      if (lang !== "de") document.querySelectorAll("[data-legal]").forEach(function (a) { a.href = "https://app.sorayaluxuryastroguide.com/" + a.getAttribute("data-legal") + "-" + lang; });
+      // 3) Suchmaschinen & Vorschau beim Teilen: Titel, Beschreibung, Sprache, kanonische Adresse
+      var BASE = "https://www.sorayaluxuryastroguide.com/";
+      function meta(sel, val){ var m = document.querySelector(sel); if (m && val) m.setAttribute("content", val); }
+      if (T) {
+        meta('meta[name="description"]', T["meta.desc"]);
+        meta('meta[property="og:title"]', T.title); meta('meta[name="twitter:title"]', T.title);
+        meta('meta[property="og:description"]', T["og.desc"]); meta('meta[name="twitter:description"]', T["og.desc"]);
+      }
+      var LOC = {de: "de_DE", en: "en_GB", hu: "hu_HU", it: "it_IT"};
+      meta('meta[property="og:locale"]', LOC[lang]);
+      var alts = document.querySelectorAll('meta[property="og:locale:alternate"]'), rest = LANGS.filter(function (x) { return x !== lang; });
+      alts.forEach(function (m, i) { if (rest[i]) m.setAttribute("content", LOC[rest[i]]); });
+      var explizit = false; try { explizit = new URLSearchParams(location.search).get("lang") === lang; } catch (e) {}
+      var kanon = explizit ? BASE + "?lang=" + lang : BASE;
+      var cl = document.querySelector('link[rel="canonical"]'); if (cl) cl.href = kanon;
+      meta('meta[property="og:url"]', kanon);
+      // 4) Strukturierte Daten (nur wahre Angaben: kostenlos, Plattformen, Sprachen, FAQ wie auf der Seite)
+      var ld = document.getElementById("ldjson");
+      if (ld) {
+        var faq = [].map.call(document.querySelectorAll(".faq details"), function (d) {
+          var q = d.querySelector("summary"), a = d.querySelector("p");
+          return {"@type": "Question", "name": q.textContent.trim(), "acceptedAnswer": {"@type": "Answer", "text": a.textContent.trim()}};
+        });
+        var data = JSON.parse(ld.textContent);
+        data["@graph"].forEach(function (n) {
+          if (n["@type"] === "WebSite") n.inLanguage = lang;
+          if (n["@type"] === "SoftwareApplication") n.description = (document.querySelector('meta[name="description"]') || {}).content || n.description;
+        });
+        data["@graph"] = data["@graph"].filter(function (n) { return n["@type"] !== "FAQPage"; });
+        if (faq.length) data["@graph"].push({"@type": "FAQPage", "inLanguage": lang, "url": kanon, "mainEntity": faq});
+        ld.textContent = JSON.stringify(data);
+      }
+    } catch (e) {}
+    html.classList.remove("i18n-warten");
   })();
 
   // Wirkung pro Post: Link-Kennung (?q=p123 / ?q=bio-ig) anonym zaehlen und an die App
@@ -1136,6 +1293,8 @@
       ev.preventDefault();
       var box = document.getElementById("pvErgebnis"), knopf = document.getElementById("pvKnopf");
       var weiter = document.getElementById("pvWeiter"), teilen = document.getElementById("pvTeilen"), zumHoro = document.getElementById("pvZumHoro");
+      var plus = document.getElementById("pvPlus"), info = document.getElementById("pvWeiterInfo");
+      function folgeschritte(an){ [weiter, teilen, zumHoro, plus, info].forEach(function(x){ if (x) x.hidden = !an; }); }
       var d = datumFeld.value, z = document.getElementById("pvZeit").value;
       var problem = !/^\d{4}-\d{2}-\d{2}$/.test(d) ? tr("js.datum", "Bitte gib dein Geburtsdatum ein.")
         : d > heuteIso() ? tr("js.datumZukunft", "Dieses Datum liegt in der Zukunft – bitte prüf dein Geburtsdatum.")
@@ -1144,14 +1303,14 @@
         box.classList.remove("neu");
         box.innerHTML = '<p class="fehler" role="alert">' + esc(problem) + "</p>";
         datumFeld.setAttribute("aria-invalid", "true"); datumFeld.focus();
-        weiter.hidden = teilen.hidden = zumHoro.hidden = true;
+        folgeschritte(false);
         return;
       }
       datumFeld.removeAttribute("aria-invalid");
       var t = d.split("-"), body = {year: +t[0], month: +t[1], day: +t[2]}, mitZeit = /^\d{2}:\d{2}/.test(z);
       if (mitZeit) { body.hour = +z.slice(0, 2); body.minute = +z.slice(3, 5); }
       knopf.disabled = true; box.classList.remove("neu"); box.innerHTML = laedtHtml();
-      weiter.hidden = teilen.hidden = zumHoro.hidden = true;
+      folgeschritte(false);
       holen(ENGINE + "/public/preview", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)}, box)
         .then(function(a){
           var el = function(pt){ return pt.element_de ? ((ELEMENT[lang] || {})[pt.element_de] || pt.element_de) : ""; };
@@ -1169,7 +1328,7 @@
           var datumText = d;
           try { datumText = new Intl.DateTimeFormat(LOCALE[lang] || "de-DE", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}).format(new Date(Date.UTC(body.year, body.month - 1, body.day))); } catch (e3) {}
           if (mitZeit) datumText += " · " + z.slice(0, 5);
-          box.innerHTML = '<div class="erg-kopf"><span class="erg-titel">✦ ' + esc(tr("js.erg", "Dein Himmel bei deiner Geburt")) + ' ✦</span><span class="erg-datum">' + esc(datumText) + "</span></div>" +
+          box.innerHTML = '<div class="erg-kopf"><span class="erg-titel">✦\u00A0' + esc(tr("js.erg", "Dein Himmel bei deiner Geburt")) + '\u00A0✦</span><span class="erg-datum">' + esc(datumText) + "</span></div>" +
             '<div class="lichter">' + licht("☉", tr("js.sonne", "Sonne"), tr("js.kern", "dein Wesenskern"), a.sun) +
             licht("☽", tr("js.mond", "Mond"), tr("js.gefuehl", "deine Gefühlswelt"), a.moon) + "</div>" +
             (hinweis ? '<p class="erg-hinweis">' + hinweis + (mitZeit ? "" : '<button type="button" class="zeit-ergaenzen">' + esc(tr("js.zeitErgaenzen", "Uhrzeit ergänzen")) + " ›</button>") + "</p>" : "");
@@ -1177,10 +1336,8 @@
           var zb = box.querySelector(".zeit-ergaenzen");
           if (zb) zb.onclick = function(){ var f = document.getElementById("pvZeit"); f.focus(); try { f.scrollIntoView({block: "center", behavior: REDUCE ? "auto" : "smooth"}); } catch (e4) {} };
           zumHoro.textContent = tr("js.zumHoro", "Dein Tageshoroskop heute für {sign} ↓").replace("{sign}", name(a.sun.sign));
-          zumHoro.hidden = false;
           try { var wu = new URL(weiter.href); wu.searchParams.set("geb", d); if (/^\d{2}:\d{2}/.test(z)) wu.searchParams.set("zeit", z.slice(0, 5)); else wu.searchParams.delete("zeit"); weiter.href = wu.toString(); } catch (e2) {}
-          weiter.hidden = false;
-          teilen.hidden = false;
+          folgeschritte(true);
           teilen.onclick = function(){
             var url = "https://www.sorayaluxuryastroguide.com/?q=teilen-landing&lang=" + lang;
             var text = tr("js.teiltext", "Ich bin {sun} mit Mond in {moon} ✨ Und du? Hier gratis ausprobieren:")
@@ -1203,17 +1360,20 @@
 
     // --- Tageshoroskop
     var chips = document.getElementById("thZeichen"), aktuell = null;
-    if (chips) chips.innerHTML = KEYS.map(function(k){ return '<button type="button" class="chip" data-zeichen="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span>" + esc(name(k)) + "</button>"; }).join("");
+    if (chips) chips.innerHTML = KEYS.map(function(k){ return '<button type="button" class="chip" aria-pressed="false" data-zeichen="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span>" + esc(name(k)) + "</button>"; }).join("");
     function zeigeHoroskop(key){
       if (!chips || aktuell === key) return;
       aktuell = key;
-      chips.querySelectorAll(".chip").forEach(function(c){ c.classList.toggle("on", c.getAttribute("data-zeichen") === key); });
+      chips.querySelectorAll(".chip").forEach(function(c){ var on = c.getAttribute("data-zeichen") === key; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on ? "true" : "false"); });
       var box = document.getElementById("thText");
       box.classList.remove("neu"); box.innerHTML = laedtHtml();
       holen(ENGINE + "/public/sign-horoscope?sign=" + key + "&lang=" + lang, {}, box)
         .then(function(h){
           if (aktuell !== key) return;
-          box.innerHTML = (h.stimmung ? "<h4>" + esc(h.stimmung) + "</h4>" : "") + "<p>" + esc(h.text) + "</p>" +
+          var tag = "";
+          try { tag = new Intl.DateTimeFormat(LOCALE[lang] || "de-DE", {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e6) {}
+          box.innerHTML = '<span class="horo-datum">' + esc(tr("js.heute", "Heute")) + (tag ? " · " + esc(tag) : "") + "</span>" +
+            (h.stimmung ? "<h4>" + esc(h.stimmung) + "</h4>" : "") + "<p>" + esc(h.text) + "</p>" +
             (h.tipp ? '<p class="tipp"><b>' + esc(tr("js.tipp", "Tipp")) + ":</b> " + esc(h.tipp) + "</p>" : "");
           if (!REDUCE) neuAnimieren(box);
           document.getElementById("thWeiter").hidden = false;
@@ -1228,6 +1388,17 @@
       var c = ev.target.closest(".chip"); if (!c) return;
       var k = c.getAttribute("data-zeichen"); wahl(k); zeigeHoroskop(k);
     });
+    // Wiederkehrende Besucher: zuletzt gewaehltes Sternzeichen laden, sobald die Karte sichtbar wird
+    (function(){
+      var gemerkt = ""; try { gemerkt = localStorage.getItem("soraya_zeichen") || ""; } catch (e) {}
+      var karte = document.getElementById("tageshoroskop");
+      if (!chips || !karte || KEYS.indexOf(gemerkt) < 0 || !("IntersectionObserver" in window)) return;
+      var io = new IntersectionObserver(function(es){
+        if (!es[0].isIntersecting) return; io.disconnect();
+        if (!aktuell) zeigeHoroskop(gemerkt);
+      }, {rootMargin: "0px 0px -15% 0px"});
+      io.observe(karte);
+    })();
 
     // --- feste "Kostenlos starten"-Leiste am Handy: nach dem Hero, nicht ueber dem Schluss-Aufruf
     var leiste = document.getElementById("stickyCta"), hero = document.querySelector(".hero"), schluss = document.getElementById("download");
@@ -1239,14 +1410,6 @@
       if (fuss) new IntersectionObserver(function(es){ fussSicht = es[0].isIntersecting; setze(); }).observe(fuss);
       if (probier) new IntersectionObserver(function(es){ probierSicht = es[0].isIntersecting; setze(); }, {rootMargin: "-25% 0px -25% 0px"}).observe(probier);
     }
-  })();
-
-  // Geraeteerkennung fuer die Download-Knoepfe (iPadOS gibt sich als Mac aus)
-  (function(){
-    var ua = navigator.userAgent || "";
-    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-    var android = /Android/i.test(ua);
-    document.documentElement.classList.add(ios ? "is-ios" : android ? "is-android" : "is-desktop");
   })();
 
   // Lebendiger kosmischer Hintergrund (Sternen-Netz) — original, ohne Video/Lizenz
@@ -1296,14 +1459,20 @@
       }
       ctx.shadowBlur=0;
     }
+    // nur animieren, solange der Hero sichtbar und der Tab offen ist (spart Akku/CPU beim Scrollen)
+    var sichtbar=true, laeuft=false;
     function step(){
+      if(!sichtbar || document.hidden){ laeuft=false; return; }
       for(var i=0;i<parts.length;i++){var p=parts[i];p.x+=p.vx;p.y+=p.vy;
         if(p.x<-12)p.x=w+12; if(p.x>w+12)p.x=-12;
         if(p.y<-12)p.y=h+12; if(p.y>h+12)p.y=-12;}
-      draw(); if(!reduce) requestAnimationFrame(step);
+      draw(); requestAnimationFrame(step);
     }
-    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(init,200);});
-    init(); if(reduce){draw();} else {requestAnimationFrame(step);}
+    function start(){ if(reduce || laeuft || !sichtbar || document.hidden) return; laeuft=true; requestAnimationFrame(step); }
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){init(); if(reduce) draw();},200);});
+    if('IntersectionObserver' in window) new IntersectionObserver(function(es){ sichtbar=es[0].isIntersecting; start(); }).observe(canvas);
+    document.addEventListener('visibilitychange', start);
+    init(); if(reduce){draw();} else {start();}
   })();
 
   // App-Video: Tap-to-Play mit Ton
