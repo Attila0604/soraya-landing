@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Soraya — Dein Luxury Astro Guide</title>
-<meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Horoskop, Chat und Synastrie — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
+<meta name="description" content="Soraya ist dein persönlicher Astro-Guide: Geburtshoroskop, Tageshoroskop, Partner-Vergleich und Chat — klar, schön und persönlich. Für Android im Google Play Store, auf dem iPhone direkt im Browser." />
 <meta name="theme-color" content="#070817" />
 <link rel="alternate" hreflang="de" href="https://www.sorayaluxuryastroguide.com/?lang=de" />
 <link rel="alternate" hreflang="en" href="https://www.sorayaluxuryastroguide.com/?lang=en" />
@@ -151,6 +151,21 @@
     max-width:22ch; margin:0 auto 34px; line-height:1.35;
   }
   .hero-inner{text-align:center}
+  /* klare Aussage, was Soraya ist (unter dem poetischen Satz) */
+  .hero .wert{max-width:42ch; margin:-20px auto 28px; color:var(--mist-dim); font-size:clamp(14.5px,1.5vw,16px); line-height:1.55}
+  /* Gratis-Vorschau als echter Knopf statt kleinem Textlink */
+  .try-link{display:inline-flex; align-items:center; gap:8px; margin-top:22px; padding:11px 20px; font-size:14px; font-weight:500; line-height:1.35;
+    color:var(--gold-soft); border:1px solid var(--gold-dim); border-radius:var(--r-pill); background:rgba(201,168,106,.07); transition:.25s}
+  .try-link:hover{border-color:var(--gold-soft); background:rgba(201,168,106,.13)}
+  /* kurze Vertrauens-Zeile */
+  .vertrauen{list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding:0; margin:20px auto 0;
+    font-size:12.5px; color:var(--mist-dim); letter-spacing:.02em}
+  .vertrauen li{display:inline-flex; align-items:center; gap:6px}
+  .vertrauen li::before{content:"✓"; color:var(--gold-soft); font-weight:600}
+  .ablauf-cta{text-align:center; margin-top:clamp(36px,5vw,52px)}
+  .ablauf-cta .gold-btn{width:auto; padding:16px 34px; text-decoration:none}
+  .ablauf-cta .nur-android{display:none}
+  .is-android .ablauf-cta .nur-android{display:inline-flex} .is-android .ablauf-cta .nur-andere{display:none}
 
   /* store buttons */
   .stores{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
@@ -182,6 +197,7 @@
     color:var(--mist-faint); display:flex; flex-direction:column; align-items:center; gap:8px;
   }
   .scroll-cue span.line{width:1px; height:34px; background:linear-gradient(var(--gold-dim), transparent); animation:cue 2.4s ease-in-out infinite}
+  @media (max-height:980px){ .scroll-cue{display:none} }
   @keyframes cue{0%,100%{opacity:.3; transform:scaleY(.7)}50%{opacity:1; transform:scaleY(1)}}
 
   /* ---------- section frame ---------- */
@@ -228,7 +244,7 @@
   .phone video{width:100%; height:100%; object-fit:cover; display:block}
   .phone .notch{position:absolute; top:9px; left:50%; transform:translateX(-50%); width:96px; height:22px; background:#060410; border-radius:0 0 14px 14px; z-index:3}
   .play-tap{
-    position:absolute; inset:0; z-index:4; display:grid; place-items:center;
+    position:absolute; inset:0; z-index:4; display:grid; place-items:center; width:100%; border:0; padding:0; margin:0; font:inherit; color:inherit;
     background:linear-gradient(180deg, rgba(6,4,16,.15), rgba(6,4,16,.5)); cursor:pointer; transition:.3s;
   }
   .play-tap:hover{background:linear-gradient(180deg, rgba(6,4,16,.05), rgba(6,4,16,.35))}
@@ -273,7 +289,6 @@
   /* ---------- reveal animation ---------- */
   /* ---------- Gratis ausprobieren ---------- */
   [hidden]{display:none!important}
-  .try-link{display:inline-block; margin-top:22px; font-size:14px; color:var(--gold-soft); text-decoration:underline; text-decoration-color:var(--gold-dim); text-underline-offset:4px; line-height:1.5}
   .try-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start}
   .tcard{background:var(--panel-2); border:1px solid var(--line); border-radius:var(--r-card); padding:clamp(20px,3vw,30px);
          position:relative; overflow:hidden}
@@ -362,8 +377,17 @@
     .nav .name{font-size:14px}
   }
   @media (max-width:560px){
-    .grid{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr; gap:12px}
     .nav .to-app{display:none}
+    /* Funktionen am Handy kompakt: Symbol links, Text rechts */
+    .feat{display:grid; grid-template-columns:46px 1fr; column-gap:16px; padding:20px 18px}
+    .feat .ico{grid-row:1 / span 2; margin:0}
+    .feat h3{font-size:21px; margin:0 0 4px; line-height:1.2}
+    /* Hero am Handy ohne leeren Bereich – der Gratis-Test rueckt naeher */
+    .hero{min-height:auto; padding:96px 0 40px}
+    .hero .sigil-lg{width:84px}
+    .scroll-cue{display:none}
+    #probieren{padding-top:44px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -400,6 +424,7 @@
     <div class="kicker">Luxury Astro Guide</div>
     <p class="himmel-heute" id="himmelHeute" hidden></p>
     <p class="sub" data-t="hero.sub">Der Himmel, gelesen für dich allein.</p>
+    <p class="wert" data-t="hero.wert">Geburtshoroskop, Tageshoroskop und Partner-Vergleich – persönlich berechnet und verständlich erklärt.</p>
 
     <div class="stores">
       <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden" data-t-aria="store.play.aria">
@@ -415,6 +440,11 @@
     <p class="alt-link fuer-android" data-t="alt.ios">iPhone? <a href="https://app.sorayaluxuryastroguide.com/">Soraya im Browser öffnen ›</a></p>
     <p class="alt-link fuer-ios" data-t="alt.android">Android? <a href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa">Bei Google Play laden ›</a></p>
     <a class="try-link" href="#probieren" data-t="try.link">✦ Gratis: dein Sonnen- &amp; Mondzeichen in Sekunden</a>
+    <ul class="vertrauen">
+      <li data-t="trust.1">Kostenlos</li>
+      <li data-t="trust.2">Ohne Konto testen</li>
+      <li data-t="trust.3">Daten jederzeit löschbar</li>
+    </ul>
   </div>
 
   <div class="scroll-cue"><span data-t="cue">Entdecken</span><span class="line"></span></div>
@@ -443,7 +473,7 @@
       <div class="tcard reveal" id="tageshoroskop">
         <h3 data-t="th.h">Dein Tageshoroskop heute</h3>
         <p class="hint" data-t="th.p">Wähle dein Sternzeichen.</p>
-        <div class="chips" id="thZeichen" role="group" aria-label="Sternzeichen"></div>
+        <div class="chips" id="thZeichen" role="group" aria-label="Sternzeichen" data-t-aria="th.aria"></div>
         <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tippe auf dein Sternzeichen – Soraya liest dir den heutigen Tag.</p></div>
         <a class="weiter" id="thWeiter" href="https://app.sorayaluxuryastroguide.com/" hidden data-t="th.weiter">Persönlich statt für alle: dein Horoskop aus deinem Geburtshoroskop ›</a>
       </div>
@@ -457,44 +487,44 @@
     <div class="sec-head reveal">
       <span class="eyebrow" data-t="feat.eyebrow">Was Soraya kann</span>
       <h2 class="head" data-t="feat.head">Deine Sterne, <span class="gold">klar gelesen</span></h2>
-      <p class="lede" data-t="feat.lede">Geburtshoroskop, Horoskop, Chat und Synastrie — präzise berechnet, elegant gestaltet, ganz auf dich abgestimmt.</p>
+      <p class="lede" data-t="feat.lede">Geburtshoroskop, Analyse, Tageshoroskop, Partner-Vergleich und Chat — genau berechnet, schön gestaltet, ganz auf dich abgestimmt.</p>
     </div>
 
     <div class="grid">
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><line x1="12" y1="3" x2="12" y2="8.6"/><line x1="12" y1="15.4" x2="12" y2="21"/><line x1="3" y1="12" x2="8.6" y2="12"/><line x1="15.4" y1="12" x2="21" y2="12"/></svg></div>
         <h3 data-t="f1.h">Geburtshoroskop</h3>
-        <p data-t="f1.p">Dein persönliches Birth Chart, exakt aus Geburtsdatum, -zeit und -ort berechnet.</p>
+        <p data-t="f1.p">Der Himmel im Moment deiner Geburt – genau berechnet aus Datum, Uhrzeit und Ort.</p>
+      </article>
+
+      <article class="feat reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3.5c.5 4.2 1.6 5.3 5.8 5.8-4.2.5-5.3 1.6-5.8 5.8-.5-4.2-1.6-5.3-5.8-5.8C10.4 8.8 11.5 7.7 12 3.5z"/><path d="M18 15.5c.2 1.6.6 2 2.2 2.2-1.6.2-2 .6-2.2 2.2-.2-1.6-.6-2-2.2-2.2 1.6-.2 2-.6 2.2-2.2z"/></svg></div>
+        <h3 data-t="f2.h">Persönliche Analyse</h3>
+        <p data-t="f2.p">Soraya schreibt eine ausführliche, persönliche Deutung deines Geburtshoroskops – in klaren Worten.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 13.5A8 8 0 1 1 10.5 5a6.3 6.3 0 0 0 8.5 8.5z"/><circle cx="16" cy="7" r=".7" fill="currentColor" stroke="none"/></svg></div>
-        <h3 data-t="f2.h">Horoskop</h3>
-        <p data-t="f2.p">Tages- und Zeitraum-Horoskope aus deinen aktuellen Transiten — nie generisch.</p>
-      </article>
-
-      <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9l-4 4v-4H4z"/></svg></div>
-        <h3 data-t="f3.h">Chat</h3>
-        <p data-t="f3.p">Frag Soraya alles. Persönliche Antworten, direkt aus deinem Chart.</p>
+        <h3 data-t="f3.h">Tageshoroskop</h3>
+        <p data-t="f3.p">Jeden Tag neu und aus deinem eigenen Geburtshoroskop – nicht derselbe Text wie für alle deines Zeichens.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="9" cy="12" r="5.4"/><circle cx="15" cy="12" r="5.4"/></svg></div>
-        <h3 data-t="f4.h">Synastrie</h3>
-        <p data-t="f4.p">Beziehungs-Analyse: wie eure Charts zusammenspielen — Nähe, Reibung, Resonanz.</p>
+        <h3 data-t="f4.h">Partner-Vergleich</h3>
+        <p data-t="f4.p">Wie gut passt ihr zusammen? Eure Geburtshoroskope im Vergleich – mit Prozentwert und ehrlicher Deutung.</p>
       </article>
 
       <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3.5c.5 4.2 1.6 5.3 5.8 5.8-4.2.5-5.3 1.6-5.8 5.8-.5-4.2-1.6-5.3-5.8-5.8C10.4 8.8 11.5 7.7 12 3.5z"/></svg></div>
-        <h3 data-t="f5.h">Tagesfokus</h3>
-        <p data-t="f5.p">Dein täglicher Impuls — ein klarer Gedanke aus den Bewegungen des Himmels.</p>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9l-4 4v-4H4z"/></svg></div>
+        <h3 data-t="f5.h">Chat</h3>
+        <p data-t="f5.p">Frag Soraya alles – zu Liebe, Beruf oder deinem Tag. Die Antworten kommen aus deinem eigenen Horoskop.</p>
       </article>
 
       <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 5.5l1.7 4.8L18.5 12l-4.8 1.7L12 18.5l-1.7-4.8L5.5 12l4.8-1.7z" fill="currentColor" fill-opacity=".18"/></svg></div>
-        <h3 data-t="f6.h">Ganz du</h3>
-        <p data-t="f6.p">Ein Profil, alles verbunden: Analyse, Horoskop und Synastrie bauen aufeinander auf.</p>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="3.8" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <h3 data-t="f6.h">In deiner Sprache</h3>
+        <p data-t="f6.p">Deutsch, English, Magyar, Italiano – Horoskope, Analysen und Chat in deiner Sprache.</p>
       </article>
     </div>
   </div>
@@ -507,12 +537,12 @@
       <div class="phone reveal">
         <div class="screen">
           <div class="notch"></div>
-          <video id="appVideo" playsinline poster="soraya-poster.jpg">
+          <video id="appVideo" playsinline preload="none" poster="soraya-poster.jpg">
             <source src="soraya-app.mp4" type="video/mp4" />
           </video>
-          <div class="play-tap" id="playTap">
-            <div class="pbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
+          <button type="button" class="play-tap" id="playTap" aria-label="Video abspielen" data-t-aria="video.aria">
+            <span class="pbtn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
         </div>
       </div>
 
@@ -542,6 +572,10 @@
       <div class="schritt reveal"><b data-t="how.2h">Soraya berechnet</b><p data-t="how.2p">Dein Geburtshoroskop wird exakt berechnet und in klaren Worten gedeutet.</p></div>
       <div class="schritt reveal"><b data-t="how.3h">Jeden Tag dein Impuls</b><p data-t="how.3p">Dein persönliches Tageshoroskop, Partner-Vergleich und Chat – wann immer du willst.</p></div>
     </div>
+    <div class="ablauf-cta reveal">
+      <a class="gold-btn nur-andere" href="https://app.sorayaluxuryastroguide.com/" data-t="how.cta">Jetzt kostenlos starten ✦</a>
+      <a class="gold-btn nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" data-t="how.cta">Jetzt kostenlos starten ✦</a>
+    </div>
   </div>
 </section>
 
@@ -567,7 +601,7 @@
     <div class="cta reveal">
       <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="64" height="61">
       <h2 data-t="cta.head">Dein Himmel wartet.</h2>
-      <p data-t="cta.p">Lade Soraya für Android oder öffne sie auf dem iPhone direkt im Browser – und beginne mit deinem persönlichen Geburtshoroskop.</p>
+      <p data-t="cta.p">Kostenlos für Android oder direkt im Browser auf dem iPhone – beginne mit deinem persönlichen Geburtshoroskop.</p>
       <div class="stores">
         <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" aria-label="Bei Google Play laden" data-t-aria="store.play.aria">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5l11 8.5-11 8.5z"/><line x1="4" y1="3.5" x2="15" y2="20.5" opacity=".4"/></svg>
@@ -659,13 +693,17 @@
         "cue": "Discover",
         "feat.eyebrow": "What Soraya does",
         "feat.head": "Your stars, <span class=\"gold\">clearly read</span>",
-        "feat.lede": "Birth chart, horoscope, chat and synastry — precisely calculated, elegantly designed, tailored entirely to you.",
-        "f1.h": "Birth chart", "f1.p": "Your personal birth chart, calculated exactly from your date, time and place of birth.",
-        "f2.h": "Horoscope", "f2.p": "Daily and weekly horoscopes from your current transits — never generic.",
-        "f3.h": "Chat", "f3.p": "Ask Soraya anything. Personal answers, straight from your chart.",
-        "f4.h": "Synastry", "f4.p": "Relationship analysis: how your charts interact — closeness, friction, resonance.",
-        "f5.h": "Daily focus", "f5.p": "Your daily impulse — one clear thought from the movements of the sky.",
-        "f6.h": "All you", "f6.p": "One profile, everything connected: analysis, horoscope and synastry build on each other.",
+        "feat.lede": "Birth chart, analysis, daily horoscope, partner match and chat — precisely calculated, beautifully designed, made entirely for you.",
+        "f1.h": "Birth chart", "f1.p": "The sky at the moment you were born – calculated precisely from your date, time and place of birth.",
+        "f2.h": "Personal analysis", "f2.p": "Soraya writes a detailed, personal reading of your birth chart – in clear, simple words.",
+        "f3.h": "Daily horoscope", "f3.p": "New every day and based on your own birth chart – not the same text everyone of your sign gets.",
+        "f4.h": "Partner match", "f4.p": "How well do you fit together? Your two birth charts compared – with a percentage and an honest reading.",
+        "f5.h": "Chat", "f5.p": "Ask Soraya anything – love, work or your day. The answers come from your own chart.",
+        "f6.h": "In your language", "f6.p": "English, Deutsch, Magyar, Italiano – horoscopes, analyses and chat in your language.",
+        "hero.wert": "Birth chart, daily horoscope and partner match – calculated for you and explained in plain words.",
+        "trust.1": "Free", "trust.2": "Try without an account", "trust.3": "Delete your data anytime",
+        "how.cta": "Start now – it's free ✦", "th.aria": "Zodiac signs", "video.aria": "Play video",
+        "meta.desc": "Soraya is your personal astro guide: birth chart, daily horoscope, partner match and chat – clear, beautiful and personal. On Android via Google Play, on iPhone right in your browser.",
         "show.eyebrow": "A look inside Soraya",
         "show.head": "Beautiful from the <span class=\"gold\">very first second</span>",
         "show.lede": "Not a cluttered astro tool, but a calm, luxurious space for your questions to the sky.",
@@ -673,7 +711,7 @@
         "show.l2": "Answers in plain language — clear instead of cryptic",
         "show.l3": "An app for Android and iPhone, right from your home screen",
         "cta.head": "Your sky is waiting.",
-        "cta.p": "Get Soraya for Android or open it on iPhone right in your browser – and start with your personal birth chart.",
+        "cta.p": "Free for Android, or right in your browser on iPhone – start with your personal birth chart.",
         "alt.ios": "iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Open Soraya in your browser ›</a>", "alt.android": "Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Get it on Google Play ›</a>",
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy"
       },
@@ -729,13 +767,17 @@
         "cue": "Fedezd fel",
         "feat.eyebrow": "Mit tud a Soraya",
         "feat.head": "A csillagaid, <span class=\"gold\">világosan</span>",
-        "feat.lede": "Születési képlet, horoszkóp, chat és szinasztria — pontosan kiszámolva, elegánsan megtervezve, teljesen rád szabva.",
-        "f1.h": "Születési képlet", "f1.p": "A személyes születési képleted, pontosan a születési dátumodból, idődből és helyedből számolva.",
-        "f2.h": "Horoszkóp", "f2.p": "Napi és heti horoszkópok az aktuális tranzitjaidból — sosem általánosak.",
-        "f3.h": "Chat", "f3.p": "Kérdezz bármit Sorayától. Személyes válaszok, egyenesen a képletedből.",
-        "f4.h": "Szinasztria", "f4.p": "Kapcsolatelemzés: hogyan hatnak egymásra a képleteitek — közelség, súrlódás, rezonancia.",
-        "f5.h": "Napi fókusz", "f5.p": "A napi impulzusod — egy világos gondolat az égbolt mozgásaiból.",
-        "f6.h": "Teljesen te", "f6.p": "Egy profil, minden összekapcsolva: az elemzés, a horoszkóp és a szinasztria egymásra épül.",
+        "feat.lede": "Születési képlet, elemzés, napi horoszkóp, párkapcsolati összevetés és chat — pontosan kiszámolva, igényesen megtervezve, teljesen rád szabva.",
+        "f1.h": "Születési képlet", "f1.p": "Az égbolt a születésed pillanatában – pontosan kiszámolva a születési dátumodból, időpontodból és helyedből.",
+        "f2.h": "Személyes elemzés", "f2.p": "Soraya részletes, személyes értelmezést ír a születési képletedről – világos, közérthető szavakkal.",
+        "f3.h": "Napi horoszkóp", "f3.p": "Minden nap új, és a saját születési képleteden alapul – nem ugyanaz a szöveg, amit a jegyed minden szülöttje olvas.",
+        "f4.h": "Párkapcsolati összevetés", "f4.p": "Mennyire illetek össze? A két születési képlet összevetése – százalékos eredménnyel és őszinte értelmezéssel.",
+        "f5.h": "Chat", "f5.p": "Kérdezz bármit Sorayától – szerelemről, munkáról vagy a napodról. A válaszok a saját képletedből születnek.",
+        "f6.h": "A te nyelveden", "f6.p": "Magyar, Deutsch, English, Italiano – horoszkóp, elemzés és chat a te nyelveden.",
+        "hero.wert": "Születési képlet, napi horoszkóp és párkapcsolati összevetés – személyesen neked kiszámolva, érthetően elmagyarázva.",
+        "trust.1": "Ingyenes", "trust.2": "Kipróbálás regisztráció nélkül", "trust.3": "Adataid bármikor törölhetők",
+        "how.cta": "Kezdd el most, ingyen ✦", "th.aria": "Csillagjegyek", "video.aria": "Videó lejátszása",
+        "meta.desc": "A Soraya a személyes asztro-kalauzod: születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – érthetően, szépen, személyesen. Androidra a Google Playen, iPhone-on közvetlenül a böngészőben.",
         "show.eyebrow": "Bepillantás a Sorayába",
         "show.head": "Szép az <span class=\"gold\">első pillanattól</span>",
         "show.lede": "Nem egy zsúfolt asztro-eszköz, hanem nyugodt, luxus tér az égnek feltett kérdéseidhez.",
@@ -743,7 +785,7 @@
         "show.l2": "Érthető válaszok — világosan, nem rejtélyesen",
         "show.l3": "Alkalmazásként Androidon és iPhone-on, egyenesen a kezdőképernyőről",
         "cta.head": "Az égbolt vár rád.",
-        "cta.p": "Töltsd le a Sorayát Androidra, vagy nyisd meg iPhone-on közvetlenül a böngészőben – és kezdd a személyes születési képleteddel.",
+        "cta.p": "Ingyenes Androidra, iPhone-on pedig közvetlenül a böngészőben fut – kezdd a személyes születési képleteddel.",
         "alt.ios": "iPhone-od van? <a href=\"https://app.sorayaluxuryastroguide.com/\">Nyisd meg a Sorayát a böngészőben ›</a>", "alt.android": "Androidod van? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Töltsd le a Google Playről ›</a>",
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem"
       },
@@ -799,13 +841,17 @@
         "cue": "Scopri",
         "feat.eyebrow": "Cosa fa Soraya",
         "feat.head": "Le tue stelle, <span class=\"gold\">lette con chiarezza</span>",
-        "feat.lede": "Tema natale, oroscopo, chat e sinastria — calcolati con precisione, dal design elegante, pensati interamente per te.",
-        "f1.h": "Tema natale", "f1.p": "Il tuo tema natale personale, calcolato con esattezza da data, ora e luogo di nascita.",
-        "f2.h": "Oroscopo", "f2.p": "Oroscopi del giorno e della settimana dai tuoi transiti attuali — mai generici.",
-        "f3.h": "Chat", "f3.p": "Chiedi qualsiasi cosa a Soraya. Risposte personali, direttamente dal tuo tema.",
-        "f4.h": "Sinastria", "f4.p": "Analisi di coppia: come interagiscono i vostri temi — vicinanza, attrito, risonanza.",
-        "f5.h": "Focus del giorno", "f5.p": "Il tuo impulso quotidiano — un pensiero chiaro dai movimenti del cielo.",
-        "f6.h": "Tutto su di te", "f6.p": "Un profilo, tutto collegato: analisi, oroscopo e sinastria si completano a vicenda.",
+        "feat.lede": "Tema natale, analisi, oroscopo del giorno, affinità di coppia e chat — calcolati con precisione, dal design elegante, pensati interamente per te.",
+        "f1.h": "Tema natale", "f1.p": "Il cielo nel momento della tua nascita – calcolato con precisione da data, ora e luogo di nascita.",
+        "f2.h": "Analisi personale", "f2.p": "Soraya scrive un'interpretazione dettagliata e personale del tuo tema natale – con parole chiare e semplici.",
+        "f3.h": "Oroscopo del giorno", "f3.p": "Nuovo ogni giorno e basato sul tuo tema natale – non lo stesso testo per tutti quelli del tuo segno.",
+        "f4.h": "Affinità di coppia", "f4.p": "Quanto siete compatibili? I vostri temi natali a confronto – con una percentuale e un'interpretazione sincera.",
+        "f5.h": "Chat", "f5.p": "Chiedi a Soraya qualsiasi cosa – amore, lavoro o la tua giornata. Le risposte nascono dal tuo tema natale.",
+        "f6.h": "Nella tua lingua", "f6.p": "Italiano, English, Deutsch, Magyar – oroscopi, analisi e chat nella tua lingua.",
+        "hero.wert": "Tema natale, oroscopo del giorno e affinità di coppia – calcolati per te e spiegati con parole semplici.",
+        "trust.1": "Gratis", "trust.2": "Prova senza account", "trust.3": "Dati cancellabili in ogni momento",
+        "how.cta": "Inizia ora, è gratis ✦", "th.aria": "Segni zodiacali", "video.aria": "Riproduci video",
+        "meta.desc": "Soraya è la tua guida astrologica personale: tema natale, oroscopo del giorno, affinità di coppia e chat – chiara, elegante e personale. Su Android da Google Play, su iPhone direttamente nel browser.",
         "show.eyebrow": "Uno sguardo a Soraya",
         "show.head": "Bella dal <span class=\"gold\">primo istante</span>",
         "show.lede": "Non uno strumento astrologico sovraccarico, ma uno spazio calmo e lussuoso per le tue domande al cielo.",
@@ -813,7 +859,7 @@
         "show.l2": "Risposte chiare — comprensibili, non criptiche",
         "show.l3": "Come app su Android e iPhone, direttamente dalla schermata Home",
         "cta.head": "Il tuo cielo ti aspetta.",
-        "cta.p": "Scarica Soraya per Android o aprila su iPhone direttamente nel browser – e inizia con il tuo tema natale personale.",
+        "cta.p": "Gratis per Android, o direttamente nel browser su iPhone – inizia con il tuo tema natale personale.",
         "alt.ios": "Hai un iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Apri Soraya nel browser ›</a>", "alt.android": "Hai Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Scaricala da Google Play ›</a>",
         "foot.imprint": "Note legali", "foot.privacy": "Privacy"
       }
@@ -844,6 +890,7 @@
     window.SORAYA = {lang: lang, T: T || {}};
     if (!T) return;
     document.title = T.title;
+    var md = document.querySelector('meta[name="description"]'); if (md && T["meta.desc"]) md.setAttribute("content", T["meta.desc"]);
     document.querySelectorAll("[data-t]").forEach(function (el) { var v = T[el.getAttribute("data-t")]; if (v) el.innerHTML = v; });
     document.querySelectorAll("[data-t-aria]").forEach(function (el) { var v = T[el.getAttribute("data-t-aria")]; if (v) el.setAttribute("aria-label", v); });
     // uebersetzte Links (z. B. "Android? Bei Google Play laden") auch mit der Store-Sprache
