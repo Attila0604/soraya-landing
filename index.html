@@ -661,7 +661,71 @@
   /* Footer: groessere Tippflaechen */
   footer .f-links{gap:2px} footer .f-links a,footer .f-recht a{display:inline-block; padding:5px 0}
 
+  /* ---------- Runde 5: So entsteht deine Deutung, ruhigerer Hero am Handy, Feinschliff ---------- */
+  .weg{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; position:relative}
+  .weg li{position:relative; z-index:1; display:flex; flex-direction:column; background:var(--panel); border:1px solid var(--line-violet); border-top-color:var(--line);
+    border-radius:var(--r-card); padding:26px 24px 22px; transition:border-color .3s, transform .3s}
+  .weg li:hover{border-color:var(--line); transform:translateY(-2px)}
+  .weg .nr{width:34px; height:34px; flex:none; border-radius:50%; display:grid; place-items:center; margin:0 0 16px; border:1px solid var(--gold);
+    background:var(--void-2); color:var(--gold-soft); font:600 14px/1 var(--ui); box-shadow:0 0 18px rgba(201,168,106,.22)}
+  .weg h3{font:600 22px/1.25 var(--display); color:var(--ink); margin:0 0 6px}
+  .weg p{margin:0; color:var(--mist-dim); font-size:14.5px; line-height:1.6}
+  .probe{margin-top:auto; padding-top:18px}
+  .probe>span:last-child,.probe>q{display:flex; align-items:center; min-height:52px; border:1px solid var(--line-soft); border-radius:var(--r-sm);
+    padding:10px 14px; background:rgba(11,7,19,.55); color:var(--mist); font-size:14px}
+  .probe-tag{display:block; margin:0 0 8px; font:500 9.5px/1 var(--wordmark); letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+  .probe-daten{gap:10px; font-variant-numeric:tabular-nums}
+  .probe-daten svg{width:18px; height:18px; flex:none; color:var(--gold-soft)}
+  .probe-pos{justify-content:space-between; gap:8px; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .probe-pos>span{display:inline-flex; align-items:baseline; gap:5px; color:var(--ink); font-weight:500}
+  .probe-pos i{font-style:normal; color:var(--gold-soft); font-size:12px; letter-spacing:.06em}
+  .probe>q.probe-zitat{display:block; font:italic 500 17px/1.4 var(--display); color:var(--ink); quotes:"\201E" "\201C"; padding:12px 16px}
+  :lang(en) .probe>q.probe-zitat{quotes:"\201C" "\201D"} :lang(hu) .probe>q.probe-zitat{quotes:"\201E" "\201D"} :lang(it) .probe>q.probe-zitat{quotes:"\00AB" "\00BB"}
+  @media (max-width:900px){
+    .weg{grid-template-columns:1fr; gap:12px; max-width:560px; margin:0 auto}
+    .weg li{display:grid; grid-template-columns:34px 1fr; column-gap:16px; padding:22px 20px 20px}
+    .weg .nr{grid-row:1 / span 3; margin:0}
+    .weg h3{font-size:21px; margin-top:2px}
+    .probe{grid-column:2}
+  }
+  @media (max-width:480px){ .probe{grid-column:1 / -1; padding-top:16px} .weg li{padding:20px 18px 18px} }
+  /* Hero am Handy: Aussage schneller sichtbar, ruhigere Abstaende */
+  .hero .wert{color:#b4a9cc}
+  @media (max-width:560px){
+    .hero{padding:84px 0 34px}
+    .hero .sigil-lg{width:66px; margin-bottom:10px}
+    .hero .word{font-size:clamp(44px,13vw,56px)}
+    .hero .kicker{margin-bottom:22px; letter-spacing:.36em; text-indent:.36em}
+    .hero .sub{margin-bottom:30px}
+    .hero .wert{margin-top:-18px; margin-bottom:24px}
+    .vertrauen{gap:4px 14px}
+    #probieren{padding-top:40px}
+  }
+  @media (max-width:420px){ .am-trio small{letter-spacing:.05em} }
+  /* Versprechen: weniger Leerraum danach, am Computer Symbol oben (breitere Textspalten) */
+  #versprechen{padding-bottom:clamp(40px,5vw,64px)} #versprechen + section.block{padding-top:clamp(28px,4vw,48px)}
+  @media (min-width:961px){
+    .werte li{grid-template-columns:1fr; padding:28px 24px 26px}
+    .werte svg{grid-row:auto; margin:0 0 14px}
+  }
+  /* Feinschliff: ausgewogene Einleitungen, groessere Tippflaechen bei Textlinks */
+  .lede,.cta p,.hero .wert{text-wrap:balance}
+  .alt-link a,.faq a{border-bottom:0; text-decoration:underline; text-decoration-color:var(--gold-dim); text-decoration-thickness:1px; text-underline-offset:4px;
+    padding:12px 0; transition:color .2s, text-decoration-color .2s}
+  .alt-link a:hover,.faq a:hover{color:#f4e6c4; text-decoration-color:var(--gold-soft)}
+  /* Hauptknopf: einmaliger, sanfter Lichtschimmer beim Laden */
+  .store-btn{position:relative; overflow:hidden}
+  html.is-android .hero .store-btn:not(.ios-btn)::after,html.is-ios .hero .store-btn.ios-btn::after,html.is-desktop .hero .store-btn.ios-btn::after{
+    content:""; position:absolute; top:0; bottom:0; left:-60%; width:45%; pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(255,250,235,.55),transparent); transform:skewX(-18deg); animation:glanz 1.4s ease 1.1s both}
+  @keyframes glanz{from{left:-60%}to{left:130%}}
+  .store-btn:active{transform:translateY(0) scale(.99)}
+  .try-link:active,.teilen-btn:active,#thWeiter:active{transform:scale(.99)}
+  .nav .to-app:focus-visible,.langs a:focus-visible,#thWeiter:focus-visible,.try-link:focus-visible{border-radius:var(--r-pill)}
+
   @media (prefers-reduced-motion:reduce){
+    .store-btn::after{animation:none!important; display:none}
+    .weg li{transition:none}
     .hero .rad-dreh{animation:none}
     html{scroll-behavior:auto}
     html.js .reveal{opacity:1; transform:none; transition:none}
@@ -700,7 +764,7 @@
   <div class="wrap hero-inner">
     <div class="marke">
       <svg class="rad" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false"><g class="rad-dreh"><g fill="none" stroke="currentColor"><circle r="296" stroke-width=".8"/><circle r="288" stroke-width=".5" opacity=".7"/><circle r="244" stroke-width=".8"/><circle r="170" stroke-width=".5" stroke-dasharray="2 6" opacity=".8"/><path stroke-width=".7" d="M288.0 0.0L280.0 0.0M286.9 25.1L282.9 24.8M283.6 50.0L279.7 49.3M278.2 74.5L274.3 73.5M270.6 98.5L266.9 97.1M261.0 121.7L257.4 120.0M249.4 144.0L242.5 140.0M235.9 165.2L232.6 162.9M220.6 185.1L217.6 182.6M203.6 203.6L200.8 200.8M185.1 220.6L182.6 217.6M165.2 235.9L162.9 232.6M144.0 249.4L140.0 242.5M121.7 261.0L120.0 257.4M98.5 270.6L97.1 266.9M74.5 278.2L73.5 274.3M50.0 283.6L49.3 279.7M25.1 286.9L24.8 282.9M0.0 288.0L0.0 280.0M-25.1 286.9L-24.8 282.9M-50.0 283.6L-49.3 279.7M-74.5 278.2L-73.5 274.3M-98.5 270.6L-97.1 266.9M-121.7 261.0L-120.0 257.4M-144.0 249.4L-140.0 242.5M-165.2 235.9L-162.9 232.6M-185.1 220.6L-182.6 217.6M-203.6 203.6L-200.8 200.8M-220.6 185.1L-217.6 182.6M-235.9 165.2L-232.6 162.9M-249.4 144.0L-242.5 140.0M-261.0 121.7L-257.4 120.0M-270.6 98.5L-266.9 97.1M-278.2 74.5L-274.3 73.5M-283.6 50.0L-279.7 49.3M-286.9 25.1L-282.9 24.8M-288.0 0.0L-280.0 0.0M-286.9 -25.1L-282.9 -24.8M-283.6 -50.0L-279.7 -49.3M-278.2 -74.5L-274.3 -73.5M-270.6 -98.5L-266.9 -97.1M-261.0 -121.7L-257.4 -120.0M-249.4 -144.0L-242.5 -140.0M-235.9 -165.2L-232.6 -162.9M-220.6 -185.1L-217.6 -182.6M-203.6 -203.6L-200.8 -200.8M-185.1 -220.6L-182.6 -217.6M-165.2 -235.9L-162.9 -232.6M-144.0 -249.4L-140.0 -242.5M-121.7 -261.0L-120.0 -257.4M-98.5 -270.6L-97.1 -266.9M-74.5 -278.2L-73.5 -274.3M-50.0 -283.6L-49.3 -279.7M-25.1 -286.9L-24.8 -282.9M-0.0 -288.0L-0.0 -280.0M25.1 -286.9L24.8 -282.9M50.0 -283.6L49.3 -279.7M74.5 -278.2L73.5 -274.3M98.5 -270.6L97.1 -266.9M121.7 -261.0L120.0 -257.4M144.0 -249.4L140.0 -242.5M165.2 -235.9L162.9 -232.6M185.1 -220.6L182.6 -217.6M203.6 -203.6L200.8 -200.8M220.6 -185.1L217.6 -182.6M235.9 -165.2L232.6 -162.9M249.4 -144.0L242.5 -140.0M261.0 -121.7L257.4 -120.0M270.6 -98.5L266.9 -97.1M278.2 -74.5L274.3 -73.5M283.6 -50.0L279.7 -49.3M286.9 -25.1L282.9 -24.8M244.0 0.0L280.0 0.0M211.3 122.0L242.5 140.0M122.0 211.3L140.0 242.5M0.0 244.0L0.0 280.0M-122.0 211.3L-140.0 242.5M-211.3 122.0L-242.5 140.0M-244.0 0.0L-280.0 0.0M-211.3 -122.0L-242.5 -140.0M-122.0 -211.3L-140.0 -242.5M-0.0 -244.0L-0.0 -280.0M122.0 -211.3L140.0 -242.5M211.3 -122.0L242.5 -140.0"/></g><g class="rad-z" fill="currentColor" font-size="22" text-anchor="middle" dominant-baseline="central"><text x="67.8" y="-253.1">♈&#xFE0E;</text><text x="185.3" y="-185.3">♉&#xFE0E;</text><text x="253.1" y="-67.8">♊&#xFE0E;</text><text x="253.1" y="67.8">♋&#xFE0E;</text><text x="185.3" y="185.3">♌&#xFE0E;</text><text x="67.8" y="253.1">♍&#xFE0E;</text><text x="-67.8" y="253.1">♎&#xFE0E;</text><text x="-185.3" y="185.3">♏&#xFE0E;</text><text x="-253.1" y="67.8">♐&#xFE0E;</text><text x="-253.1" y="-67.8">♑&#xFE0E;</text><text x="-185.3" y="-185.3">♒&#xFE0E;</text><text x="-67.8" y="-253.1">♓&#xFE0E;</text></g></g></svg>
-      <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="110" height="104">
+      <img class="sigil-lg" src="brand/zeichen.svg" alt="" width="110" height="104" fetchpriority="high">
       <h1 class="word">SORAYA</h1>
     </div>
     <div class="kicker">Luxury Astro Guide</div>
@@ -767,6 +831,41 @@
         <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tippe auf dein Sternzeichen – Soraya liest dir den heutigen Tag.</p></div>
         <a class="weiter" id="thWeiter" href="https://app.sorayaluxuryastroguide.com/" hidden data-t="th.weiter">Persönlich statt für alle: dein Horoskop aus deinem Geburtshoroskop ›</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SO ENTSTEHT DEINE DEUTUNG (nur wahre Angaben: Swiss Ephemeris + KI, Beispiele als Beispiel markiert) ========== -->
+<section class="block" id="deutung">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-t="deut.eyebrow">So entsteht deine Deutung</span>
+      <h2 class="head" data-t="deut.head">Echte Astronomie, <span class="gold">klar gedeutet</span></h2>
+      <p class="lede" data-t="deut.lede">Kein Zufallstext: Jede Deutung beginnt mit der genauen Berechnung deines Himmels.</p>
+    </div>
+    <ol class="weg">
+      <li class="reveal">
+        <span class="nr" aria-hidden="true">1</span>
+        <h3 data-t="deut.1h">Deine Geburtsdaten</h3>
+        <p data-t="deut.1p">Datum, Uhrzeit und Ort – je genauer, desto persönlicher wird deine Deutung.</p>
+        <div class="probe"><span class="probe-tag" data-t="deut.bsp">Beispiel</span><span class="probe-daten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span data-t="deut.ort">5. Nov. 1990 · 05:15 · Wien</span></span></div>
+      </li>
+      <li class="reveal">
+        <span class="nr" aria-hidden="true">2</span>
+        <h3 data-t="deut.2h">Astronomisch berechnet</h3>
+        <p data-t="deut.2p">Soraya berechnet die Stände von Sonne, Mond und Planeten für genau diesen Moment und Ort – mit der Swiss Ephemeris, der Rechengrundlage vieler Profi-Astrologieprogramme.</p>
+        <div class="probe"><span class="probe-tag" data-t="deut.bsp">Beispiel</span><span class="probe-pos"><span><i>☉</i>♏&#xFE0E; 12°</span><span><i>☽&#xFE0E;</i>♊&#xFE0E; 10°</span><span><i>ASC</i>♎&#xFE0E; 21°</span></span></div>
+      </li>
+      <li class="reveal">
+        <span class="nr" aria-hidden="true">3</span>
+        <h3 data-t="deut.3h">Persönlich gedeutet</h3>
+        <p data-t="deut.3p">Eine KI übersetzt dein berechnetes Horoskop in klare, persönliche Worte – in deiner Sprache, ohne fertige Textbausteine.</p>
+        <div class="probe"><span class="probe-tag" data-t="deut.bsp">Beispiel</span><q class="probe-zitat" data-t="deut.zitat">Du gehst den Dingen gern auf den Grund – und spürst Stimmungen, bevor andere sie aussprechen.</q></div>
+      </li>
+    </ol>
+    <div class="ablauf-cta reveal">
+      <a class="gold-btn nur-andere" href="https://app.sorayaluxuryastroguide.com/" data-t="how.cta">Jetzt kostenlos starten ✦</a>
+      <a class="gold-btn nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" data-t="how.cta">Jetzt kostenlos starten ✦</a>
     </div>
   </div>
 </section>
@@ -890,28 +989,9 @@
     <ul class="werte reveal">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 19.5 9 8.5l3.7 6 2.6-3.8 6.2 8.8z"/><path d="m7.4 11.2 1.6.9 1.4-1"/><circle cx="17.5" cy="5.5" r="1.6"/></svg><b data-t="w.1h">Entwickelt in Tirol</b><span data-t="w.1p">Unabhängig entwickelt in Österreich – mit Liebe zum Detail.</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 19 6v5.5c0 4.3-3 7.8-7 9-4-1.2-7-4.7-7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><b data-t="w.2h">Ohne Werbung &amp; fremde Tracker</b><span data-t="w.2p">Keine Anzeigen, keine Tracking-Cookies. Dein Konto ist jederzeit löschbar.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.3"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg><b data-t="w.3h">Genau berechnet</b><span data-t="w.3p">Aus den echten Planetenständen deiner Geburt – nicht aus Textbausteinen.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="14" height="10" rx="1.5"/><path d="M6.5 18.5h6M9.5 14.5v4"/><rect x="15.5" y="9" width="6" height="11" rx="1.5"/><path d="M17.8 17.6h1.4"/></svg><b data-t="w.3h">Auf allen Geräten</b><span data-t="w.3p">Als App für Android, auf iPhone und Computer direkt im Browser.</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9C10.5 6 7 5.5 7 7.8 7 9 12 9 12 9Zm0 0c1.5-3 5-3.5 5-1.2C17 9 12 9 12 9Z"/></svg><b data-t="w.4h">Kostenlos starten</b><span data-t="w.4p">Keine Kreditkarte, keine Zahlungsdaten – einfach loslegen.</span></li>
     </ul>
-  </div>
-</section>
-
-<!-- ========== SO GEHT'S ========== -->
-<section class="block" id="ablauf">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-t="how.eyebrow">So einfach geht's</span>
-      <h2 class="head" data-t="how.head">In drei Schritten zu <span class="gold">deinem Himmel</span></h2>
-    </div>
-    <div class="schritte">
-      <div class="schritt reveal"><b data-t="how.1h">Geburtsdaten eingeben</b><p data-t="how.1p">Datum, Uhrzeit und Ort – je genauer, desto persönlicher wird deine Deutung.</p></div>
-      <div class="schritt reveal"><b data-t="how.2h">Soraya berechnet</b><p data-t="how.2p">Dein Geburtshoroskop wird exakt berechnet und in klaren Worten gedeutet.</p></div>
-      <div class="schritt reveal"><b data-t="how.3h">Jeden Tag dein Impuls</b><p data-t="how.3p">Dein persönliches Tageshoroskop, Partner-Vergleich und Chat – wann immer du willst.</p></div>
-    </div>
-    <div class="ablauf-cta reveal">
-      <a class="gold-btn nur-andere" href="https://app.sorayaluxuryastroguide.com/" data-t="how.cta">Jetzt kostenlos starten ✦</a>
-      <a class="gold-btn nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa" data-t="how.cta">Jetzt kostenlos starten ✦</a>
-    </div>
   </div>
 </section>
 
@@ -927,6 +1007,7 @@
       <details><summary data-t="faq.2q">Brauche ich meine Geburtszeit?</summary><p data-t="faq.2a">Nein, aber sie macht die Deutung genauer: Mit Uhrzeit und Ort berechnet Soraya auch deinen Aszendenten und die Häuser.</p></details>
       <details><summary data-t="faq.3q">Was passiert mit meinen Daten?</summary><p data-t="faq.3a">Deine Geburtsdaten nutzt Soraya nur für deine Berechnungen. Du kannst dein Konto mit allen Daten jederzeit löschen.</p></details>
       <details><summary data-t="faq.5q">Was sagen Sonnen- und Mondzeichen aus?</summary><p data-t="faq.5a">Das Sonnenzeichen beschreibt deinen Wesenskern – wie du dich zeigst und was dich antreibt. Das Mondzeichen steht für deine Gefühlswelt: was dich berührt und was du brauchst, um dich geborgen zu fühlen. Zusammen mit dem Aszendenten bilden sie das Grundgerüst deines Geburtshoroskops.</p></details>
+      <details><summary data-t="faq.7q">Wie entstehen die Deutungen?</summary><p data-t="faq.7a">Zuerst berechnet Soraya astronomisch genau die Planetenstände deiner Geburt (Swiss Ephemeris). Daraus schreibt eine KI deine persönliche Deutung. Die Texte sind als Impuls zur Selbstreflexion gedacht – nicht als ärztlicher, rechtlicher oder finanzieller Rat.</p></details>
       <details><summary data-t="faq.4q">Gibt es Soraya auch fürs iPhone?</summary><p data-t="faq.4a">Ja. Öffne Soraya in Safari und tippe auf „Teilen“ → „Zum Home-Bildschirm“ – dann startet Soraya wie eine App.</p></details>
       <details><summary data-t="faq.6q">Kann ich Soraya auch am Computer nutzen?</summary><p data-t="faq.6a">Ja. Soraya läuft direkt im Browser – öffne einfach <a href="https://app.sorayaluxuryastroguide.com/">app.sorayaluxuryastroguide.com</a>, ganz ohne Installation.</p></details>
     </div>
@@ -1024,14 +1105,6 @@
         "th.p": "Choose your sign.",
         "th.leer": "Tap your sign – Soraya reads today for you.",
         "th.weiter": "Personal, not for everyone: your horoscope from your own birth chart ›",
-        "how.eyebrow": "It's that simple",
-        "how.head": "Three steps to <span class=\"gold\">your sky</span>",
-        "how.1h": "Enter your birth details",
-        "how.1p": "Date, time and place – the more precise, the more personal your reading.",
-        "how.2h": "Soraya calculates",
-        "how.2p": "Your birth chart, calculated precisely and explained in plain words.",
-        "how.3h": "A daily impulse",
-        "how.3p": "Your personal daily horoscope, partner match and chat – whenever you like.",
         "faq.eyebrow": "Questions",
         "faq.head": "Good to <span class=\"gold\">know</span>",
         "faq.1q": "Is Soraya free?",
@@ -1111,12 +1184,26 @@
         "w.titel": "Our promise",
         "w.1h": "Made in Tyrol",
         "w.1p": "Independently built in Austria – with love for every detail.",
-        "w.2h": "No ads, no third-party trackers",
+        "w.2h": "No ads, no third‑party trackers",
         "w.2p": "No adverts, no tracking cookies. Delete your account anytime.",
-        "w.3h": "Precisely calculated",
-        "w.3p": "From the real planetary positions at your birth – not from stock phrases.",
+        "w.3h": "On every device",
+        "w.3p": "As an app for Android, and right in the browser on iPhone and computer.",
         "w.4h": "Free to start",
-        "w.4p": "No credit card, no payment details – just begin."
+        "w.4p": "No credit card, no payment details – just begin.",
+        "deut.eyebrow": "How your reading is made",
+        "deut.head": "Real astronomy, <span class=\"gold\">clearly interpreted</span>",
+        "deut.lede": "No random text: every reading starts with a precise calculation of your sky.",
+        "deut.1h": "Your birth details",
+        "deut.1p": "Date, time and place – the more precise, the more personal your reading.",
+        "deut.2h": "Astronomically calculated",
+        "deut.2p": "Soraya calculates the positions of the Sun, Moon and planets for exactly that moment and place – with the Swiss Ephemeris, the calculation basis of many professional astrology programs.",
+        "deut.3h": "Personally interpreted",
+        "deut.3p": "An AI translates your calculated chart into clear, personal words – in your language, without ready-made text blocks.",
+        "deut.bsp": "Example",
+        "deut.ort": "5 Nov 1990 · 05:15 · Vienna",
+        "deut.zitat": "You like to get to the bottom of things – and you sense moods before others put them into words.",
+        "faq.7q": "How are the readings created?",
+        "faq.7a": "First, Soraya calculates the planetary positions at your birth with astronomical precision (Swiss Ephemeris). From that, an AI writes your personal reading. The texts are meant as an impulse for self-reflection – not as medical, legal or financial advice."
       },
       hu: {
         "title": "Soraya — Horoszkóp és születési képlet | Luxury Astro Guide",
@@ -1134,14 +1221,6 @@
         "th.p": "Válaszd ki a csillagjegyed.",
         "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
         "th.weiter": "Személyesen, nem mindenkinek: a horoszkópod a saját születési képletedből ›",
-        "how.eyebrow": "Ilyen egyszerű",
-        "how.head": "Három lépésben <span class=\"gold\">a saját égboltodig</span>",
-        "how.1h": "Add meg a születési adataidat",
-        "how.1p": "Dátum, időpont és hely – minél pontosabb, annál személyesebb az értelmezés.",
-        "how.2h": "Soraya kiszámolja",
-        "how.2p": "A születési képleted pontosan kiszámolva, világos szavakkal értelmezve.",
-        "how.3h": "Minden nap egy impulzus",
-        "how.3p": "Személyes napi horoszkóp, párkapcsolati összevetés és chat – amikor csak szeretnéd.",
         "faq.eyebrow": "Kérdések",
         "faq.head": "Jó <span class=\"gold\">tudni</span>",
         "faq.1q": "Ingyenes a Soraya?",
@@ -1212,7 +1291,7 @@
         "mock.titel": "Üdvözöl Soraya.",
         "mock.asz": "Aszcendens",
         "mock.stimmung": "Tisztánlátás a tempó előtt",
-        "mock.frag": "Kérdezd Sorayát arról, ami foglalkoztat",
+        "mock.frag": "Kérdezz bármit Sorayától",
         "mock.home": "Kezdőlap",
         "mock.analyse": "Elemzés",
         "mock.horo": "Horoszkóp",
@@ -1223,14 +1302,28 @@
         "w.1p": "Független fejlesztés Ausztriából – a részletekre is odafigyelve.",
         "w.2h": "Reklámok és külső nyomkövetők nélkül",
         "w.2p": "Nincsenek hirdetések és követő sütik. A fiókodat bármikor törölheted.",
-        "w.3h": "Pontos számítás",
-        "w.3p": "A születésed pillanatának valódi bolygóállásaiból – nem sablonszövegekből.",
+        "w.3h": "Minden eszközön",
+        "w.3p": "Alkalmazásként Androidon, iPhone-on és számítógépen pedig közvetlenül a böngészőben.",
         "w.4h": "Ingyenes kezdés",
-        "w.4p": "Nem kell bankkártya, sem fizetési adat – egyszerűen kezdd el."
+        "w.4p": "Nem kell bankkártya, sem fizetési adat – egyszerűen kezdd el.",
+        "deut.eyebrow": "Az értelmezés útja",
+        "deut.head": "Valódi csillagászat, <span class=\"gold\">érthetően értelmezve</span>",
+        "deut.lede": "Nem véletlenszerű szöveg: minden értelmezés az égboltod pontos kiszámításával kezdődik.",
+        "deut.1h": "A születési adataid",
+        "deut.1p": "Dátum, időpont és hely – minél pontosabb, annál személyesebb az értelmezés.",
+        "deut.2h": "Csillagászati pontossággal",
+        "deut.2p": "Soraya kiszámolja a Nap, a Hold és a bolygók állását pontosan arra a pillanatra és helyre – a Swiss Ephemeris segítségével, amelyre sok professzionális asztrológiai program is épül.",
+        "deut.3h": "Személyre szabott értelmezés",
+        "deut.3p": "Mesterséges intelligencia fordítja le a kiszámolt képletedet világos, személyes szavakra – a te nyelveden, kész sablonszövegek nélkül.",
+        "deut.bsp": "Példa",
+        "deut.ort": "1990. nov. 5. · 05:15 · Bécs",
+        "deut.zitat": "Szeretsz a dolgok mélyére látni – és megérzed a hangulatokat, mielőtt mások kimondanák őket.",
+        "faq.7q": "Hogyan készülnek az értelmezések?",
+        "faq.7a": "Először Soraya csillagászati pontossággal kiszámolja a születésed pillanatának bolygóállásait (Swiss Ephemeris). Ebből mesterséges intelligencia írja meg a személyes értelmezésedet. A szövegek az önismeretet segítő gondolatébresztők – nem orvosi, jogi vagy pénzügyi tanácsok."
       },
       it: {
         "title": "Soraya — Oroscopo e tema natale | Luxury Astro Guide",
-        "try.link": "✦ Prova gratis: Sole e Luna in pochi secondi",
+        "try.link": "✦ Prova gratis: Sole e Luna subito",
         "try.eyebrow": "Gratis, senza account",
         "try.head": "Provalo <span class=\"gold\">subito</span>",
         "pv.h": "Il tuo segno solare e lunare",
@@ -1244,14 +1337,6 @@
         "th.p": "Scegli il tuo segno.",
         "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
         "th.weiter": "Personale, non per tutti: il tuo oroscopo dal tuo tema natale ›",
-        "how.eyebrow": "È semplice",
-        "how.head": "In tre passi verso <span class=\"gold\">il tuo cielo</span>",
-        "how.1h": "Inserisci i dati di nascita",
-        "how.1p": "Data, ora e luogo – più sono precisi, più l'interpretazione è personale.",
-        "how.2h": "Soraya calcola",
-        "how.2p": "Il tuo tema natale calcolato con precisione e spiegato con parole chiare.",
-        "how.3h": "Ogni giorno il tuo impulso",
-        "how.3p": "Oroscopo personale del giorno, affinità di coppia e chat – quando vuoi.",
         "faq.eyebrow": "Domande",
         "faq.head": "Buono a <span class=\"gold\">sapersi</span>",
         "faq.1q": "Soraya è gratuita?",
@@ -1333,10 +1418,24 @@
         "w.1p": "Sviluppata in modo indipendente in Austria – con cura per ogni dettaglio.",
         "w.2h": "Niente pubblicità né tracker di terzi",
         "w.2p": "Nessun annuncio, nessun cookie di tracciamento. Puoi eliminare l'account quando vuoi.",
-        "w.3h": "Calcolata con precisione",
-        "w.3p": "Dalle vere posizioni dei pianeti alla tua nascita – non da frasi fatte.",
+        "w.3h": "Su ogni dispositivo",
+        "w.3p": "Come app per Android, e direttamente nel browser su iPhone e computer.",
         "w.4h": "Gratis per iniziare",
-        "w.4p": "Nessuna carta di credito, nessun dato di pagamento – inizia e basta."
+        "w.4p": "Nessuna carta di credito, nessun dato di pagamento – inizia e basta.",
+        "deut.eyebrow": "Come nasce la tua lettura",
+        "deut.head": "Vera astronomia, <span class=\"gold\">interpretata con chiarezza</span>",
+        "deut.lede": "Nessun testo a caso: ogni lettura parte da un calcolo preciso del tuo cielo.",
+        "deut.1h": "I tuoi dati di nascita",
+        "deut.1p": "Data, ora e luogo – più sono precisi, più l'interpretazione è personale.",
+        "deut.2h": "Calcolo astronomico",
+        "deut.2p": "Soraya calcola le posizioni di Sole, Luna e pianeti per quel preciso momento e luogo – con la Swiss Ephemeris, la base di calcolo di molti programmi astrologici professionali.",
+        "deut.3h": "Interpretazione personale",
+        "deut.3p": "Un'intelligenza artificiale traduce il tuo tema calcolato in parole chiare e personali – nella tua lingua, senza testi preconfezionati.",
+        "deut.bsp": "Esempio",
+        "deut.ort": "5 nov 1990 · 05:15 · Vienna",
+        "deut.zitat": "Ami andare a fondo delle cose – e senti gli stati d'animo prima che gli altri li esprimano.",
+        "faq.7q": "Come nascono le interpretazioni?",
+        "faq.7a": "Prima Soraya calcola con precisione astronomica le posizioni dei pianeti alla tua nascita (Swiss Ephemeris). Poi un'intelligenza artificiale scrive la tua interpretazione personale. I testi sono pensati come spunto di riflessione su di sé – non come consulenza medica, legale o finanziaria."
       }
     };
     var LANGS = ["de", "en", "hu", "it"];
