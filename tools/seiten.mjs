@@ -60,7 +60,7 @@ const PFLICHT = ["key", "slug", "name", "zeitraum", "element", "modalitaet", "he
 // Texte der Sternzeichen-Seiten, die es auf der Startseite (noch) nicht gibt
 const UI = {
   de: {
-    zeichen: "Sternzeichen", pfad: "Seitenpfad", zeitraum: "Zeitraum", element: "Element", modalitaet: "Modalität",
+    zeichen: "Sternzeichen", pfad: "Seitenpfad", zeitraum: "Zeitraum", element: "Element", modalitaet: "Modalität", mehr: "Mehr lesen", weniger: "Weniger",
     herrscher: "Herrscher", symbol: "Symbol", heute: "Horoskop heute", heuteTitel: "Tageshoroskop: {name}",
     fallback: "Das heutige Horoskop lässt sich gerade nicht laden. Versuch es gleich noch einmal – oder öffne Soraya für dein persönliches Tageshoroskop.",
     ohneJs: "Dein Tageshoroskop für heute findest du in Soraya – gratis.",
@@ -77,7 +77,7 @@ const UI = {
     hubCta: "Dein Sonnenzeichen ist erst der Anfang. Dein Geburtshoroskop mit Mond, Aszendent und Planeten zeigt, was dich wirklich ausmacht – gratis in Soraya.",
   },
   en: {
-    zeichen: "Zodiac signs", pfad: "Breadcrumb", zeitraum: "Dates", element: "Element", modalitaet: "Modality",
+    zeichen: "Zodiac signs", pfad: "Breadcrumb", zeitraum: "Dates", element: "Element", modalitaet: "Modality", mehr: "Read more", weniger: "Show less",
     herrscher: "Ruling planet", symbol: "Symbol", heute: "Horoscope today", heuteTitel: "Daily horoscope: {name}",
     fallback: "Today's horoscope can't be loaded right now. Try again in a moment – or open Soraya for your personal daily horoscope.",
     ohneJs: "Find your horoscope for today in Soraya – free.",
@@ -94,7 +94,7 @@ const UI = {
     hubCta: "Your Sun sign is just the beginning. Your birth chart with Moon, ascendant and planets shows what truly makes you you – free in Soraya.",
   },
   hu: {
-    zeichen: "Csillagjegyek", pfad: "Navigációs útvonal", zeitraum: "Időszak", element: "Elem", modalitaet: "Minőség",
+    zeichen: "Csillagjegyek", pfad: "Navigációs útvonal", zeitraum: "Időszak", element: "Elem", modalitaet: "Minőség", mehr: "Tovább olvasom", weniger: "Kevesebb",
     herrscher: "Uralkodó bolygó", symbol: "Jel", heute: "Mai horoszkóp", heuteTitel: "Napi horoszkóp: {name}",
     fallback: "A mai horoszkóp most nem tölthető be. Próbáld újra egy kicsit később – vagy nyisd meg a Sorayát a személyes napi horoszkópodért.",
     ohneJs: "A mai horoszkópodat a Sorayában találod – ingyen.",
@@ -111,7 +111,7 @@ const UI = {
     hubCta: "A napjegyed csak a kezdet. A születési horoszkópod a Holddal, az aszcendenssel és a bolygókkal megmutatja, mi tesz igazán téged azzá, aki vagy – ingyen a Sorayában.",
   },
   it: {
-    zeichen: "Segni zodiacali", pfad: "Percorso", zeitraum: "Periodo", element: "Elemento", modalitaet: "Modalità",
+    zeichen: "Segni zodiacali", pfad: "Percorso", zeitraum: "Periodo", element: "Elemento", modalitaet: "Modalità", mehr: "Leggi di più", weniger: "Mostra meno",
     herrscher: "Pianeta dominante", symbol: "Simbolo", heute: "Oroscopo di oggi", heuteTitel: "Oroscopo di oggi: {name}",
     fallback: "Al momento non riusciamo a caricare l'oroscopo di oggi. Riprova tra poco – oppure apri Soraya per il tuo oroscopo personale del giorno.",
     ohneJs: "Trovi il tuo oroscopo di oggi in Soraya – gratis.",
@@ -156,6 +156,32 @@ const zeitraumKurz = (l, i) => [kurzDatum(l, DATEN[i][0], DATEN[i][1]), kurzDatu
   .map((t) => t.replace(/\s/g, " ")).join(" – ");
 // als HTML: jedes Datum in einem eigenen <span> (nowrap), umbrochen wird nur nach dem Strich
 const zeitraumHtml = (l, i) => zeitraumKurz(l, i).split(/\s–\s/).map((t, n, a) => `<span>${esc(t)}${n < a.length - 1 ? "\u00a0–" : ""}</span>`).join(" ");
+// Saetze trennen (nicht nach "21." oder Abkuerzungen wie "z. B.")
+const ABK = /(?:^|\s)(?:z\.\s?B|bzw|ca|Nr|St|vs|ecc|stb|pl|kb|ill|Dr|Mr|Mrs)\.$/i;
+function saetze(t) {
+  const out = [], re = /[.!?…]["”“»]?(?=\s+["„“«(]?\p{Lu})/gu;
+  let start = 0, m;
+  while ((m = re.exec(t))) {
+    const vor = t.slice(Math.max(0, m.index - 12), m.index + 1);
+    if (/\d\.$/.test(vor) || ABK.test(vor)) continue;
+    out.push(t.slice(start, m.index + m[0].length).trim()); start = m.index + m[0].length;
+  }
+  out.push(t.slice(start).trim());
+  return out.filter(Boolean);
+}
+// kurz + aufklappbar: zuerst 1-2 Saetze, der Rest in <details> (steht im HTML, Google liest alles; ohne Script bedienbar)
+function kurzMehr(l, absaetze, o = {}) {
+  const { min = 100, max = 200, cls = "", minRest = 90 } = o, k = cls ? ` class="${cls}"` : "";
+  const ps = absaetze.map((p) => String(p).trim()).filter(Boolean);
+  if (!ps.length) return "";
+  const s = saetze(ps[0]);
+  let lead = s[0], n = 1;
+  while (n < s.length && lead.length < min && (lead + " " + s[n]).length <= max) lead += " " + s[n++];
+  const rest = [s.slice(n).join(" "), ...ps.slice(1)].filter(Boolean);
+  if (rest.join(" ").length < minRest) return ps.map((p) => `<p${k}>${esc(p)}</p>`).join("\n");
+  return `<p${k}>${esc(lead)}</p>\n<details class="mehr${cls ? " mehr-" + cls : ""}"><summary><span class="m-auf">${esc(UI[l].mehr)}</span><span class="m-zu">${esc(UI[l].weniger)}</span></summary>` +
+    `<div class="mehr-inhalt">${rest.map((p) => `<p${k}>${esc(p)}</p>`).join("")}</div></details>`;
+}
 const zeichenPfad = (l, i) => HUB[l] + "/" + SLUG[l][i];
 const datei = (pfad) => (pfad === "/" ? "index.html" : pfad.slice(1) + ".html");
 
@@ -468,6 +494,79 @@ const CSS = `
   .sticky-cta a{display:flex;justify-content:center;align-items:center;gap:8px;background:linear-gradient(180deg,#e6cf9c,#c9a86a);color:#1a1209;font:600 15px var(--ui);border-radius:var(--r-pill);padding:15px;box-shadow:0 12px 34px -10px rgba(0,0,0,.7)}
   .sticky-cta .nur-android{display:none} .is-android .sticky-cta .nur-android{display:flex} .is-android .sticky-cta .nur-andere{display:none}
   @media (max-width:820px){.sticky-cta{display:block}footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}}
+  /* Design-Linie „ruhiger & edler“: feine Knoepfe, kurze Texte + aufklappbar */
+  :root{--btn-h:44px;--rand-gold:rgba(201,168,106,.4)}
+  @media (min-width:821px){:root{--btn-h:42px}}
+  .langs{gap:0}
+  .langs a{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:40px;padding:0 7px;border:0;border-radius:8px;background:none;font:600 11.5px/1 var(--ui);letter-spacing:.1em}
+  .langs a.active{border:0;background:none}
+  .langs a.active::after{content:"";position:absolute;left:50%;bottom:9px;width:14px;height:1px;margin-left:-7px;background:var(--gold-soft)}
+  .langs a:focus-visible{border-radius:8px}
+  footer .langs{margin-left:-7px}
+  .to-app{line-height:38px;padding:0 16px;font-size:11.5px;color:var(--gold-soft);border-color:var(--rand-gold)}
+  .to-app:hover{background:rgba(201,168,106,.06);border-color:var(--gold-soft)}
+  .store-btn{min-height:48px;padding:0 18px 0 14px;gap:10px;border-radius:12px;border-color:var(--rand-gold);background:rgba(20,13,34,.62);box-shadow:none}
+  .store-btn svg{width:20px;height:20px}
+  .store-btn .st-small{font-size:9.5px;letter-spacing:.12em;line-height:1.2}
+  .store-btn .st-big{font-size:16.5px;line-height:1.15}
+  .store-btn:hover{transform:none}
+  html.is-android .store-btn:not(.ios-btn),html.is-ios .store-btn.ios-btn,html.is-desktop .store-btn.ios-btn{background:linear-gradient(180deg,#ead6a6,#cdac6d);border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.32)}
+  .stores{gap:10px}
+  .sticky-cta{left:16px;right:16px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:440px;margin:0 auto}
+  .sticky-cta a{min-height:46px;padding:0 20px;font:600 15px/1.2 var(--ui);background:linear-gradient(180deg,#ead6a6,#cdac6d);box-shadow:0 10px 28px -12px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.32)}
+  .pille-link{display:flex;width:fit-content;max-width:100%;margin:14px auto 0;padding:8px 2px;min-height:40px;border:0;border-radius:6px;background:none;font-size:14px;font-weight:500;line-height:1.45;color:var(--gold-soft);
+    text-decoration:underline;text-decoration-color:var(--gold-dim);text-underline-offset:5px}
+  .pille-link:hover{background:none;color:#f4e6c4;text-decoration-color:var(--gold-soft)}
+  .pille-link:focus-visible{border-radius:6px}
+  .horo-karte .pille-link{margin:10px 0 0;text-align:left;justify-content:flex-start;text-decoration:none}
+  .nochmal{border:0;padding:6px 2px;min-height:36px;text-decoration:underline;text-decoration-color:rgba(240,196,188,.45);text-underline-offset:4px}
+  .z-glyph{box-shadow:0 0 40px -18px rgba(201,168,106,.45)}
+  .cta img{filter:none}
+  /* kurz + aufklappbar */
+  html.js .kurz.zu{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--zeilen,4);line-clamp:var(--zeilen,4);overflow:hidden}
+  .horo p.kurz{margin-bottom:0}
+  .horo .tipp{margin-top:12px}
+  .mehr-knopf,details.mehr>summary{display:inline-flex;align-items:center;gap:8px;min-height:40px;margin:0;padding:0 2px;border:0;background:none;font:500 14px/1.3 var(--ui);letter-spacing:.01em;
+    color:var(--gold-soft);cursor:pointer;list-style:none;border-radius:6px;transition:color .2s;-webkit-tap-highlight-color:transparent}
+  .mehr-knopf::after,details.mehr>summary::after{content:"";flex:none;width:6px;height:6px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;opacity:.85;transform:translateY(-2px) rotate(135deg);transition:transform .25s ease}
+  .mehr-knopf[aria-expanded="true"]::after,details.mehr[open]>summary::after{transform:translateY(2px) rotate(-45deg)}
+  .mehr-knopf:hover,details.mehr>summary:hover{color:#f4e6c4}
+  details.mehr>summary::-webkit-details-marker{display:none}
+  .mehr-knopf .m-zu,details.mehr>summary .m-zu{display:none}
+  .mehr-knopf[aria-expanded="true"] .m-auf,details.mehr[open]>summary .m-auf{display:none}
+  .mehr-knopf[aria-expanded="true"] .m-zu,details.mehr[open]>summary .m-zu{display:inline}
+  details.mehr{margin:-8px 0 8px}
+  details.mehr[open]{display:flex;flex-direction:column}
+  details.mehr[open]>summary{order:2;align-self:flex-start}
+  details.mehr .mehr-inhalt{padding-top:8px}
+  @keyframes mehrAuf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  details.mehr[open] .mehr-inhalt{animation:mehrAuf .35s ease both}
+  .z-kopf details.mehr{margin:6px auto 0;max-width:40ch}
+  .z-kopf details.mehr>summary{margin:0 auto}
+  .z-kopf details.mehr[open]>summary{align-self:center}
+  .z-kopf .mehr-inhalt p{margin:0 0 6px}
+  .intro{text-wrap:balance}
+  .passung details.mehr{margin:-10px 0 14px}
+  /* Text-Abschnitte: Zeilenlaenge begrenzt, ruhiger Rhythmus */
+  .text p,.passung p{max-width:65ch}
+  .text h2,.block-titel{margin-top:clamp(40px,6vw,56px)}
+  /* FAQ: feine Linien, Chevron statt Plus, sanftes Aufklappen */
+  .faq details{padding:0}
+  .faq h2+details{border-top:1px solid var(--line-soft)}
+  .faq summary{align-items:center;min-height:56px;padding:14px 2px;font-size:19px}
+  .faq summary::after{content:"";flex:none;width:7px;height:7px;margin-right:6px;border-right:1.5px solid var(--gold-soft);border-bottom:1.5px solid var(--gold-soft);transform:translateY(-2px) rotate(45deg);transition:transform .3s ease}
+  .faq details[open] summary::after{content:"";transform:translateY(2px) rotate(-135deg)}
+  .faq p{margin:0 2px;padding:0 0 20px;max-width:62ch;font-size:15px;line-height:1.7}
+  .faq summary:focus-visible,details.mehr>summary:focus-visible{border-radius:8px}
+  @media (min-width:821px){.faq summary{font-size:20px}}
+  @supports (interpolate-size:allow-keywords){:root{interpolate-size:allow-keywords}
+    .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .35s ease,content-visibility .35s allow-discrete}
+    .faq details[open]::details-content{block-size:auto}}
+  .pass,.sw li{transition:border-color .2s,background .2s}
+  .pass{padding:7px 14px 7px 11px;font-size:14.5px}
+  main{padding-bottom:clamp(64px,9vw,100px)}
+  @media print{html.js .kurz.zu{display:block;-webkit-line-clamp:unset;overflow:visible}.mehr-knopf{display:none!important}}
+  a.zk:hover{transform:none}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
   @media print{body::before,body::after,.nav,.sticky-cta,.stores,.horo-karte,footer .langs{display:none!important}html,body{background:#fff!important;color:#2a2235!important}
     h1{-webkit-text-fill-color:#8a6a2c;background:none}.text h2,.faq summary,.cta h2{color:#2a2235!important}.faq details>p{display:block}}
@@ -643,7 +742,8 @@ const SEITEN_JS = `(function(C){
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
-        "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
+        '<p class="kurz">' + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
+      var kp = box.querySelector("p.kurz"); if (kp) kuerzen(kp);
     }).catch(function(e){
       clearTimeout(aus);
       // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
@@ -651,6 +751,24 @@ const SEITEN_JS = `(function(C){
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
+  }
+  // langer Horoskop-Text: zuerst wenige Zeilen, dann "Mehr lesen" (nur wenn sich das lohnt)
+  function kuerzen(el){
+    var b = document.createElement("button"); b.type = "button"; b.className = "mehr-knopf"; b.hidden = true; el.id = "horoText";
+    b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", el.id);
+    b.innerHTML = '<span class="m-auf">' + esc(C.t.mehr) + '</span><span class="m-zu">' + esc(C.t.weniger) + "</span>";
+    el.insertAdjacentElement("afterend", b);
+    function pruefe(){ if (b.getAttribute("aria-expanded") === "true") return;
+      el.classList.remove("zu"); var voll = el.getBoundingClientRect().height; el.classList.add("zu");
+      var lohnt = voll - el.getBoundingClientRect().height >= (parseFloat(getComputedStyle(el).lineHeight) || 26) * 1.5;
+      el.classList.toggle("zu", lohnt); b.hidden = !lohnt; }
+    b.addEventListener("click", function(){
+      var auf = b.getAttribute("aria-expanded") !== "true", h0 = el.getBoundingClientRect().height;
+      el.classList.toggle("zu", !auf); b.setAttribute("aria-expanded", auf ? "true" : "false");
+      var h1 = el.getBoundingClientRect().height, still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!still && el.animate && Math.abs(h1 - h0) > 2) el.animate([{height: h0 + "px", overflow: "hidden"}, {height: h1 + "px", overflow: "hidden"}], {duration: 320, easing: "cubic-bezier(.2,.7,.2,1)"});
+    });
+    pruefe(); var t; window.addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(pruefe, 150); });
   }
   if (C.sign) laden();
   var leiste = document.getElementById("stickyCta"), aus2 = [document.getElementById("download"), document.querySelector("footer")], sicht = {}, oben = true;
@@ -664,7 +782,7 @@ const SEITEN_JS = `(function(C){
 function seitenScript(l, cfg) {
   const C = {
     lang: l, locale: INTL[l], engine: ENGINE, q: cfg.q, sign: cfg.sign || "",
-    t: { laedt: nurText(tx(l, "js.laedt")), heute: nurText(tx(l, "js.heute")), tipp: nurText(tx(l, "js.tipp")), fehler: UI[l].fallback, nochmal: nurText(tx(l, "js.nochmal")), limit: nurText(tx(l, "js.limit")) },
+    t: { laedt: nurText(tx(l, "js.laedt")), heute: nurText(tx(l, "js.heute")), tipp: nurText(tx(l, "js.tipp")), fehler: UI[l].fallback, nochmal: nurText(tx(l, "js.nochmal")), limit: nurText(tx(l, "js.limit")), mehr: UI[l].mehr, weniger: UI[l].weniger },
   };
   return `<script>${SEITEN_JS}(${ldJson(C)});</script>\n</body>\n</html>\n`;
 }
@@ -679,7 +797,7 @@ function zeichenSeite(l, i) {
   const versionen = Object.fromEntries(LANGS.filter((x) => hat(x, i)).map((x) => [x, zeichenPfad(x, i)]));
   const ziele = Object.fromEntries(LANGS.map((x) => [x, hat(x, i) ? zeichenPfad(x, i) : hubDa(x) ? HUB[x] : HOME[x]]));
   const teile = [["Soraya", HOME[l]], [u.zeichen, HUB[l]], [d.name, pfad]];
-  const absatz = (t) => String(t).split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join("\n");
+  const absaetze = (t) => String(t).split(/\n\s*\n/);
   const passLink = (k, cls) => {
     const j = KEYS.indexOf(k); if (j < 0) return "";
     const innen = `<i aria-hidden="true">${glyph(j)}</i>${esc(NAMEN[l][j])}`;
@@ -702,7 +820,7 @@ ${krumen(l, teile)}
   <div class="z-glyph" aria-hidden="true">${glyph(i)}</div>
   <span class="eyebrow linien">${esc(d.zeitraum)}</span>
   <h1>${esc(d.h1)}</h1>
-  <p class="intro">${esc(d.intro)}</p>
+  ${kurzMehr(l, [d.intro], { min: 70, max: 170, cls: "intro", minRest: 50 })}
 </header>
 <dl class="fakten">
   <div class="fakt"><dt>${esc(u.zeitraum)}</dt><dd>${esc(d.zeitraum)}</dd></div>
@@ -720,7 +838,7 @@ ${krumen(l, teile)}
   <a class="pille-link" href="${app}">${tx(l, "th.weiter")}</a>
 </section>
 <article class="text">
-${d.abschnitte.map((a) => `<section id="${esc(a.id)}">\n<h2>${esc(a.titel)}</h2>\n${absatz(a.text)}\n</section>`).join("\n")}
+${d.abschnitte.map((a) => `<section id="${esc(a.id)}">\n<h2>${esc(a.titel)}</h2>\n${kurzMehr(l, absaetze(a.text))}\n</section>`).join("\n")}
 </article>
 <section aria-labelledby="swTitel">
   <h2 class="block-titel" id="swTitel">${esc(u.swTitel)}</h2>
@@ -731,7 +849,7 @@ ${d.abschnitte.map((a) => `<section id="${esc(a.id)}">\n<h2>${esc(a.titel)}</h2>
 </section>
 <section class="passung" aria-labelledby="passTitel">
   <h2 class="block-titel" id="passTitel">${esc(u.passungTitel)}</h2>
-  ${absatz(d.passung_text)}
+  ${kurzMehr(l, absaetze(d.passung_text), { min: 100, max: 240 })}
   <div class="pass-reihe"><span>${esc(u.passtGut)}</span>${d.passt_gut.map((k) => passLink(k, "gut")).join("")}</div>
   <div class="pass-reihe"><span>${esc(u.passtWeniger)}</span>${d.passt_weniger.map((k) => passLink(k, "weniger")).join("")}</div>
 </section>
@@ -781,7 +899,7 @@ ${krumen(l, teile)}
 <header class="z-kopf">
   <span class="eyebrow linien">${tx(l, "zk.eyebrow")}</span>
   <h1>${esc(u.hubH1)}</h1>
-  <p class="intro">${esc(u.hubIntro)}</p>
+  ${kurzMehr(l, [u.hubIntro], { min: 70, max: 170, cls: "intro", minRest: 50 })}
 </header>
 <div class="zk-grid">${karten}</div>
 <a class="pille-link hub-mond" href="${mondZiel}">${esc(u.hubMond)}</a>

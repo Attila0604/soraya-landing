@@ -44,7 +44,7 @@
 <link rel="preload" href="/fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/zeichen.css?v=1bk9i7a" />
+<link rel="stylesheet" href="/zeichen.css?v=12r5ofk" />
 </head>
 <body>
 <div class="nav">
@@ -60,7 +60,8 @@
 <header class="z-kopf">
   <span class="eyebrow linien">Asztro-tudás</span>
   <h1>A 12 csillagjegy</h1>
-  <p class="intro">A tüzes Kostól az álmodozó Halakig minden csillagjegy a saját történetét meséli. Válaszd ki a jegyedet, és ismerd meg a jellemedet, a szerelmi oldaladat, az erősségeidet és a mai horoszkópodat.</p>
+  <p class="intro">A tüzes Kostól az álmodozó Halakig minden csillagjegy a saját történetét meséli.</p>
+<details class="mehr mehr-intro"><summary><span class="m-auf">Tovább olvasom</span><span class="m-zu">Kevesebb</span></summary><div class="mehr-inhalt"><p class="intro">Válaszd ki a jegyedet, és ismerd meg a jellemedet, a szerelmi oldaladat, az erősségeidet és a mai horoszkópodat.</p></div></details>
 </header>
 <div class="zk-grid"><a class="zk" href="/hu/csillagjegyek/kos"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Kos</b><small><span>márc. 21. –</span> <span>ápr. 19.</span></small><em>Tűz</em></a><a class="zk" href="/hu/csillagjegyek/bika"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Bika</b><small><span>ápr. 20. –</span> <span>máj. 20.</span></small><em>Föld</em></a><a class="zk" href="/hu/csillagjegyek/ikrek"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Ikrek</b><small><span>máj. 21. –</span> <span>jún. 20.</span></small><em>Levegő</em></a><a class="zk" href="/hu/csillagjegyek/rak"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Rák</b><small><span>jún. 21. –</span> <span>júl. 22.</span></small><em>Víz</em></a><a class="zk" href="/hu/csillagjegyek/oroszlan"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Oroszlán</b><small><span>júl. 23. –</span> <span>aug. 22.</span></small><em>Tűz</em></a><a class="zk" href="/hu/csillagjegyek/szuz"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Szűz</b><small><span>aug. 23. –</span> <span>szept. 22.</span></small><em>Föld</em></a><a class="zk" href="/hu/csillagjegyek/merleg"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Mérleg</b><small><span>szept. 23. –</span> <span>okt. 22.</span></small><em>Levegő</em></a><a class="zk" href="/hu/csillagjegyek/skorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpió</b><small><span>okt. 23. –</span> <span>nov. 21.</span></small><em>Víz</em></a><a class="zk" href="/hu/csillagjegyek/nyilas"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Nyilas</b><small><span>nov. 22. –</span> <span>dec. 21.</span></small><em>Tűz</em></a><a class="zk" href="/hu/csillagjegyek/bak"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Bak</b><small><span>dec. 22. –</span> <span>jan. 19.</span></small><em>Föld</em></a><a class="zk" href="/hu/csillagjegyek/vizonto"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Vízöntő</b><small><span>jan. 20. –</span> <span>febr. 18.</span></small><em>Levegő</em></a><a class="zk" href="/hu/csillagjegyek/halak"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Halak</b><small><span>febr. 19. –</span> <span>márc. 20.</span></small><em>Víz</em></a></div>
 <a class="pille-link hub-mond" href="/hu#probieren">Több vagy, mint a napjegyed: nézd meg ingyen, hol áll a Holdad ›</a>
@@ -149,7 +150,8 @@
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
-        "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
+        '<p class="kurz">' + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
+      var kp = box.querySelector("p.kurz"); if (kp) kuerzen(kp);
     }).catch(function(e){
       clearTimeout(aus);
       // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
@@ -158,6 +160,24 @@
       box.querySelector(".nochmal").onclick = laden;
     });
   }
+  // langer Horoskop-Text: zuerst wenige Zeilen, dann "Mehr lesen" (nur wenn sich das lohnt)
+  function kuerzen(el){
+    var b = document.createElement("button"); b.type = "button"; b.className = "mehr-knopf"; b.hidden = true; el.id = "horoText";
+    b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", el.id);
+    b.innerHTML = '<span class="m-auf">' + esc(C.t.mehr) + '</span><span class="m-zu">' + esc(C.t.weniger) + "</span>";
+    el.insertAdjacentElement("afterend", b);
+    function pruefe(){ if (b.getAttribute("aria-expanded") === "true") return;
+      el.classList.remove("zu"); var voll = el.getBoundingClientRect().height; el.classList.add("zu");
+      var lohnt = voll - el.getBoundingClientRect().height >= (parseFloat(getComputedStyle(el).lineHeight) || 26) * 1.5;
+      el.classList.toggle("zu", lohnt); b.hidden = !lohnt; }
+    b.addEventListener("click", function(){
+      var auf = b.getAttribute("aria-expanded") !== "true", h0 = el.getBoundingClientRect().height;
+      el.classList.toggle("zu", !auf); b.setAttribute("aria-expanded", auf ? "true" : "false");
+      var h1 = el.getBoundingClientRect().height, still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!still && el.animate && Math.abs(h1 - h0) > 2) el.animate([{height: h0 + "px", overflow: "hidden"}, {height: h1 + "px", overflow: "hidden"}], {duration: 320, easing: "cubic-bezier(.2,.7,.2,1)"});
+    });
+    pruefe(); var t; window.addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(pruefe, 150); });
+  }
   if (C.sign) laden();
   var leiste = document.getElementById("stickyCta"), aus2 = [document.getElementById("download"), document.querySelector("footer")], sicht = {}, oben = true;
   if (leiste && "IntersectionObserver" in window) {
@@ -165,6 +185,6 @@
     aus2.forEach(function(el, i){ if (el) new IntersectionObserver(function(es){ sicht[i] = es[0].isIntersecting; setze(); }).observe(el); });
     window.addEventListener("scroll", function(){ var o = window.scrollY < 420; if (o !== oben) { oben = o; setze(); } }, {passive: true});
   }
-})({"lang":"hu","locale":"hu-HU","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-zeichen","sign":"","t":{"laedt":"Soraya olvassa az égboltot …","heute":"Ma","tipp":"Tipp","fehler":"A mai horoszkóp most nem tölthető be. Próbáld újra egy kicsit később – vagy nyisd meg a Sorayát a személyes napi horoszkópodért.","nochmal":"Próbáld újra","limit":"A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában."}});</script>
+})({"lang":"hu","locale":"hu-HU","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-zeichen","sign":"","t":{"laedt":"Soraya olvassa az égboltot …","heute":"Ma","tipp":"Tipp","fehler":"A mai horoszkóp most nem tölthető be. Próbáld újra egy kicsit később – vagy nyisd meg a Sorayát a személyes napi horoszkópodért.","nochmal":"Próbáld újra","limit":"A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában.","mehr":"Tovább olvasom","weniger":"Kevesebb"}});</script>
 </body>
 </html>
