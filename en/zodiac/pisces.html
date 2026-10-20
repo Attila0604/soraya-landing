@@ -44,7 +44,7 @@
 <link rel="preload" href="/fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/zeichen.css?v=rufq4i" />
+<link rel="stylesheet" href="/zeichen.css?v=1bk9i7a" />
 </head>
 <body>
 <div class="nav">
@@ -146,7 +146,7 @@
 </div>
 <section aria-labelledby="weitereTitel">
   <h2 class="block-titel" id="weitereTitel">The other zodiac signs</h2>
-  <div class="zk-grid"><a class="zk" href="/en/zodiac/aries"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Aries</b><small>21 Mar – 19 Apr</small></a><a class="zk" href="/en/zodiac/taurus"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Taurus</b><small>20 Apr – 20 May</small></a><a class="zk" href="/en/zodiac/gemini"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Gemini</b><small>21 May – 20 Jun</small></a><a class="zk" href="/en/zodiac/cancer"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Cancer</b><small>21 Jun – 22 Jul</small></a><a class="zk" href="/en/zodiac/leo"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Leo</b><small>23 Jul – 22 Aug</small></a><a class="zk" href="/en/zodiac/virgo"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Virgo</b><small>23 Aug – 22 Sept</small></a><a class="zk" href="/en/zodiac/libra"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Libra</b><small>23 Sept – 22 Oct</small></a><a class="zk" href="/en/zodiac/scorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Scorpio</b><small>23 Oct – 21 Nov</small></a><a class="zk" href="/en/zodiac/sagittarius"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Sagittarius</b><small>22 Nov – 21 Dec</small></a><a class="zk" href="/en/zodiac/capricorn"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Capricorn</b><small>22 Dec – 19 Jan</small></a><a class="zk" href="/en/zodiac/aquarius"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Aquarius</b><small>20 Jan – 18 Feb</small></a></div>
+  <div class="zk-grid"><a class="zk" href="/en/zodiac/aries"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Aries</b><small><span>21 Mar –</span> <span>19 Apr</span></small></a><a class="zk" href="/en/zodiac/taurus"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Taurus</b><small><span>20 Apr –</span> <span>20 May</span></small></a><a class="zk" href="/en/zodiac/gemini"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Gemini</b><small><span>21 May –</span> <span>20 Jun</span></small></a><a class="zk" href="/en/zodiac/cancer"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Cancer</b><small><span>21 Jun –</span> <span>22 Jul</span></small></a><a class="zk" href="/en/zodiac/leo"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Leo</b><small><span>23 Jul –</span> <span>22 Aug</span></small></a><a class="zk" href="/en/zodiac/virgo"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Virgo</b><small><span>23 Aug –</span> <span>22 Sept</span></small></a><a class="zk" href="/en/zodiac/libra"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Libra</b><small><span>23 Sept –</span> <span>22 Oct</span></small></a><a class="zk" href="/en/zodiac/scorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Scorpio</b><small><span>23 Oct –</span> <span>21 Nov</span></small></a><a class="zk" href="/en/zodiac/sagittarius"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Sagittarius</b><small><span>22 Nov –</span> <span>21 Dec</span></small></a><a class="zk" href="/en/zodiac/capricorn"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Capricorn</b><small><span>22 Dec –</span> <span>19 Jan</span></small></a><a class="zk" href="/en/zodiac/aquarius"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Aquarius</b><small><span>20 Jan –</span> <span>18 Feb</span></small></a></div>
   <a class="pille-link hub-mond" href="/en/zodiac">All zodiac signs at a glance ›</a>
 </section>
 </main>
@@ -207,14 +207,16 @@
     if (!box || !window.fetch) return;
     box.innerHTML = '<p class="laedt"><span>' + esc(C.t.laedt) + "</span></p>";
     var ctl = window.AbortController ? new AbortController() : null, aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 15000);
-    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ return r.json(); }).then(function(res){
+    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ if (r.status === 429) { var le = new Error("limit"); le.limit = true; throw le; } return r.json(); }).then(function(res){
       clearTimeout(aus);
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
         "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
-    }).catch(function(){
+    }).catch(function(e){
       clearTimeout(aus);
+      // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
+      if (e && e.limit) { box.innerHTML = '<p class="fehler limit" role="status"><span>' + esc(C.t.limit) + "</span></p>"; return; }
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
@@ -226,6 +228,6 @@
     aus2.forEach(function(el, i){ if (el) new IntersectionObserver(function(es){ sicht[i] = es[0].isIntersecting; setze(); }).observe(el); });
     window.addEventListener("scroll", function(){ var o = window.scrollY < 420; if (o !== oben) { oben = o; setze(); } }, {passive: true});
   }
-})({"lang":"en","locale":"en-GB","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-pisces","sign":"Pis","t":{"laedt":"Soraya is reading the sky …","heute":"Today","tipp":"Tip","fehler":"Today's horoscope can't be loaded right now. Try again in a moment – or open Soraya for your personal daily horoscope.","nochmal":"Try again"}});</script>
+})({"lang":"en","locale":"en-GB","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-pisces","sign":"Pis","t":{"laedt":"Soraya is reading the sky …","heute":"Today","tipp":"Tip","fehler":"Today's horoscope can't be loaded right now. Try again in a moment – or open Soraya for your personal daily horoscope.","nochmal":"Try again","limit":"You've used up today's free previews – see you tomorrow ✨ Your personal horoscope is always waiting for you in Soraya."}});</script>
 </body>
 </html>

@@ -44,7 +44,7 @@
 <link rel="preload" href="/fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/zeichen.css?v=rufq4i" />
+<link rel="stylesheet" href="/zeichen.css?v=1bk9i7a" />
 </head>
 <body>
 <div class="nav">
@@ -146,7 +146,7 @@
 </div>
 <section aria-labelledby="weitereTitel">
   <h2 class="block-titel" id="weitereTitel">Gli altri segni zodiacali</h2>
-  <div class="zk-grid"><a class="zk" href="/it/segni-zodiacali/ariete"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Ariete</b><small>21 mar – 19 apr</small></a><a class="zk" href="/it/segni-zodiacali/toro"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Toro</b><small>20 apr – 20 mag</small></a><a class="zk" href="/it/segni-zodiacali/gemelli"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Gemelli</b><small>21 mag – 20 giu</small></a><a class="zk" href="/it/segni-zodiacali/cancro"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Cancro</b><small>21 giu – 22 lug</small></a><a class="zk" href="/it/segni-zodiacali/leone"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Leone</b><small>23 lug – 22 ago</small></a><a class="zk" href="/it/segni-zodiacali/vergine"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Vergine</b><small>23 ago – 22 set</small></a><a class="zk" href="/it/segni-zodiacali/scorpione"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Scorpione</b><small>23 ott – 21 nov</small></a><a class="zk" href="/it/segni-zodiacali/sagittario"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Sagittario</b><small>22 nov – 21 dic</small></a><a class="zk" href="/it/segni-zodiacali/capricorno"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Capricorno</b><small>22 dic – 19 gen</small></a><a class="zk" href="/it/segni-zodiacali/acquario"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Acquario</b><small>20 gen – 18 feb</small></a><a class="zk" href="/it/segni-zodiacali/pesci"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Pesci</b><small>19 feb – 20 mar</small></a></div>
+  <div class="zk-grid"><a class="zk" href="/it/segni-zodiacali/ariete"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Ariete</b><small><span>21 mar –</span> <span>19 apr</span></small></a><a class="zk" href="/it/segni-zodiacali/toro"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Toro</b><small><span>20 apr –</span> <span>20 mag</span></small></a><a class="zk" href="/it/segni-zodiacali/gemelli"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Gemelli</b><small><span>21 mag –</span> <span>20 giu</span></small></a><a class="zk" href="/it/segni-zodiacali/cancro"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Cancro</b><small><span>21 giu –</span> <span>22 lug</span></small></a><a class="zk" href="/it/segni-zodiacali/leone"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Leone</b><small><span>23 lug –</span> <span>22 ago</span></small></a><a class="zk" href="/it/segni-zodiacali/vergine"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Vergine</b><small><span>23 ago –</span> <span>22 set</span></small></a><a class="zk" href="/it/segni-zodiacali/scorpione"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Scorpione</b><small><span>23 ott –</span> <span>21 nov</span></small></a><a class="zk" href="/it/segni-zodiacali/sagittario"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Sagittario</b><small><span>22 nov –</span> <span>21 dic</span></small></a><a class="zk" href="/it/segni-zodiacali/capricorno"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Capricorno</b><small><span>22 dic –</span> <span>19 gen</span></small></a><a class="zk" href="/it/segni-zodiacali/acquario"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Acquario</b><small><span>20 gen –</span> <span>18 feb</span></small></a><a class="zk" href="/it/segni-zodiacali/pesci"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Pesci</b><small><span>19 feb –</span> <span>20 mar</span></small></a></div>
   <a class="pille-link hub-mond" href="/it/segni-zodiacali">Tutti i segni zodiacali ›</a>
 </section>
 </main>
@@ -207,14 +207,16 @@
     if (!box || !window.fetch) return;
     box.innerHTML = '<p class="laedt"><span>' + esc(C.t.laedt) + "</span></p>";
     var ctl = window.AbortController ? new AbortController() : null, aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 15000);
-    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ return r.json(); }).then(function(res){
+    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ if (r.status === 429) { var le = new Error("limit"); le.limit = true; throw le; } return r.json(); }).then(function(res){
       clearTimeout(aus);
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
         "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
-    }).catch(function(){
+    }).catch(function(e){
       clearTimeout(aus);
+      // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
+      if (e && e.limit) { box.innerHTML = '<p class="fehler limit" role="status"><span>' + esc(C.t.limit) + "</span></p>"; return; }
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
@@ -226,6 +228,6 @@
     aus2.forEach(function(el, i){ if (el) new IntersectionObserver(function(es){ sicht[i] = es[0].isIntersecting; setze(); }).observe(el); });
     window.addEventListener("scroll", function(){ var o = window.scrollY < 420; if (o !== oben) { oben = o; setze(); } }, {passive: true});
   }
-})({"lang":"it","locale":"it-IT","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-bilancia","sign":"Lib","t":{"laedt":"Soraya sta leggendo il cielo …","heute":"Oggi","tipp":"Consiglio","fehler":"Al momento non riusciamo a caricare l'oroscopo di oggi. Riprova tra poco – oppure apri Soraya per il tuo oroscopo personale del giorno.","nochmal":"Riprova"}});</script>
+})({"lang":"it","locale":"it-IT","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-bilancia","sign":"Lib","t":{"laedt":"Soraya sta leggendo il cielo …","heute":"Oggi","tipp":"Consiglio","fehler":"Al momento non riusciamo a caricare l'oroscopo di oggi. Riprova tra poco – oppure apri Soraya per il tuo oroscopo personale del giorno.","nochmal":"Riprova","limit":"Per oggi le anteprime gratuite sono esaurite – ci vediamo domani ✨ Il tuo oroscopo personale ti aspetta sempre in Soraya."}});</script>
 </body>
 </html>

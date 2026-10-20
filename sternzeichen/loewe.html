@@ -44,7 +44,7 @@
 <link rel="preload" href="/fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/zeichen.css?v=rufq4i" />
+<link rel="stylesheet" href="/zeichen.css?v=1bk9i7a" />
 </head>
 <body>
 <div class="nav">
@@ -146,7 +146,7 @@
 </div>
 <section aria-labelledby="weitereTitel">
   <h2 class="block-titel" id="weitereTitel">Die anderen Sternzeichen</h2>
-  <div class="zk-grid"><a class="zk" href="/sternzeichen/widder"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Widder</b><small>21. März – 19. Apr.</small></a><a class="zk" href="/sternzeichen/stier"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Stier</b><small>20. Apr. – 20. Mai</small></a><a class="zk" href="/sternzeichen/zwillinge"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Zwillinge</b><small>21. Mai – 20. Juni</small></a><a class="zk" href="/sternzeichen/krebs"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Krebs</b><small>21. Juni – 22. Juli</small></a><a class="zk" href="/sternzeichen/jungfrau"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Jungfrau</b><small>23. Aug. – 22. Sept.</small></a><a class="zk" href="/sternzeichen/waage"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Waage</b><small>23. Sept. – 22. Okt.</small></a><a class="zk" href="/sternzeichen/skorpion"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpion</b><small>23. Okt. – 21. Nov.</small></a><a class="zk" href="/sternzeichen/schuetze"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Schütze</b><small>22. Nov. – 21. Dez.</small></a><a class="zk" href="/sternzeichen/steinbock"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Steinbock</b><small>22. Dez. – 19. Jan.</small></a><a class="zk" href="/sternzeichen/wassermann"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Wassermann</b><small>20. Jan. – 18. Feb.</small></a><a class="zk" href="/sternzeichen/fische"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Fische</b><small>19. Feb. – 20. März</small></a></div>
+  <div class="zk-grid"><a class="zk" href="/sternzeichen/widder"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Widder</b><small><span>21. März –</span> <span>19. Apr.</span></small></a><a class="zk" href="/sternzeichen/stier"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Stier</b><small><span>20. Apr. –</span> <span>20. Mai</span></small></a><a class="zk" href="/sternzeichen/zwillinge"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Zwillinge</b><small><span>21. Mai –</span> <span>20. Juni</span></small></a><a class="zk" href="/sternzeichen/krebs"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Krebs</b><small><span>21. Juni –</span> <span>22. Juli</span></small></a><a class="zk" href="/sternzeichen/jungfrau"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Jungfrau</b><small><span>23. Aug. –</span> <span>22. Sept.</span></small></a><a class="zk" href="/sternzeichen/waage"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Waage</b><small><span>23. Sept. –</span> <span>22. Okt.</span></small></a><a class="zk" href="/sternzeichen/skorpion"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpion</b><small><span>23. Okt. –</span> <span>21. Nov.</span></small></a><a class="zk" href="/sternzeichen/schuetze"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Schütze</b><small><span>22. Nov. –</span> <span>21. Dez.</span></small></a><a class="zk" href="/sternzeichen/steinbock"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Steinbock</b><small><span>22. Dez. –</span> <span>19. Jan.</span></small></a><a class="zk" href="/sternzeichen/wassermann"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Wassermann</b><small><span>20. Jan. –</span> <span>18. Feb.</span></small></a><a class="zk" href="/sternzeichen/fische"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Fische</b><small><span>19. Feb. –</span> <span>20. März</span></small></a></div>
   <a class="pille-link hub-mond" href="/sternzeichen">Alle Sternzeichen im Überblick ›</a>
 </section>
 </main>
@@ -207,14 +207,16 @@
     if (!box || !window.fetch) return;
     box.innerHTML = '<p class="laedt"><span>' + esc(C.t.laedt) + "</span></p>";
     var ctl = window.AbortController ? new AbortController() : null, aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 15000);
-    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ return r.json(); }).then(function(res){
+    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ if (r.status === 429) { var le = new Error("limit"); le.limit = true; throw le; } return r.json(); }).then(function(res){
       clearTimeout(aus);
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
         "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
-    }).catch(function(){
+    }).catch(function(e){
       clearTimeout(aus);
+      // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
+      if (e && e.limit) { box.innerHTML = '<p class="fehler limit" role="status"><span>' + esc(C.t.limit) + "</span></p>"; return; }
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
@@ -226,6 +228,6 @@
     aus2.forEach(function(el, i){ if (el) new IntersectionObserver(function(es){ sicht[i] = es[0].isIntersecting; setze(); }).observe(el); });
     window.addEventListener("scroll", function(){ var o = window.scrollY < 420; if (o !== oben) { oben = o; setze(); } }, {passive: true});
   }
-})({"lang":"de","locale":"de-DE","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-loewe","sign":"Leo","t":{"laedt":"Soraya liest den Himmel …","heute":"Heute","tipp":"Tipp","fehler":"Das heutige Horoskop lässt sich gerade nicht laden. Versuch es gleich noch einmal – oder öffne Soraya für dein persönliches Tageshoroskop.","nochmal":"Nochmal versuchen"}});</script>
+})({"lang":"de","locale":"de-DE","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-loewe","sign":"Leo","t":{"laedt":"Soraya liest den Himmel …","heute":"Heute","tipp":"Tipp","fehler":"Das heutige Horoskop lässt sich gerade nicht laden. Versuch es gleich noch einmal – oder öffne Soraya für dein persönliches Tageshoroskop.","nochmal":"Nochmal versuchen","limit":"Für heute sind die Gratis-Abfragen aufgebraucht – morgen geht es weiter ✨ Dein persönliches Horoskop wartet jederzeit in Soraya auf dich."}});</script>
 </body>
 </html>
