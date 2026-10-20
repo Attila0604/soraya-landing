@@ -154,6 +154,8 @@ const kurzDatum = (l, m, d) => new Intl.DateTimeFormat(INTL[l], { day: "numeric"
 // jedes Datum bleibt zusammen, umbrochen wird hoechstens nach dem Strich
 const zeitraumKurz = (l, i) => [kurzDatum(l, DATEN[i][0], DATEN[i][1]), kurzDatum(l, DATEN[i][2], DATEN[i][3])]
   .map((t) => t.replace(/\s/g, " ")).join(" – ");
+// als HTML: jedes Datum in einem eigenen <span> (nowrap), umbrochen wird nur nach dem Strich
+const zeitraumHtml = (l, i) => zeitraumKurz(l, i).split(/\s–\s/).map((t, n, a) => `<span>${esc(t)}${n < a.length - 1 ? "\u00a0–" : ""}</span>`).join(" ");
 const zeichenPfad = (l, i) => HUB[l] + "/" + SLUG[l][i];
 const datei = (pfad) => (pfad === "/" ? "index.html" : pfad.slice(1) + ".html");
 
@@ -206,7 +208,7 @@ for (const m of index.matchAll(/<[a-zA-Z][^>]*\sdata-t-aria="([^"]+)"[^>]*>/g)) 
 DE.title = nurText(index.match(/<title>([\s\S]*?)<\/title>/)[1]);
 DE["meta.desc"] = dekodiere(attr(index.match(/<meta name="description"[^>]*>/)[0], "content"));
 DE["og.desc"] = dekodiere(attr(index.match(/<meta property="og:description"[^>]*>/)[0], "content"));
-for (const k of ["js.laedt", "js.fehler", "js.nochmal", "js.heute", "js.tipp"]) {
+for (const k of ["js.laedt", "js.fehler", "js.nochmal", "js.heute", "js.tipp", "js.limit"]) {
   const m = index.match(new RegExp('tr\\("' + k.replace(".", "\\.") + '", "([^"]+)"\\)'));
   if (m && !(k in DE)) DE[k] = m[1];
 }
@@ -247,7 +249,7 @@ const hubDa = (l) => INHALT[l].some(Boolean);
 function zeichenKarten(l, ohne = -1) {
   return KEYS.map((k, i) => {
     if (i === ohne) return "";
-    const innen = `<span class="zk-sym" aria-hidden="true">${glyph(i)}</span><b>${esc(NAMEN[l][i])}</b><small>${esc(zeitraumKurz(l, i))}</small>`;
+    const innen = `<span class="zk-sym" aria-hidden="true">${glyph(i)}</span><b>${esc(NAMEN[l][i])}</b><small>${zeitraumHtml(l, i)}</small>`;
     return hat(l, i) ? `<a class="zk" href="${zeichenPfad(l, i)}">${innen}</a>` : `<span class="zk">${innen}</span>`;
   }).join("");
 }
@@ -357,6 +359,7 @@ const CSS = `
   .laedt::before{content:"";flex:none;margin-top:4px;width:14px;height:14px;border-radius:50%;border:2px solid var(--gold-dim);border-top-color:var(--gold-soft);animation:dreh 1s linear infinite}
   @keyframes dreh{to{transform:rotate(360deg)}}
   .fehler{color:var(--ok-red);font-size:14.5px;margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+  .fehler.limit{color:var(--mist)}
   .nochmal{background:transparent;border:1px solid rgba(240,196,188,.45);color:var(--ok-red);border-radius:var(--r-pill);padding:7px 14px;font:500 13px var(--ui);cursor:pointer}
   .pille-link{display:flex;justify-content:center;align-items:center;text-align:center;margin-top:16px;padding:12px 18px;font-size:14px;font-weight:500;line-height:1.4;
     border:1px solid var(--gold-dim);border-radius:var(--r-pill);background:rgba(201,168,106,.07);transition:.25s}
@@ -426,6 +429,7 @@ const CSS = `
   .zk-sym{font-family:"SorayaZeichen",serif;font-size:27px;line-height:1.15;color:var(--gold-soft);text-shadow:0 0 16px rgba(201,168,106,.4)}
   .zk b{font:600 19px/1.2 var(--display);color:var(--ink);max-width:100%;overflow-wrap:anywhere}
   .zk small{font-size:11.5px;line-height:1.3;color:var(--mist-dim)}
+  .zk small span{white-space:nowrap}
   .zk em{font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:4px}
   span.zk{opacity:.55}
   @media (max-width:900px){.zk-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -634,14 +638,16 @@ const SEITEN_JS = `(function(C){
     if (!box || !window.fetch) return;
     box.innerHTML = '<p class="laedt"><span>' + esc(C.t.laedt) + "</span></p>";
     var ctl = window.AbortController ? new AbortController() : null, aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 15000);
-    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ return r.json(); }).then(function(res){
+    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ if (r.status === 429) { var le = new Error("limit"); le.limit = true; throw le; } return r.json(); }).then(function(res){
       clearTimeout(aus);
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
         "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
-    }).catch(function(){
+    }).catch(function(e){
       clearTimeout(aus);
+      // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
+      if (e && e.limit) { box.innerHTML = '<p class="fehler limit" role="status"><span>' + esc(C.t.limit) + "</span></p>"; return; }
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
@@ -658,7 +664,7 @@ const SEITEN_JS = `(function(C){
 function seitenScript(l, cfg) {
   const C = {
     lang: l, locale: INTL[l], engine: ENGINE, q: cfg.q, sign: cfg.sign || "",
-    t: { laedt: nurText(tx(l, "js.laedt")), heute: nurText(tx(l, "js.heute")), tipp: nurText(tx(l, "js.tipp")), fehler: UI[l].fallback, nochmal: nurText(tx(l, "js.nochmal")) },
+    t: { laedt: nurText(tx(l, "js.laedt")), heute: nurText(tx(l, "js.heute")), tipp: nurText(tx(l, "js.tipp")), fehler: UI[l].fallback, nochmal: nurText(tx(l, "js.nochmal")), limit: nurText(tx(l, "js.limit")) },
   };
   return `<script>${SEITEN_JS}(${ldJson(C)});</script>\n</body>\n</html>\n`;
 }
@@ -754,7 +760,7 @@ function hubSeite(l) {
   const ziele = Object.fromEntries(LANGS.map((x) => [x, hubDa(x) ? HUB[x] : HOME[x]]));
   const teile = [["Soraya", HOME[l]], [u.zeichen, pfad]];
   const karten = KEYS.map((k, i) => {
-    const innen = `<span class="zk-sym" aria-hidden="true">${glyph(i)}</span><b>${esc(NAMEN[l][i])}</b><small>${esc(zeitraumKurz(l, i))}</small><em>${esc(ELEMENTE[l][i % 4])}</em>`;
+    const innen = `<span class="zk-sym" aria-hidden="true">${glyph(i)}</span><b>${esc(NAMEN[l][i])}</b><small>${zeitraumHtml(l, i)}</small><em>${esc(ELEMENTE[l][i % 4])}</em>`;
     return hat(l, i) ? `<a class="zk" href="${zeichenPfad(l, i)}">${innen}</a>` : `<span class="zk">${innen}</span>`;
   }).join("");
   const elemente = ELEMENTE[l].map((e, n) => `<div class="karte"><h3>${esc(e)}</h3><p>${esc(u.hubElementText[n])}</p>${[n, n + 4, n + 8].map((j) => {

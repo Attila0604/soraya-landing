@@ -44,7 +44,7 @@
 <link rel="preload" href="/fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/zeichen.css?v=rufq4i" />
+<link rel="stylesheet" href="/zeichen.css?v=1bk9i7a" />
 </head>
 <body>
 <div class="nav">
@@ -146,7 +146,7 @@
 </div>
 <section aria-labelledby="weitereTitel">
   <h2 class="block-titel" id="weitereTitel">A többi csillagjegy</h2>
-  <div class="zk-grid"><a class="zk" href="/hu/csillagjegyek/kos"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Kos</b><small>márc. 21. – ápr. 19.</small></a><a class="zk" href="/hu/csillagjegyek/bika"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Bika</b><small>ápr. 20. – máj. 20.</small></a><a class="zk" href="/hu/csillagjegyek/ikrek"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Ikrek</b><small>máj. 21. – jún. 20.</small></a><a class="zk" href="/hu/csillagjegyek/oroszlan"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Oroszlán</b><small>júl. 23. – aug. 22.</small></a><a class="zk" href="/hu/csillagjegyek/szuz"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Szűz</b><small>aug. 23. – szept. 22.</small></a><a class="zk" href="/hu/csillagjegyek/merleg"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Mérleg</b><small>szept. 23. – okt. 22.</small></a><a class="zk" href="/hu/csillagjegyek/skorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpió</b><small>okt. 23. – nov. 21.</small></a><a class="zk" href="/hu/csillagjegyek/nyilas"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Nyilas</b><small>nov. 22. – dec. 21.</small></a><a class="zk" href="/hu/csillagjegyek/bak"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Bak</b><small>dec. 22. – jan. 19.</small></a><a class="zk" href="/hu/csillagjegyek/vizonto"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Vízöntő</b><small>jan. 20. – febr. 18.</small></a><a class="zk" href="/hu/csillagjegyek/halak"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Halak</b><small>febr. 19. – márc. 20.</small></a></div>
+  <div class="zk-grid"><a class="zk" href="/hu/csillagjegyek/kos"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Kos</b><small><span>márc. 21. –</span> <span>ápr. 19.</span></small></a><a class="zk" href="/hu/csillagjegyek/bika"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Bika</b><small><span>ápr. 20. –</span> <span>máj. 20.</span></small></a><a class="zk" href="/hu/csillagjegyek/ikrek"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Ikrek</b><small><span>máj. 21. –</span> <span>jún. 20.</span></small></a><a class="zk" href="/hu/csillagjegyek/oroszlan"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Oroszlán</b><small><span>júl. 23. –</span> <span>aug. 22.</span></small></a><a class="zk" href="/hu/csillagjegyek/szuz"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Szűz</b><small><span>aug. 23. –</span> <span>szept. 22.</span></small></a><a class="zk" href="/hu/csillagjegyek/merleg"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Mérleg</b><small><span>szept. 23. –</span> <span>okt. 22.</span></small></a><a class="zk" href="/hu/csillagjegyek/skorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpió</b><small><span>okt. 23. –</span> <span>nov. 21.</span></small></a><a class="zk" href="/hu/csillagjegyek/nyilas"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Nyilas</b><small><span>nov. 22. –</span> <span>dec. 21.</span></small></a><a class="zk" href="/hu/csillagjegyek/bak"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Bak</b><small><span>dec. 22. –</span> <span>jan. 19.</span></small></a><a class="zk" href="/hu/csillagjegyek/vizonto"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Vízöntő</b><small><span>jan. 20. –</span> <span>febr. 18.</span></small></a><a class="zk" href="/hu/csillagjegyek/halak"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Halak</b><small><span>febr. 19. –</span> <span>márc. 20.</span></small></a></div>
   <a class="pille-link hub-mond" href="/hu/csillagjegyek">Az összes csillagjegy egy helyen ›</a>
 </section>
 </main>
@@ -207,14 +207,16 @@
     if (!box || !window.fetch) return;
     box.innerHTML = '<p class="laedt"><span>' + esc(C.t.laedt) + "</span></p>";
     var ctl = window.AbortController ? new AbortController() : null, aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 15000);
-    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ return r.json(); }).then(function(res){
+    fetch(C.engine + "/public/sign-horoscope?sign=" + C.sign + "&lang=" + C.lang, ctl ? {signal: ctl.signal} : {}).then(function(r){ if (r.status === 429) { var le = new Error("limit"); le.limit = true; throw le; } return r.json(); }).then(function(res){
       clearTimeout(aus);
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
         "<p>" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
-    }).catch(function(){
+    }).catch(function(e){
       clearTimeout(aus);
+      // Tageslimit: freundlicher Hinweis, kein "Nochmal" (morgen geht es weiter)
+      if (e && e.limit) { box.innerHTML = '<p class="fehler limit" role="status"><span>' + esc(C.t.limit) + "</span></p>"; return; }
       box.innerHTML = '<p class="fehler" role="alert"><span>' + esc(C.t.fehler) + '</span><button type="button" class="nochmal">' + esc(C.t.nochmal) + "</button></p>";
       box.querySelector(".nochmal").onclick = laden;
     });
@@ -226,6 +228,6 @@
     aus2.forEach(function(el, i){ if (el) new IntersectionObserver(function(es){ sicht[i] = es[0].isIntersecting; setze(); }).observe(el); });
     window.addEventListener("scroll", function(){ var o = window.scrollY < 420; if (o !== oben) { oben = o; setze(); } }, {passive: true});
   }
-})({"lang":"hu","locale":"hu-HU","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-rak","sign":"Can","t":{"laedt":"Soraya olvassa az égboltot …","heute":"Ma","tipp":"Tipp","fehler":"A mai horoszkóp most nem tölthető be. Próbáld újra egy kicsit később – vagy nyisd meg a Sorayát a személyes napi horoszkópodért.","nochmal":"Próbáld újra"}});</script>
+})({"lang":"hu","locale":"hu-HU","engine":"https://astro-engine-production-7b18.up.railway.app","q":"seo-rak","sign":"Can","t":{"laedt":"Soraya olvassa az égboltot …","heute":"Ma","tipp":"Tipp","fehler":"A mai horoszkóp most nem tölthető be. Próbáld újra egy kicsit később – vagy nyisd meg a Sorayát a személyes napi horoszkópodért.","nochmal":"Próbáld újra","limit":"A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában."}});</script>
 </body>
 </html>

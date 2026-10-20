@@ -550,7 +550,7 @@
   .gold-btn:focus-visible,.store-btn:focus-visible,.chip:focus-visible,.teilen-btn:focus-visible,.try-link:focus-visible{border-radius:var(--r-pill)}
   .store-btn:focus-visible{border-radius:14px}
   .gold-btn{transition:transform .2s ease, box-shadow .25s ease, filter .25s ease}
-  .gold-btn:not(:disabled):hover{transform:translateY(-1px); filter:brightness(1.05); box-shadow:0 14px 34px -12px rgba(230,207,156,.75)}
+  @media (hover:hover){.gold-btn:not(:disabled):hover{transform:translateY(-1px); filter:brightness(1.05); box-shadow:0 14px 34px -12px rgba(230,207,156,.75)}}
   .gold-btn:not(:disabled):active{transform:translateY(0) scale(.99)}
   .chip{transition:border-color .2s, background .2s, color .2s, transform .15s}
   .chip:active{transform:scale(.97)}
@@ -575,6 +575,7 @@
   .fehler .nochmal{background:transparent; border:1px solid rgba(240,196,188,.45); color:var(--ok-red); border-radius:var(--r-pill);
     padding:7px 14px; font:500 13px var(--ui); cursor:pointer}
   .fehler .nochmal:hover{border-color:var(--ok-red)}
+  .fehler.limit{color:var(--mist)}
   .laedt .langsam{display:block; font-size:12.5px; color:var(--mist-faint); margin-top:2px}
   .laedt{align-items:flex-start} .laedt::before{flex:none; margin-top:4px}
 
@@ -861,6 +862,7 @@
   .zk-sym{font-family:"SorayaZeichen",serif; font-size:27px; line-height:1.15; color:var(--gold-soft); text-shadow:0 0 16px rgba(201,168,106,.4)}
   .zk b{font:600 19px/1.2 var(--display); color:var(--ink); max-width:100%; overflow-wrap:anywhere}
   .zk small{font-size:11.5px; line-height:1.3; color:var(--mist-dim); letter-spacing:.01em}
+  .zk small span{white-space:nowrap} /* Datum bricht hoechstens nach dem Strich um */
   span.zk{opacity:.55}
   .zk-alle{display:table; margin:28px auto 0; padding:11px 22px; font-size:14px; font-weight:500; color:var(--gold-soft);
     border:1px solid var(--gold-dim); border-radius:var(--r-pill); background:rgba(201,168,106,.07); transition:.25s}
@@ -1198,7 +1200,7 @@
       <h2 class="head" data-t="zk.head">Die 12 <span class="gold">Sternzeichen</span></h2>
       <p class="lede" data-t="zk.lede">Charakter, Liebe, Stärken und das Horoskop von heute – entdecke, was dein Sternzeichen über dich verrät.</p>
     </div>
-    <div class="zk-grid reveal" id="zeichenListe"><!-- ZEICHEN:START --><a class="zk" href="/sternzeichen/widder"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Widder</b><small>21. März – 19. Apr.</small></a><a class="zk" href="/sternzeichen/stier"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Stier</b><small>20. Apr. – 20. Mai</small></a><a class="zk" href="/sternzeichen/zwillinge"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Zwillinge</b><small>21. Mai – 20. Juni</small></a><a class="zk" href="/sternzeichen/krebs"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Krebs</b><small>21. Juni – 22. Juli</small></a><a class="zk" href="/sternzeichen/loewe"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Löwe</b><small>23. Juli – 22. Aug.</small></a><a class="zk" href="/sternzeichen/jungfrau"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Jungfrau</b><small>23. Aug. – 22. Sept.</small></a><a class="zk" href="/sternzeichen/waage"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Waage</b><small>23. Sept. – 22. Okt.</small></a><a class="zk" href="/sternzeichen/skorpion"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpion</b><small>23. Okt. – 21. Nov.</small></a><a class="zk" href="/sternzeichen/schuetze"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Schütze</b><small>22. Nov. – 21. Dez.</small></a><a class="zk" href="/sternzeichen/steinbock"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Steinbock</b><small>22. Dez. – 19. Jan.</small></a><a class="zk" href="/sternzeichen/wassermann"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Wassermann</b><small>20. Jan. – 18. Feb.</small></a><a class="zk" href="/sternzeichen/fische"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Fische</b><small>19. Feb. – 20. März</small></a><!-- ZEICHEN:END --></div>
+    <div class="zk-grid reveal" id="zeichenListe"><!-- ZEICHEN:START --><a class="zk" href="/sternzeichen/widder"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Widder</b><small><span>21. März –</span> <span>19. Apr.</span></small></a><a class="zk" href="/sternzeichen/stier"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Stier</b><small><span>20. Apr. –</span> <span>20. Mai</span></small></a><a class="zk" href="/sternzeichen/zwillinge"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Zwillinge</b><small><span>21. Mai –</span> <span>20. Juni</span></small></a><a class="zk" href="/sternzeichen/krebs"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Krebs</b><small><span>21. Juni –</span> <span>22. Juli</span></small></a><a class="zk" href="/sternzeichen/loewe"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Löwe</b><small><span>23. Juli –</span> <span>22. Aug.</span></small></a><a class="zk" href="/sternzeichen/jungfrau"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Jungfrau</b><small><span>23. Aug. –</span> <span>22. Sept.</span></small></a><a class="zk" href="/sternzeichen/waage"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Waage</b><small><span>23. Sept. –</span> <span>22. Okt.</span></small></a><a class="zk" href="/sternzeichen/skorpion"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Skorpion</b><small><span>23. Okt. –</span> <span>21. Nov.</span></small></a><a class="zk" href="/sternzeichen/schuetze"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Schütze</b><small><span>22. Nov. –</span> <span>21. Dez.</span></small></a><a class="zk" href="/sternzeichen/steinbock"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Steinbock</b><small><span>22. Dez. –</span> <span>19. Jan.</span></small></a><a class="zk" href="/sternzeichen/wassermann"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Wassermann</b><small><span>20. Jan. –</span> <span>18. Feb.</span></small></a><a class="zk" href="/sternzeichen/fische"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Fische</b><small><span>19. Feb. –</span> <span>20. März</span></small></a><!-- ZEICHEN:END --></div>
     <a class="zk-alle" id="zeichenAlle" data-zk-hub href="/sternzeichen" data-t="zk.alle">Alle Sternzeichen im Überblick ›</a>
   </div>
 </section>
@@ -1350,7 +1352,7 @@
         "alt.ios": "iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Open Soraya in your browser ›</a>", "alt.android": "Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Get it on Google Play ›</a>",
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy", "foot.terms": "Terms of use",
         "foot.entdecken": "Discover", "foot.try": "Try for free", "foot.feat": "Features", "foot.faq": "FAQ", "foot.app": "Open the app", "foot.lang": "Language",
-        "js.erg": "Your sky at birth", "js.langsam": "Taking a little longer than usual – just a moment …", "js.nochmal": "Try again",
+        "js.erg": "Your sky at birth", "js.langsam": "Taking a little longer than usual – just a moment …", "js.nochmal": "Try again", "js.limit": "You've used up today's free previews – see you tomorrow ✨ Your personal horoscope is always waiting for you in Soraya.",
         "js.datumZukunft": "That date is in the future – please check your date of birth.", "js.datumAlt": "Please enter a date between 1900 and today.",
         "js.unsicherMond": "Without a birth time your Moon isn't quite certain – it could also be {alt}.", "js.unsicherSonne": "Without a birth time your Sun isn't quite certain – it could also be {alt}.",
         "js.zeitErgaenzen": "Add your birth time", "js.zumHoro": "Your horoscope today for {sign} ↓",
@@ -1457,7 +1459,7 @@
         "hero.wert": "Születési képlet, napi horoszkóp és párkapcsolati összevetés – személyesen neked kiszámolva, érthetően elmagyarázva.",
         "trust.1": "Ingyenes", "trust.2": "Kipróbálás regisztráció nélkül", "trust.3": "Adataid bármikor törölhetők",
         "how.cta": "Kezdd el most, ingyen ✦", "th.aria": "Csillagjegyek", "video.aria": "Videó lejátszása",
-        "meta.desc": "Személyes asztro-kalauzod: születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – pontosan kiszámolva, érthetően elmagyarázva. Ingyenes Androidon és böngészőben.",
+        "meta.desc": "Személyes asztro-kalauzod: születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – pontosan és érthetően. Ingyenes Androidon és böngészőben.",
         "show.eyebrow": "Bepillantás a Sorayába",
         "show.head": "Az első pillanattól <span class=\"gold\">gyönyörű</span>",
         "show.lede": "Nem zsúfolt asztrológiai eszköz, hanem nyugodt, elegáns tér a kérdéseidnek, amelyeket az égnek teszel fel.",
@@ -1469,7 +1471,7 @@
         "alt.ios": "iPhone-od van? <a href=\"https://app.sorayaluxuryastroguide.com/\">Nyisd meg a Sorayát a böngészőben ›</a>", "alt.android": "Androidod van? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Töltsd le a Google Playről ›</a>",
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem", "foot.terms": "Felhasználási feltételek",
         "foot.entdecken": "Fedezd fel", "foot.try": "Ingyenes kipróbálás", "foot.feat": "Funkciók", "foot.faq": "Kérdések", "foot.app": "Az app megnyitása", "foot.lang": "Nyelv",
-        "js.erg": "Az égbolt a születésedkor", "js.langsam": "Most egy kicsit tovább tart – még egy pillanat …", "js.nochmal": "Próbáld újra",
+        "js.erg": "Az égbolt a születésedkor", "js.langsam": "Most egy kicsit tovább tart – még egy pillanat …", "js.nochmal": "Próbáld újra", "js.limit": "A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában.",
         "js.datumZukunft": "Ez a dátum a jövőben van – kérlek, ellenőrizd a születési dátumodat.", "js.datumAlt": "Kérlek, 1900 és a mai nap közötti dátumot adj meg.",
         "js.unsicherMond": "Születési időpont nélkül a Holdad nem teljesen biztos – lehet {alt} is.", "js.unsicherSonne": "Születési időpont nélkül a Napod nem teljesen biztos – lehet {alt} is.",
         "js.zeitErgaenzen": "Add meg az időpontot", "js.zumHoro": "A mai horoszkópod ({sign}) ↓",
@@ -1576,7 +1578,7 @@
         "hero.wert": "Tema natale, oroscopo del giorno e affinità di coppia – calcolati per te e spiegati con parole semplici.",
         "trust.1": "Gratis", "trust.2": "Prova senza account", "trust.3": "Dati cancellabili in ogni momento",
         "how.cta": "Inizia ora, è gratis ✦", "th.aria": "Segni zodiacali", "video.aria": "Riproduci video",
-        "meta.desc": "La tua guida astrologica personale: tema natale, oroscopo del giorno, affinità di coppia e chat – calcolati con precisione e spiegati con chiarezza. Gratis su Android e nel browser.",
+        "meta.desc": "La tua guida astrologica: tema natale, oroscopo del giorno, affinità di coppia e chat – precisi e spiegati con chiarezza. Gratis su Android e nel browser.",
         "show.eyebrow": "Uno sguardo a Soraya",
         "show.head": "Bella dal <span class=\"gold\">primo istante</span>",
         "show.lede": "Non uno strumento astrologico sovraccarico, ma uno spazio calmo e lussuoso per le tue domande al cielo.",
@@ -1588,7 +1590,7 @@
         "alt.ios": "Hai un iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Apri Soraya nel browser ›</a>", "alt.android": "Usi Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Scaricala da Google Play ›</a>",
         "foot.imprint": "Note legali", "foot.privacy": "Privacy", "foot.terms": "Condizioni d'uso",
         "foot.entdecken": "Scopri", "foot.try": "Prova gratis", "foot.feat": "Funzioni", "foot.faq": "Domande", "foot.app": "Apri l'app", "foot.lang": "Lingua",
-        "js.erg": "Il tuo cielo alla nascita", "js.langsam": "Ci vuole un po' più del solito – ancora un attimo …", "js.nochmal": "Riprova",
+        "js.erg": "Il tuo cielo alla nascita", "js.langsam": "Ci vuole un po' più del solito – ancora un attimo …", "js.nochmal": "Riprova", "js.limit": "Per oggi le anteprime gratuite sono esaurite – ci vediamo domani ✨ Il tuo oroscopo personale ti aspetta sempre in Soraya.",
         "js.datumZukunft": "Questa data è nel futuro: controlla la tua data di nascita.", "js.datumAlt": "Inserisci una data tra il 1900 e oggi.",
         "js.unsicherMond": "Senza l'ora di nascita la tua Luna non è del tutto sicura – potrebbe essere anche {alt}.", "js.unsicherSonne": "Senza l'ora di nascita il tuo Sole non è del tutto sicuro – potrebbe essere anche {alt}.",
         "js.zeitErgaenzen": "Aggiungi l'ora di nascita", "js.zumHoro": "Il tuo oroscopo di oggi per {sign} ↓",
@@ -1798,7 +1800,11 @@
     var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var FEHLER_DE = "Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.";
     // Engine-Aufruf mit Zeitlimit: nach 5 s Hinweis "dauert laenger", nach 20 s Abbruch mit Fehler + "Nochmal"
+    // Tageslimit (HTTP 429): freundlicher Hinweis ohne "Nochmal", und auf dieser Seite nicht weiter anfragen
+    var limitErreicht = false;
+    function limitFehler(){ var le = new Error("limit"); le.limit = true; return le; }
     function holen(url, opts, box){
+      if (limitErreicht) return Promise.reject(limitFehler());
       opts = opts || {};
       var ctl = window.AbortController ? new AbortController() : null; if (ctl) opts.signal = ctl.signal;
       var langsam = setTimeout(function(){
@@ -1807,12 +1813,13 @@
       }, 5000);
       var aus = setTimeout(function(){ if (ctl) ctl.abort(); }, 20000);
       function fertig(){ clearTimeout(langsam); clearTimeout(aus); }
-      return fetch(url, opts).then(function(r){ return r.json(); })
+      return fetch(url, opts).then(function(r){ if (r.status === 429) { limitErreicht = true; throw limitFehler(); } return r.json(); })
         .then(function(res){ fertig(); if (!res || !res.ok) { var fe = new Error((res && res.error) || ""); fe.engine = true; throw fe; } return res.data; },
               function(e){ fertig(); throw e; });
     }
     function laedtHtml(){ return '<p class="laedt"><span>' + esc(tr("js.laedt", "Soraya liest den Himmel …")) + "</span></p>"; }
     function fehlerHtml(e){
+      if (e && e.limit) return '<p class="fehler limit" role="status"><span>' + esc(tr("js.limit", "Für heute sind die Gratis-Abfragen aufgebraucht – morgen geht es weiter ✨ Dein persönliches Horoskop wartet jederzeit in Soraya auf dich.")) + "</span></p>";
       return '<p class="fehler" role="alert"><span>' + esc((lang === "de" && e && e.engine && e.message) || tr("js.fehler", FEHLER_DE)) +
         '</span><button type="button" class="nochmal">' + esc(tr("js.nochmal", "Nochmal versuchen")) + "</button></p>";
     }
@@ -1890,6 +1897,7 @@
         })
         .catch(function(e){
           box.innerHTML = fehlerHtml(e);
+          if (e && e.limit) { try { var lu = new URL(weiter.href); lu.searchParams.set("geb", d); if (mitZeit) lu.searchParams.set("zeit", z.slice(0, 5)); else lu.searchParams.delete("zeit"); weiter.href = lu.toString(); } catch (e7) {} weiter.hidden = false; if (info) info.hidden = false; }
           var nb = box.querySelector(".nochmal"); if (nb) nb.onclick = function(){ form.requestSubmit ? form.requestSubmit() : knopf.click(); };
         })
         .then(function(){ knopf.disabled = false; });
@@ -1908,7 +1916,7 @@
       var M = null; try { M = JSON.parse(dat.textContent)[lang]; } catch (e) {}
       if (!M || !M.z) return;
       liste.innerHTML = KEYS.map(function(k){
-        var z = M.z[k] || [], innen = '<span class="zk-sym" aria-hidden="true">' + glyph(k) + "</span><b>" + esc(name(k)) + "</b><small>" + esc(z[1] || "") + "</small>";
+        var z = M.z[k] || [], innen = '<span class="zk-sym" aria-hidden="true">' + glyph(k) + "</span><b>" + esc(name(k)) + "</b><small>" + String(z[1] || "").split(/\s–\s/).map(function(t, i, a){ return "<span>" + esc(t) + (i < a.length - 1 ? "\u00a0–" : "") + "</span>"; }).join(" ") + "</small>";
         return z[0] ? '<a class="zk" href="' + esc(z[0]) + '">' + innen + "</a>" : '<span class="zk">' + innen + "</span>";
       }).join("");
       document.querySelectorAll("[data-zk-hub]").forEach(function(a){ if (M.hub) { a.href = M.hub; a.hidden = false; } else a.hidden = true; });
@@ -1933,6 +1941,7 @@
         .catch(function(e){
           if (aktuell !== key) return;
           aktuell = null; box.innerHTML = fehlerHtml(e);
+          if (e && e.limit) document.getElementById("thWeiter").hidden = false;
           var nb = box.querySelector(".nochmal"); if (nb) nb.onclick = function(){ zeigeHoroskop(key); };
         });
     }
