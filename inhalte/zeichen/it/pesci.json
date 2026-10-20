@@ -1,0 +1,64 @@
+{
+  "key": "Pis",
+  "slug": "pesci",
+  "name": "Pesci",
+  "zeitraum": "19 febbraio – 20 marzo",
+  "element": "Acqua",
+  "modalitaet": "Mobile",
+  "herrscher": "Nettuno (tradizionalmente Giove)",
+  "seo_title": "Pesci: caratteristiche, amore e oroscopo di oggi | Soraya",
+  "meta_description": "Caratteristiche dei Pesci, amore, lavoro e compatibilità: scopri il segno più sognatore ed empatico dello zodiaco e leggi gratis l'oroscopo di oggi.",
+  "h1": "Segno zodiacale Pesci",
+  "intro": "I Pesci chiudono lo zodiaco negli ultimi giorni d'inverno, quando la neve si scioglie e l'acqua torna a scorrere verso il mare. Se sei nato tra il 19 febbraio e il 20 marzo, porti in te un oceano di sogni, intuizioni e compassione.",
+  "abschnitte": [
+    {
+      "id": "charakter",
+      "titel": "Carattere: un'anima sensibile e sognatrice",
+      "text": "Segno d'Acqua mobile governato da Nettuno e, nella tradizione, da Giove, i Pesci sono i sognatori dello zodiaco. Vivi in un mondo ricco di immagini, emozioni e fantasia. Una melodia può commuoverti fino alle lacrime, un film può accompagnarti per giorni.\n\nHai un'empatia straordinaria. Senti le emozioni degli altri come fossero tue, e spesso le persone si confidano con te anche dopo pochi minuti. La tua presenza è dolce, accogliente, quasi magica.\n\nSei creativo e intuitivo: arte, musica, poesia, spiritualità parlano la tua lingua. A volte, però, la realtà quotidiana con le sue scadenze e i suoi conti ti sembra troppo dura, e senti il bisogno di rifugiarti nei tuoi sogni. È lì che ritrovi la tua forza, prima di tornare nel mondo."
+    },
+    {
+      "id": "liebe",
+      "titel": "Pesci in amore: romanticismo senza confini",
+      "text": "In amore i Pesci sono profondamente romantici. Sogni un amore da film, fatto di sguardi che dicono tutto, lettere scritte a mano, canzoni dedicate e promesse sussurrate al chiaro di luna.\n\nQuando ami, ti doni completamente, con una tenerezza rara. L'uomo Pesci in amore è dolce, premuroso e molto intuitivo: capisce i bisogni del partner senza bisogno di parole. La donna Pesci è romantica, sensibile e affascinante, e cerca un compagno che sappia proteggerla senza soffocare la sua libertà interiore.\n\nLa tua sfida è non idealizzare troppo l'altra persona e non dimenticare te stesso nella relazione. Un amore sano ha bisogno anche di confini chiari. Quando impari a dire ciò che desideri e a riconoscere il tuo valore, la tua dolcezza diventa una forza che nutre entrambi."
+    },
+    {
+      "id": "beruf",
+      "titel": "Lavoro e denaro: creatività e cura degli altri",
+      "text": "Sul lavoro i Pesci brillano quando possono esprimere la loro sensibilità. Ti trovi a tuo agio in ambiti creativi come musica, fotografia, cinema, scrittura e design, ma anche nelle professioni di cura: psicologia, medicina, assistenza sociale, terapie olistiche.\n\nLavori meglio in un ambiente sereno, dove la collaborazione conta più della competizione. Le atmosfere aggressive ti stancano, mentre un gruppo che valorizza la tua intuizione ti permette di dare risultati sorprendenti.\n\nCon il denaro puoi essere un po' distratto. Sei generoso, aiuti volentieri chi è in difficoltà e a volte dimentichi di tenere i conti in ordine. La tua forza è la capacità di immaginare; il tuo esercizio è creare piccole abitudini pratiche, come un promemoria per le spese, che proteggano i tuoi sogni nel tempo."
+    },
+    {
+      "id": "freundschaft",
+      "titel": "Amicizia: una spalla su cui piangere e sognare",
+      "text": "Come amico i Pesci sono dolci, comprensivi e sempre disponibili. Sei la persona che ascolta senza giudicare, che sa consolare con un abbraccio e che capisce quando un amico ha bisogno di silenzio più che di consigli.\n\nAmi condividere momenti speciali: una serata al cinema, una mostra d'arte, una passeggiata in riva al lago al tramonto. Con te anche le cose semplici assumono un tocco poetico.\n\nLa tua generosità è grande, a volte persino troppo. Rischi di farti carico dei problemi di tutti e di trascurare i tuoi. Imparare a dire di no con gentilezza, a proteggere la tua energia, non ti rende meno affettuoso: ti permette di esserci davvero, con il cuore pieno, quando un amico ne ha bisogno."
+    },
+    {
+      "id": "wachstum",
+      "titel": "Sfide e crescita: radicare i sogni nella realtà",
+      "text": "La sfida dei Pesci è trovare un equilibrio tra il mondo dei sogni e quello concreto. La tua immaginazione è un dono prezioso, ma a volte diventa un modo per evitare le situazioni difficili o le decisioni che fanno paura.\n\nUn esercizio utile è dare forma ai tuoi sogni con piccoli passi pratici: scrivere un obiettivo, fissare una data, chiedere aiuto a una persona organizzata. Ogni sogno realizzato, anche piccolo, rafforza la fiducia in te stesso.\n\nAnche la tua sensibilità ha bisogno di protezione. Concediti momenti di solitudine per ricaricarti: un bagno caldo, la musica, la meditazione, il mare. E ricorda che stabilire confini non è egoismo, ma rispetto per la tua energia. Quando impari a prenderti cura di te, la tua compassione diventa un faro per chi ti sta accanto."
+    }
+  ],
+  "staerken": ["empatico", "creativo", "intuitivo", "romantico", "generoso"],
+  "schwaechen": ["a volte troppo sognatore", "fatica a dire di no", "tende a evitare i problemi", "un po' distratto"],
+  "passt_gut": ["Can", "Sco", "Tau", "Cap"],
+  "passt_weniger": ["Gem", "Sag"],
+  "passung_text": "Con Cancro e Scorpione i Pesci condividono l'elemento Acqua: nasce un'intesa profonda, emotiva e quasi senza bisogno di parole. Toro e Capricorno offrono stabilità e concretezza, un porto sicuro dove i sogni dei Pesci possono prendere forma. Con Gemelli e Sagittario i ritmi sono diversi: entrambi amano il movimento e la leggerezza, mentre i Pesci cercano intimità. Possono esserci incomprensioni, ma anche uno scambio molto creativo.",
+  "faq": [
+    {
+      "frage": "Quali sono le caratteristiche dei Pesci?",
+      "antwort": "I Pesci sono sensibili, empatici e molto creativi. Governati da Nettuno e tradizionalmente da Giove, vivono in un mondo ricco di emozioni, intuizioni e fantasia. Sono generosi e capaci di grande compassione. Possono essere sognatori o faticare con la vita pratica, ma portano dolcezza e poesia nelle vite altrui."
+    },
+    {
+      "frage": "Con chi sono compatibili i Pesci?",
+      "antwort": "I Pesci trovano grande affinità con Cancro e Scorpione, gli altri segni d'Acqua, e con Toro e Capricorno, segni di Terra che offrono stabilità. Con Gemelli e Sagittario l'intesa richiede più pazienza e dialogo. Per conoscere davvero una coppia è utile confrontare i temi natali completi di entrambi."
+    },
+    {
+      "frage": "Com'è l'uomo Pesci in amore?",
+      "antwort": "L'uomo Pesci in amore è romantico, dolce e molto premuroso. Intuisce i bisogni della partner senza bisogno di parole e ama i gesti poetici. Cerca una relazione profonda e autentica. A volte è sfuggente o idealista, ma quando si sente amato è un compagno tenero, fedele e presente."
+    },
+    {
+      "frage": "Come leggere l'oroscopo Pesci di oggi?",
+      "antwort": "Puoi leggere gratis l'oroscopo Pesci di oggi nell'app Soraya, calcolato sui transiti reali dei pianeti. Inserendo data, ora e luogo di nascita ricevi anche un oroscopo personale che considera ascendente e Luna, per vivere la tua giornata in sintonia con il cielo."
+    }
+  ],
+  "cta": "Il segno solare è solo un'onda del tuo mare: scopri gratis con Soraya il tuo tema natale completo, con ascendente e Luna."
+}
