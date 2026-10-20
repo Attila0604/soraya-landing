@@ -56,6 +56,9 @@
 
 <script>
   // frueh: JS-Klasse, Geraet (fuer die passenden Download-Knoepfe ohne Flackern) und Sprache
+  // alte Vercel-Adresse: sofort auf die eigene Domain (Google soll nur www kennen)
+  if (location.hostname === "soraya-landing.vercel.app")
+    location.replace("https://www.sorayaluxuryastroguide.com" + location.pathname + location.search + location.hash);
   (function(){
     var h = document.documentElement; h.classList.add("js");
     var ua = navigator.userAgent || "";

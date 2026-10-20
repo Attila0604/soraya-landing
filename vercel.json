@@ -21,6 +21,17 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "soraya-landing.vercel.app"
+        }
+      ],
+      "destination": "https://www.sorayaluxuryastroguide.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
