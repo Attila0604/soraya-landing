@@ -1,0 +1,64 @@
+{
+  "key": "Tau",
+  "slug": "toro",
+  "name": "Toro",
+  "zeitraum": "20 aprile – 20 maggio",
+  "element": "Terra",
+  "modalitaet": "Fisso",
+  "herrscher": "Venere",
+  "seo_title": "Toro: caratteristiche, amore e oroscopo di oggi | Soraya",
+  "meta_description": "Caratteristiche del Toro, amore, lavoro e affinità di coppia: scopri il segno più sensuale e affidabile dello zodiaco e leggi gratis l'oroscopo di oggi.",
+  "h1": "Segno zodiacale Toro",
+  "intro": "Il Toro nasce quando la primavera si fa piena: prati in fiore, giornate più lunghe, profumo di terra bagnata. Se sei nato tra il 20 aprile e il 20 maggio, sai che la bellezza non va rincorsa, ma coltivata con calma, giorno dopo giorno.",
+  "abschnitte": [
+    {
+      "id": "charakter",
+      "titel": "Carattere: la forza tranquilla di chi mette radici",
+      "text": "Segno di Terra fisso governato da Venere, il Toro unisce concretezza e amore per il piacere. Non ti lasci trascinare dalle mode del momento: scegli con cura, poi resti. Che si tratti di un maglione di cachemire, di un'amicizia o di una convinzione, quando qualcosa ti appartiene lo custodisci a lungo.\n\nHai un rapporto speciale con i sensi. Ti accorgi della qualità di un tessuto, del profumo del pane appena sfornato, della luce di un tramonto in campagna. La tua è un'eleganza semplice, mai ostentata.\n\nChi ti conosce sa che sei una presenza solida, capace di rassicurare con la sola calma. Certo, cambiare idea non ti viene facile: ti serve tempo per abituarti al nuovo. Ma quando lo accogli, lo fai con tutto te stesso."
+    },
+    {
+      "id": "liebe",
+      "titel": "Toro in amore: fedeltà, tenerezza e piccoli piaceri",
+      "text": "In amore il Toro non ha fretta. Osservi, valuti, ti lasci conquistare un passo alla volta. Ma quando decidi di aprire il cuore, sei uno dei partner più fedeli e presenti dello zodiaco.\n\nPer te l'amore passa dai gesti concreti: una cena preparata con cura, un abbraccio lungo sul divano, un regalo scelto pensando davvero all'altro. L'uomo Toro in amore è protettivo e affidabile, a volte un po' possessivo; la donna Toro è sensuale e calorosa, e cerca una relazione stabile in cui sentirsi al sicuro.\n\nLa gelosia può farsi sentire quando temi di perdere ciò che ami. Parlare apertamente delle tue paure, invece di chiuderti nel silenzio, rende il legame ancora più forte. La tua dedizione, unita alla fiducia, crea un amore che dura."
+    },
+    {
+      "id": "beruf",
+      "titel": "Lavoro e denaro: costruire con pazienza",
+      "text": "Sul lavoro il Toro è la persona su cui contare. Non cerchi scorciatoie: preferisci fare le cose bene, con metodo e perseveranza. I colleghi apprezzano la tua affidabilità e il tuo modo pacato di affrontare le difficoltà.\n\nTi senti a tuo agio negli ambiti in cui concretezza e bellezza si incontrano: gastronomia, design, architettura, moda, giardinaggio, ma anche amministrazione e finanza. Ami vedere il frutto tangibile del tuo impegno.\n\nCon il denaro hai un istinto naturale per la stabilità. Ti piace sapere di avere una base sicura e spendi volentieri per oggetti di qualità che durano nel tempo. La tua sfida è non lasciare che il bisogno di sicurezza ti impedisca di cogliere un'occasione nuova quando si presenta davvero interessante."
+    },
+    {
+      "id": "freundschaft",
+      "titel": "Amicizia: la casa dove si torna sempre",
+      "text": "Come amico il Toro è un porto sicuro. Non hai cento amicizie superficiali, ma poche persone a cui sei legato da anni. Con loro sei generoso, presente, pronto a offrire una cena, un consiglio sensato o semplicemente la tua compagnia silenziosa.\n\nLe serate più belle per te sono quelle senza fretta: una tavola apparecchiata, una bottiglia aperta con calma, risate che durano fino a tardi. Nella tua casa gli amici si sentono accolti come in famiglia.\n\nA volte puoi sembrare restio a provare cose nuove proposte dagli altri, ma chi ti conosce sa che basta darti un po' di tempo. E quando un amico attraversa un momento difficile, tu ci sei: non con grandi discorsi, ma con la tua presenza concreta e costante."
+    },
+    {
+      "id": "wachstum",
+      "titel": "Sfide e crescita: lasciare spazio al cambiamento",
+      "text": "La sfida del Toro è imparare che il cambiamento non è una minaccia, ma una forma di crescita. La tua natura fissa ti porta a difendere le abitudini anche quando non ti fanno più bene, come un vestito comodo che ormai sta stretto.\n\nPuoi allenarti con piccole novità: un percorso diverso per tornare a casa, un piatto mai assaggiato, un corso che ti incuriosisce da tempo. Ogni piccolo passo rende il cambiamento più familiare e meno spaventoso.\n\nAnche la testardaggine, se ben orientata, diventa una risorsa: è la stessa forza che ti permette di realizzare progetti a lungo termine. Il segreto è chiederti ogni tanto se stai resistendo per convinzione o per paura. Quando la risposta è chiara, la tua stabilità diventa libertà."
+    }
+  ],
+  "staerken": ["affidabile", "paziente", "sensuale", "leale", "concreto"],
+  "schwaechen": ["a volte testardo", "lento ad accettare il nuovo", "un po' possessivo", "ama troppo le comodità"],
+  "passt_gut": ["Vir", "Cap", "Can", "Pis"],
+  "passt_weniger": ["Leo", "Aqu"],
+  "passung_text": "Con Vergine e Capricorno il Toro condivide l'elemento Terra: nasce un legame pratico e sereno, fondato su valori comuni e progetti concreti. Cancro e Pesci portano dolcezza ed emozione, e il Toro offre loro un terreno stabile su cui sentirsi al sicuro. Con Leone e Acquario le priorità sono diverse: il primo desidera la scena, il secondo la libertà. Le differenze possono pesare, ma anche aprire nuovi orizzonti a entrambi.",
+  "faq": [
+    {
+      "frage": "Quali sono le caratteristiche del Toro?",
+      "antwort": "Il Toro è affidabile, paziente e legato ai piaceri della vita. Governato da Venere, ama la bellezza, il comfort e le relazioni stabili. È un segno concreto, che costruisce con calma e mantiene la parola data. Può essere testardo e restio al cambiamento, ma è un amico e un partner di grande lealtà."
+    },
+    {
+      "frage": "Con chi è compatibile il Toro?",
+      "antwort": "Il Toro trova grande intesa con Vergine e Capricorno, gli altri segni di Terra, e con Cancro e Pesci, segni d'Acqua che apprezzano la sua stabilità. Con Leone e Acquario possono esserci più attriti. Per capire davvero una coppia, però, è utile confrontare l'intero tema natale, compresi Luna e Venere."
+    },
+    {
+      "frage": "Com'è la donna Toro in amore?",
+      "antwort": "La donna Toro in amore è dolce, sensuale e molto leale. Non si concede subito: ha bisogno di fiducia e di gesti sinceri. Ama le attenzioni concrete, una cena curata, un ambiente accogliente. Quando si sente al sicuro è una compagna presente e generosa, che costruisce il rapporto con pazienza."
+    },
+    {
+      "frage": "Come leggere l'oroscopo Toro di oggi?",
+      "antwort": "Nell'app Soraya trovi ogni giorno l'oroscopo Toro gratuito, calcolato sui movimenti reali dei pianeti. Inserendo i tuoi dati di nascita ottieni anche un oroscopo personale, che considera ascendente e Luna. È un modo semplice per capire quali energie colorano la tua giornata."
+    }
+  ],
+  "cta": "Il segno solare racconta solo una parte di te: scopri gratis con Soraya il tuo tema natale completo, con ascendente e Luna."
+}

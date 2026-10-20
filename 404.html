@@ -55,7 +55,10 @@
       it: ["Pagina non trovata · Soraya", "Questa pagina non è scritta nelle stelle.", "Il link potrebbe essere vecchio o scritto male. Nella home trovi tutto su Soraya.", "Vai alla home", "Apri Soraya ›"]
     };
     var A = ["de", "en", "hu", "it"], lang = "";
-    try { var q = new URLSearchParams(location.search).get("lang"); if (A.indexOf(q) >= 0) lang = q; } catch (e) {}
+    // falsche Adresse unter /en/..., /hu/..., /it/... -> diese Sprache
+    var vorne = (location.pathname.match(/^\/(en|hu|it)(\/|$)/) || [])[1]; if (vorne) lang = vorne;
+    if (!lang && /^\/sternzeichen(\/|$)/.test(location.pathname)) lang = "de";
+    try { var q = new URLSearchParams(location.search).get("lang"); if (!lang && A.indexOf(q) >= 0) lang = q; } catch (e) {}
     if (!lang) { try { var s = localStorage.getItem("soraya_lang"); if (A.indexOf(s) >= 0) lang = s; } catch (e) {} }
     if (!lang) { var l = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
       for (var i = 0; i < l.length && !lang; i++) { var c = String(l[i]).slice(0, 2).toLowerCase(); if (A.indexOf(c) >= 0) lang = c; } }
@@ -66,7 +69,7 @@
       document.title = t[0];
       ["t1", "t2", "t3", "t4"].forEach(function (id, i) { document.getElementById(id).textContent = t[i + 1]; });
     }
-    document.getElementById("t3").href = "/?lang=" + lang;
+    document.getElementById("t3").href = lang === "de" ? "/?lang=de" : "/" + lang;
     document.getElementById("t4").href = "https://app.sorayaluxuryastroguide.com/?lang=" + lang;
   })();
 </script>

@@ -1,0 +1,64 @@
+{
+  "key": "Ari",
+  "slug": "ariete",
+  "name": "Ariete",
+  "zeitraum": "21 marzo – 19 aprile",
+  "element": "Fuoco",
+  "modalitaet": "Cardinale",
+  "herrscher": "Marte",
+  "seo_title": "Ariete: caratteristiche, amore e oroscopo di oggi | Soraya",
+  "meta_description": "Caratteristiche dell'Ariete, amore, lavoro e affinità: scopri cosa rende unico il primo segno dello zodiaco e leggi gratis il tuo oroscopo di oggi.",
+  "h1": "Segno zodiacale Ariete",
+  "intro": "L'Ariete apre lo zodiaco come la prima luce di primavera: diretto, vivace, impossibile da ignorare. Se sei nato tra il 21 marzo e il 19 aprile, conosci bene quella scintilla che ti spinge a partire prima ancora che gli altri abbiano finito di pensare.",
+  "abschnitte": [
+    {
+      "id": "charakter",
+      "titel": "Carattere: il coraggio di chi parte per primo",
+      "text": "Segno di Fuoco cardinale governato da Marte, l'Ariete vive di inizi. Ti accendi davanti a una sfida, a un progetto nuovo, a una porta ancora chiusa. Sei la persona che in una riunione dice ad alta voce ciò che tutti pensano, quella che prenota il viaggio mentre gli amici ne stanno ancora discutendo.\n\nLa tua energia è limpida: quello che senti, lo mostri. Questo ti rende sincero e trasparente, ma a volte anche impaziente, perché il tuo ritmo interiore corre più veloce del mondo. Ti arrabbi in fretta e dimentichi altrettanto in fretta, senza rancori nascosti.\n\nC'è in te qualcosa di infantile nel senso più bello: l'entusiasmo intatto, la voglia di provare, la capacità di ricominciare dopo una caduta come se fosse la prima volta."
+    },
+    {
+      "id": "liebe",
+      "titel": "Ariete in amore: passione senza giri di parole",
+      "text": "In amore l'Ariete non aspetta che sia l'altro a fare il primo passo. Se qualcuno ti colpisce, lo fai capire subito, con un messaggio audace o un invito improvviso. Ami la conquista, il brivido dell'inizio, le serate che nascono da un'idea dell'ultimo minuto.\n\nL'uomo Ariete in amore è protettivo e spontaneo, a volte un po' irruento, ma generoso nei gesti. La donna Ariete è indipendente e diretta: cerca un partner che sappia tenerle testa, non qualcuno che la segua in silenzio.\n\nPer te la noia è il vero nemico della coppia. Ti serve una relazione che resti viva, fatta di complicità e piccole avventure condivise. Quando impari a rallentare e ad ascoltare, la tua passione diventa una fiamma calda e costante, non solo un fuoco d'artificio."
+    },
+    {
+      "id": "beruf",
+      "titel": "Lavoro e denaro: il talento di aprire strade",
+      "text": "Sul lavoro l'Ariete dà il meglio quando può guidare, decidere e muoversi. Ti trovi a tuo agio nei ruoli in cui serve iniziativa: avviare un progetto, lanciare un'idea, gestire un'emergenza mentre gli altri esitano. Sport, imprenditoria, vendite, medicina d'urgenza o qualsiasi ambiente dinamico possono rispecchiare la tua natura.\n\nLe routine troppo rigide ti spengono. Lavori meglio con obiettivi chiari e scadenze vicine, perché il traguardo visibile ti dà carica.\n\nCon il denaro tendi ad agire d'istinto: un acquisto deciso in un attimo, un investimento di entusiasmo. Il tuo punto di forza è il coraggio di cogliere le occasioni; il tuo esercizio è concederti una notte di riflessione prima delle scelte importanti. Così la tua audacia diventa anche lungimiranza."
+    },
+    {
+      "id": "freundschaft",
+      "titel": "Amicizia: l'amico che ti trascina fuori casa",
+      "text": "Come amico l'Ariete è leale e pieno di iniziative. Sei quello che organizza la gita in montagna, che propone il concerto all'ultimo secondo, che si presenta sotto casa quando un amico ha bisogno di distrarsi. Con te non ci si annoia mai.\n\nDifendi chi ami con una forza sorprendente. Se qualcuno tratta male una persona a cui tieni, sei il primo a farti avanti, anche quando sarebbe più comodo restare in silenzio.\n\nA volte, però, la tua schiettezza può arrivare un po' troppo forte. Dici le cose come stanno, convinto che la verità sia sempre un regalo. I tuoi amici più cari imparano a leggere il cuore dietro le parole, e tu impari che anche la delicatezza può essere una forma di coraggio."
+    },
+    {
+      "id": "wachstum",
+      "titel": "Sfide e crescita: trasformare l'impeto in costanza",
+      "text": "La sfida più grande dell'Ariete è restare quando l'entusiasmo iniziale si affievolisce. Inizi molte cose con slancio, ma la fase centrale, quella fatta di pazienza e ripetizione, ti mette alla prova.\n\nUn piccolo esercizio può aiutarti: prima di cominciare qualcosa di nuovo, scegli un solo progetto da portare davvero fino in fondo. Celebra le tappe intermedie, non solo il via. Scoprirai che la soddisfazione di finire ha un sapore diverso, più profondo.\n\nAnche la rabbia può diventare un'alleata, se la trasformi in movimento: una corsa, una passeggiata veloce, un'attività fisica che liberi l'energia di Marte. E quando senti l'impulso di rispondere subito, prova a contare fino a dieci. Il tuo fuoco resta intatto, ma diventa più saggio."
+    }
+  ],
+  "staerken": ["coraggioso", "spontaneo", "sincero", "intraprendente", "generoso"],
+  "schwaechen": ["a volte impaziente", "un po' impulsivo", "fatica con la routine", "schietto senza filtri"],
+  "passt_gut": ["Leo", "Sag", "Gem", "Aqu"],
+  "passt_weniger": ["Can", "Cap"],
+  "passung_text": "Con Leone e Sagittario l'Ariete condivide l'elemento Fuoco: nasce un'intesa calda, fatta di entusiasmo, risate e voglia di fare. Gemelli e Acquario portano aria fresca che alimenta la fiamma, con idee nuove e libertà reciproca. Con Cancro e Capricorno il ritmo è diverso: il primo cerca protezione, il secondo cautela e pianificazione. Possono nascere attriti, ma anche una crescita preziosa, se ognuno rispetta i tempi dell'altro.",
+  "faq": [
+    {
+      "frage": "Quali sono le caratteristiche principali dell'Ariete?",
+      "antwort": "L'Ariete è coraggioso, diretto e pieno di energia. Ama iniziare cose nuove, affronta le sfide senza paura e dice ciò che pensa. Governato da Marte, ha un temperamento vivace ma non porta rancore. Può essere impaziente, però il suo entusiasmo è contagioso e spesso trascina anche gli altri."
+    },
+    {
+      "frage": "Con chi è compatibile l'Ariete?",
+      "antwort": "Secondo l'astrologia classica l'Ariete si intende bene con gli altri segni di Fuoco, Leone e Sagittario, e con i segni d'Aria Gemelli e Acquario. Con Cancro e Capricorno l'intesa richiede più pazienza. Per un quadro reale conviene confrontare i temi natali completi, non solo il segno solare."
+    },
+    {
+      "frage": "Com'è l'uomo Ariete in amore?",
+      "antwort": "L'uomo Ariete in amore è passionale, diretto e protettivo. Non ama i giochi di attesa: se è interessato, lo dimostra subito. Cerca una partner vivace e indipendente, con cui condividere avventure. Ha bisogno di sentirsi ammirato, e dà il meglio di sé quando la relazione resta stimolante."
+    },
+    {
+      "frage": "Dove posso leggere l'oroscopo Ariete di oggi?",
+      "antwort": "Puoi leggere gratis l'oroscopo Ariete di oggi nell'app Soraya, basato sui transiti reali del giorno. Se inserisci data, ora e luogo di nascita, ricevi anche un oroscopo personale che tiene conto del tuo ascendente e della posizione della tua Luna, molto più preciso del solo segno."
+    }
+  ],
+  "cta": "Il tuo segno solare è solo l'inizio: scopri gratis con Soraya il tuo tema natale completo, con ascendente, Luna e pianeti."
+}

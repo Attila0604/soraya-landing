@@ -1,0 +1,64 @@
+{
+  "key": "Ari",
+  "slug": "aries",
+  "name": "Aries",
+  "zeitraum": "March 21 – April 19",
+  "element": "Fire",
+  "modalitaet": "Cardinal",
+  "herrscher": "Mars",
+  "seo_title": "Aries: Traits, Love & Today's Horoscope | Soraya",
+  "meta_description": "Aries traits, love, career and compatibility explained with warmth and clarity. Discover your fire, then read your free horoscope in Soraya today.",
+  "h1": "Aries Zodiac Sign",
+  "intro": "Aries opens the zodiac the way a sunrise opens the day: suddenly, brightly, and without asking permission. If you were born between March 21 and April 19, you carry the spark that gets things started. Here is what that spark means for your character, love life, and best matches.",
+  "abschnitte": [
+    {
+      "id": "charakter",
+      "titel": "Aries Personality Traits",
+      "text": "The classic Aries traits read like a starting pistol: courage, directness, and an appetite for firsts. Ruled by Mars, you tend to act before the rest of the room has finished thinking, and that is often exactly why things move forward when you are around. You would rather try, stumble, and try again than wait for a perfect plan.\n\nAs a cardinal fire sign, you are an initiator. You see the empty field and want to be the first footprint in the snow.\n\nYet beneath the bold surface sits a surprisingly innocent heart. Aries forgives quickly and rarely holds a grudge, because you live in the present tense. Yesterday's argument is already ancient history. What others call impatience is often simple honesty about how alive you feel right now."
+    },
+    {
+      "id": "liebe",
+      "titel": "Aries in Love and Relationships",
+      "text": "In love, Aries is the one who sends the first message, books the spontaneous weekend away, and says \"I like you\" long before it is fashionable. You fall fast and openly, and you want a partner who can match your pace without trying to slow you down.\n\nAn Aries man in love is protective and playful, the type who turns an ordinary evening into a small adventure. An Aries woman in love is fiercely loyal and refreshingly clear about what she wants.\n\nWhat you need most is a relationship that feels like a team, not a cage. Give you space to lead sometimes, and you will happily follow when your partner takes the wheel. The growth edge in love is learning that tenderness is not weakness, and that listening can be just as passionate as acting."
+    },
+    {
+      "id": "beruf",
+      "titel": "Aries Career and Money",
+      "text": "At work, Aries shines wherever speed, initiative, and a pioneering spirit are valued. You are the colleague who volunteers for the new project, pitches the bold idea, and gets the launch moving while others are still scheduling meetings. Roles in entrepreneurship, sports, emergency services, sales, or creative leadership often feel natural, because they reward decisive action.\n\nYou work best with clear goals and visible progress. Long chains of approval can drain you, so environments with autonomy tend to bring out your best.\n\nWith money, your instinct is to act quickly, whether that means seizing an opportunity or treating yourself after a win. A simple habit, such as a cooling-off day before larger purchases, can help balance that spontaneity. Think of it as giving your inner warrior a strategist to consult before charging ahead."
+    },
+    {
+      "id": "freundschaft",
+      "titel": "Aries as a Friend",
+      "text": "Having an Aries friend is like having your own personal cheerleader with a slightly reckless streak. You are the one who says \"Let's just go\" when everyone else is hesitating, and somehow those unplanned nights become the stories your group retells for years.\n\nYou defend your friends loudly and loyally. If someone treats a person you care about unfairly, you will be the first to speak up, sometimes before you have all the details. That honesty is a gift: people always know where they stand with you.\n\nYou value friends who are active, honest, and not easily offended by your bluntness. Friendships with you thrive on shared experiences, from hiking trips to midnight drives, more than on endless analysis of feelings over coffee."
+    },
+    {
+      "id": "wachstum",
+      "titel": "Aries Challenges and Growth",
+      "text": "Every strength casts a shadow, and for Aries the shadow is usually impatience. When results do not come quickly, you may lose interest, push too hard, or speak sharply in the heat of the moment.\n\nOne powerful practice is the pause. Before replying to the email that annoyed you, take a walk around the block. Before abandoning a project, ask whether you are bored or whether it truly no longer fits. Small delays can turn raw fire into lasting warmth.\n\nAnother path of growth is finishing. Starting is your talent, but completing a few meaningful things gives you a deeper kind of confidence than any new beginning can. When you learn to stay with what matters, your courage becomes not just exciting but genuinely inspiring to the people around you."
+    }
+  ],
+  "staerken": ["Courageous", "Energetic", "Honest", "Spontaneous", "Natural leader"],
+  "schwaechen": ["Sometimes impatient", "Quick to react", "Easily bored", "Can rush the finish"],
+  "passt_gut": ["Leo", "Sag", "Gem", "Aqu"],
+  "passt_weniger": ["Can", "Cap"],
+  "passung_text": "Who is Aries compatible with? Fellow fire signs Leo and Sagittarius share your enthusiasm and love of adventure, so the spark tends to come easily. Air signs Gemini and Aquarius feed your flame with ideas, humor, and a sense of freedom. Cancer and Capricorn can feel more challenging, as Cancer seeks emotional safety and Capricorn prefers careful planning. Still, these pairings can teach you patience and depth, and your full birth chart always tells a richer story.",
+  "faq": [
+    {
+      "frage": "What are the main Aries traits?",
+      "antwort": "Aries is known for courage, energy, honesty, and a love of new beginnings. As a cardinal fire sign ruled by Mars, you tend to take initiative, act quickly, and lead naturally. Impatience and a quick temper can appear when things move too slowly."
+    },
+    {
+      "frage": "How does an Aries man act when he is in love?",
+      "antwort": "An Aries man in love is usually direct and enthusiastic. He makes the first move, plans exciting dates, and shows his feelings through action rather than long speeches. He can be protective and wants to impress the person he likes. Keeping a little mystery and matching his sense of adventure tends to keep his interest strong."
+    },
+    {
+      "frage": "Who is Aries most compatible with?",
+      "antwort": "Aries often connects easily with Leo and Sagittarius, the other fire signs, as well as with Gemini and Aquarius, whose air energy fuels Aries' fire. Real compatibility, however, depends on the whole birth chart, including the Moon and Venus, not only on the Sun sign."
+    },
+    {
+      "frage": "What are the dates for the Aries zodiac sign?",
+      "antwort": "Aries runs from about March 21 to April 19 and is the first sign of the zodiac. If you were born right on the edge of these dates, the exact time and place of birth determine whether your Sun is in Aries or a neighboring sign. A free birth chart calculation can confirm it."
+    }
+  ],
+  "cta": "Your Sun sign is only the beginning, so discover your full birth chart and daily horoscope for free in Soraya."
+}

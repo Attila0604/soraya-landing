@@ -1,0 +1,64 @@
+{
+  "key": "Leo",
+  "slug": "leo",
+  "name": "Leo",
+  "zeitraum": "July 23 – August 22",
+  "element": "Fire",
+  "modalitaet": "Fixed",
+  "herrscher": "Sun",
+  "seo_title": "Leo: Traits, Love & Today's Horoscope | Soraya",
+  "meta_description": "Leo traits, love, career and compatibility in an elegant guide to the sign of the Sun. Explore your radiant side and read your free horoscope in Soraya.",
+  "h1": "Leo Zodiac Sign",
+  "intro": "Leo is the golden hour of the zodiac, that moment when the late summer sun makes everything glow. If you were born between July 23 and August 22, you carry a natural radiance that people notice the second you walk in. Here is what the sign of the Sun means for your heart, your ambitions, and your best matches.",
+  "abschnitte": [
+    {
+      "id": "charakter",
+      "titel": "Leo Personality Traits",
+      "text": "The famous Leo traits are generosity, confidence, and a big, warm heart. Ruled by the Sun itself, you are built to shine, and you often bring light and color into the lives of the people around you.\n\nAs a fixed fire sign, your enthusiasm is not a passing flicker but a steady flame. You stay loyal to your passions, your friends, and your values. Creativity flows through you naturally, whether you express it on a stage, in a kitchen, or through the way you dress.\n\nYou love to be appreciated, and that is nothing to be ashamed of. Recognition fuels you the way sunlight fuels a sunflower. Behind the confident mane, however, sits a sensitive soul who truly wants to make others happy. Your greatest joy is often watching someone you love light up because of you."
+    },
+    {
+      "id": "liebe",
+      "titel": "Leo in Love and Relationships",
+      "text": "Leo in love is romantic, generous, and wonderfully dramatic in the best sense. You believe in grand gestures, surprise dinners, and telling the world about the person you adore. Love, for you, should feel like a celebration.\n\nA Leo man in love is protective, proud of his partner, and eager to spoil them. He wants to be your hero and will show up with flowers just because it is Tuesday. A Leo woman in love is passionate, loyal, and radiant, bringing warmth and confidence to the relationship.\n\nWhat you need most is admiration and appreciation in return. Feeling ignored or taken for granted can dim your light quickly. Your growth edge in love is sharing the spotlight, celebrating your partner's wins as joyfully as your own, and letting yourself be cared for, too."
+    },
+    {
+      "id": "beruf",
+      "titel": "Leo Career and Money",
+      "text": "Leo thrives in careers where creativity, leadership, and visibility come together. Acting, entertainment, management, fashion, event planning, teaching, or any role that lets you inspire others can feel like your natural stage. You often motivate a team simply by believing in it.\n\nYou perform best when your contributions are recognized. A boss who praises good work or a role with clear responsibility brings out your loyal, hardworking side. Feeling invisible, on the other hand, can make even a good job feel empty.\n\nWith money, Leo has a generous and sometimes lavish streak. You enjoy quality, beautiful surroundings, and treating the people you love. A conscious balance helps: set aside something for the future first, then enjoy the rest with your signature style and a clear conscience."
+    },
+    {
+      "id": "freundschaft",
+      "titel": "Leo as a Friend",
+      "text": "As a friend, Leo is the one who throws the birthday party, gives the toast, and makes sure nobody feels left out. Your loyalty is legendary: once someone is part of your pride, you will defend them with your whole heart.\n\nYou bring fun, warmth, and encouragement into every friendship. When a friend doubts themselves, you are the first to remind them how brilliant they are. Your compliments are sincere and often exactly what someone needed to hear.\n\nIn return, you appreciate friends who are honest, show up for you, and celebrate your achievements without envy. You may not enjoy being overlooked, but you never want to outshine your friends either. At your best, you create a circle in which everyone feels a little bit like a star."
+    },
+    {
+      "id": "wachstum",
+      "titel": "Leo Challenges and Growth",
+      "text": "Your shining strengths can sometimes tip into pride or a strong need for validation. When you feel unappreciated, you might take things personally or struggle to admit a mistake. These moments are simply signs that your inner flame needs reassurance from within.\n\nGrowth for Leo often begins with self-worth that does not depend on applause. Creative projects done purely for joy, journaling about your accomplishments, or quiet moments of gratitude can strengthen that inner sun.\n\nIt also helps to practice listening as generously as you speak. Giving others the stage now and then reveals your true leadership, the kind that lifts people up rather than standing above them. When you shine from security rather than from need, your warmth becomes truly unforgettable for everyone around you."
+    }
+  ],
+  "staerken": ["Generous", "Confident", "Warm-hearted", "Creative", "Loyal"],
+  "schwaechen": ["Can be proud", "Needs appreciation", "Likes the spotlight", "Takes things personally"],
+  "passt_gut": ["Ari", "Sag", "Gem", "Lib"],
+  "passt_weniger": ["Tau", "Sco"],
+  "passung_text": "Who is Leo compatible with? Aries and Sagittarius, your fellow fire signs, match your passion, courage, and zest for life. Gemini and Libra add charm, conversation, and social sparkle that make your fire glow brighter. Taurus and Scorpio can feel more challenging, as both are fixed signs with strong wills of their own. With respect and openness, these pairings can be powerful too, and your birth chart shows the full story.",
+  "faq": [
+    {
+      "frage": "What are the most typical Leo traits?",
+      "antwort": "Leo is known for generosity, confidence, creativity, and loyalty. As a fixed fire sign ruled by the Sun, you naturally radiate warmth and enjoy being appreciated. Leo people are often natural leaders and entertainers. Pride and a strong need for recognition can show up when they feel overlooked."
+    },
+    {
+      "frage": "How do you know a Leo man is in love?",
+      "antwort": "A Leo man in love is usually hard to miss. He spoils you, compliments you, introduces you proudly to friends, and plans memorable dates. He wants to protect and impress the person he loves. If he shares his spotlight with you and asks for your opinion, his feelings are serious."
+    },
+    {
+      "frage": "Who is Leo most compatible with?",
+      "antwort": "Leo often matches well with Aries and Sagittarius, the other fire signs, and with Gemini and Libra, whose air energy fans Leo's flame. These signs share enthusiasm and a love of fun. Compatibility also depends on the Moon, Venus, and rising sign in both birth charts."
+    },
+    {
+      "frage": "When is Leo season?",
+      "antwort": "Leo season runs from about July 23 to August 22, during the height of summer in the Northern Hemisphere. It is the fifth sign of the zodiac. If you were born near these dates, your exact birth time determines whether your Sun is in Leo."
+    }
+  ],
+  "cta": "Your Sun is only one light in your sky, so discover your full birth chart and daily horoscope for free in Soraya."
+}
