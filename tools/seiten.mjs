@@ -563,10 +563,48 @@ const CSS = `
     .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .35s ease,content-visibility .35s allow-discrete}
     .faq details[open]::details-content{block-size:auto}}
   .pass,.sw li{transition:border-color .2s,background .2s}
-  .pass{padding:7px 14px 7px 11px;font-size:14.5px}
+  .pass{padding:5px 13px 5px 10px;font-size:14px;gap:7px}
+  .pass i{font-size:15px}
+  .pass-reihe{gap:6px}
   main{padding-bottom:clamp(64px,9vw,100px)}
   @media print{html.js .kurz.zu{display:block;-webkit-line-clamp:unset;overflow:visible}.mehr-knopf{display:none!important}}
   a.zk:hover{transform:none}
+  /* Runde 8: radikal kuerzer */
+  .intro{font-size:clamp(18px,2.2vw,21px)}
+  .z-kopf{padding-bottom:clamp(20px,3vw,32px)}
+  .z-glyph{width:88px;height:88px;font-size:44px;margin-bottom:18px}
+  .fakten{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:600px}
+  .fakt{padding:11px 8px 10px;border-radius:14px}
+  .fakt dt{font-size:9px;margin-bottom:4px}
+  .fakt dd{font-size:16.5px}
+  @media (max-width:720px){.fakten{grid-template-columns:repeat(3,minmax(0,1fr))}.fakt:first-child{grid-column:auto}}
+  .horo p.kurz{--zeilen:2}
+  html.js .horo .kurz.zu~.tipp{display:none}
+  .horo-karte h2{font-size:clamp(23px,3vw,28px);margin-bottom:10px}
+  .sw{gap:10px}
+  .sw .karte{padding:16px 18px 18px}
+  .sw h3{margin-bottom:10px}
+  .sw ul{gap:6px}
+  .sw li{padding:4px 11px;font-size:13px}
+  .cta{padding:clamp(34px,6vw,52px) clamp(20px,5vw,48px)}
+  .cta img{width:48px}
+  .cta h2{font-size:clamp(25px,4vw,34px);margin-bottom:22px}
+  footer{padding:40px 0 30px}
+  footer .fuss{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+  footer .fuss .name{display:inline-flex;font-size:13px}
+  footer .fuss .name img{width:20px}
+  footer .f-claim{margin:-4px 0 4px;font:italic 500 15.5px/1.4 "Cormorant Garamond",Georgia,serif;color:var(--mist-dim)}
+  footer .f-links{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:0 22px}
+  footer .f-links a{font-size:13.5px;padding:8px 0}
+  footer .langs{margin:0}
+  footer .f-recht{justify-content:center;gap:0 16px}
+  footer .f-recht a{font-size:12px;padding:6px 0;color:var(--mist-faint)}
+  footer .f-unten{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;margin:2px 0 0;font-size:11.5px}
+  footer .f-unten .trenn{color:var(--mist-faint)}
+  footer .copy{font-size:11.5px}
+  footer .powered{font-size:10px;letter-spacing:.2em;gap:6px}
+  footer .powered svg{width:12px;height:12px}
+  @media (max-width:820px){footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
   @media print{body::before,body::after,.nav,.sticky-cta,.stores,.horo-karte,footer .langs{display:none!important}html,body{background:#fff!important;color:#2a2235!important}
     h1{-webkit-text-fill-color:#8a6a2c;background:none}.text h2,.faq summary,.cta h2{color:#2a2235!important}.faq details>p{display:block}}
@@ -660,7 +698,6 @@ function aufruf(l, text, app) {
   return `<section class="cta" id="download" aria-labelledby="ctaTitel">
   <img src="/brand/zeichen.svg" alt="" width="64" height="61" loading="lazy">
   <h2 id="ctaTitel">${esc(UI[l].ctaTitel)}</h2>
-  <p>${esc(text)}</p>
   <div class="stores">
     <a class="store-btn" href="${playUrl(l)}" aria-label="${esc(tx(l, "store.play.aria"))}">${PLAY_SVG}<span class="st-txt"><span class="st-small">${tx(l, "store.play.small")}</span><span class="st-big">Google Play</span></span></a>
     <a class="store-btn ios-btn" href="${app}" aria-label="${esc(tx(l, "store.ios.aria"))}">${WEB_SVG}<span class="st-txt"><span class="st-small"><span class="fuer-ios">${tx(l, "store.ios.small")}</span><span class="fuer-desk">${tx(l, "store.web.small")}</span></span><span class="st-big">${tx(l, "store.ios.big")}</span></span></a>
@@ -668,7 +705,6 @@ function aufruf(l, text, app) {
   <p class="ios-hint">${tx(l, "ios.hint")}</p>
   <p class="alt-link fuer-android">${tx(l, "alt.ios")}</p>
   <p class="alt-link fuer-ios">${tx(l, "alt.android")}</p>
-  <ul class="vertrauen"><li>${tx(l, "trust.1")}</li><li>${tx(l, "w.2h")}</li><li>${tx(l, "trust.3")}</li></ul>
 </section>`;
 }
 
@@ -681,35 +717,22 @@ function fuss(l, ziele, app) {
   <a class="nur-android" href="${playUrl(l)}">${tx(l, "sticky")}</a>
 </div>
 <footer>
-  <div class="wrap foot">
-    <div class="f-marke">
-      <a class="name" href="${home}"><img src="/brand/zeichen.svg" alt="" width="22" height="21" loading="lazy">SORAYA</a>
-      <p>${tx(l, "hero.sub")}</p>
+  <div class="wrap fuss">
+    <a class="name" href="${home}"><img src="/brand/zeichen.svg" alt="" width="20" height="19" loading="lazy">SORAYA</a>
+    <p class="f-claim">${tx(l, "hero.sub")}</p>
+    <nav class="f-links" aria-label="${esc(nurText(tx(l, "foot.entdecken")))}">
+      ${hubDa(l) ? `<a href="${HUB[l]}">${tx(l, "foot.zeichen")}</a>` : ""}
+      <a class="nur-andere" href="${app}">${tx(l, "foot.app")}</a>
+      <a class="nur-android" href="${playUrl(l)}">${tx(l, "foot.app")}</a>
+      <a href="${anker("faq")}">${tx(l, "foot.faq")}</a>
+    </nav>
+    ${sprachLinks(l, ziele)}
+    <div class="f-recht">
+      <a href="${recht("impressum")}" data-legal="impressum">${tx(l, "foot.imprint")}</a>
+      <a href="${recht("datenschutz")}" data-legal="datenschutz">${tx(l, "foot.privacy")}</a>
+      <a href="${recht("nutzungsbedingungen")}" data-legal="nutzungsbedingungen">${tx(l, "foot.terms")}</a>
     </div>
-    <div>
-      <h3>${tx(l, "foot.entdecken")}</h3>
-      <div class="f-links">
-        <a href="${anker("probieren")}">${tx(l, "foot.try")}</a>
-        <a href="${anker("features")}">${tx(l, "foot.feat")}</a>
-        ${hubDa(l) ? `<a href="${HUB[l]}">${tx(l, "foot.zeichen")}</a>` : ""}
-        <a href="${anker("faq")}">${tx(l, "foot.faq")}</a>
-        <a class="nur-andere" href="${app}">${tx(l, "foot.app")}</a>
-        <a class="nur-android" href="${playUrl(l)}">${tx(l, "foot.app")}</a>
-      </div>
-    </div>
-    <div>
-      <h3>${tx(l, "foot.lang")}</h3>
-      ${sprachLinks(l, ziele)}
-      <div class="f-recht">
-        <a href="${recht("impressum")}" data-legal="impressum">${tx(l, "foot.imprint")}</a>
-        <a href="${recht("datenschutz")}" data-legal="datenschutz">${tx(l, "foot.privacy")}</a>
-        <a href="${recht("nutzungsbedingungen")}" data-legal="nutzungsbedingungen">${tx(l, "foot.terms")}</a>
-      </div>
-    </div>
-    <div class="f-unten">
-      <span class="copy">© 2026 Soraya · Luxury Astro Guide</span>
-      <span class="powered">${STERN_SVG}Powered by <strong>Attila</strong></span>
-    </div>
+    <p class="f-unten"><span class="copy">© 2026 Soraya</span><span class="trenn" aria-hidden="true">·</span><span class="powered">${STERN_SVG}Powered by <strong>Attila</strong></span></p>
   </div>
 </footer>
 `;
@@ -742,7 +765,7 @@ const SEITEN_JS = `(function(C){
       var h = res && res.ok && res.data; if (!h || !h.text) throw new Error("leer");
       var tag = ""; try { tag = new Intl.DateTimeFormat(C.locale, {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e) {}
       box.innerHTML = '<span class="horo-datum">' + esc(C.t.heute) + (tag ? " · " + esc(tag) : "") + "</span>" + (h.stimmung ? "<h3>" + esc(h.stimmung) + "</h3>" : "") +
-        '<p class="kurz">' + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
+        '<p class="kurz"' + (h.tipp ? " data-mehr-immer" : "") + ">" + esc(h.text) + "</p>" + (h.tipp ? '<p class="tipp"><b>' + esc(C.t.tipp) + ":</b> " + esc(h.tipp) + "</p>" : "");
       var kp = box.querySelector("p.kurz"); if (kp) kuerzen(kp);
     }).catch(function(e){
       clearTimeout(aus);
@@ -760,7 +783,7 @@ const SEITEN_JS = `(function(C){
     el.insertAdjacentElement("afterend", b);
     function pruefe(){ if (b.getAttribute("aria-expanded") === "true") return;
       el.classList.remove("zu"); var voll = el.getBoundingClientRect().height; el.classList.add("zu");
-      var lohnt = voll - el.getBoundingClientRect().height >= (parseFloat(getComputedStyle(el).lineHeight) || 26) * 1.5;
+      var lohnt = el.hasAttribute("data-mehr-immer") || voll - el.getBoundingClientRect().height >= (parseFloat(getComputedStyle(el).lineHeight) || 26) * 1.5;
       el.classList.toggle("zu", lohnt); b.hidden = !lohnt; }
     b.addEventListener("click", function(){
       var auf = b.getAttribute("aria-expanded") !== "true", h0 = el.getBoundingClientRect().height;
@@ -820,18 +843,15 @@ ${krumen(l, teile)}
   <div class="z-glyph" aria-hidden="true">${glyph(i)}</div>
   <span class="eyebrow linien">${esc(d.zeitraum)}</span>
   <h1>${esc(d.h1)}</h1>
-  ${kurzMehr(l, [d.intro], { min: 70, max: 170, cls: "intro", minRest: 50 })}
+  ${kurzMehr(l, [d.intro], { min: 0, max: 0, cls: "intro", minRest: 30 })}
 </header>
 <dl class="fakten">
-  <div class="fakt"><dt>${esc(u.zeitraum)}</dt><dd>${esc(d.zeitraum)}</dd></div>
   <div class="fakt"><dt>${esc(u.element)}</dt><dd>${esc(d.element)}</dd></div>
   <div class="fakt"><dt>${esc(u.modalitaet)}</dt><dd>${esc(d.modalitaet)}</dd></div>
   <div class="fakt"><dt>${esc(u.herrscher)}</dt><dd>${esc(d.herrscher)}</dd></div>
-  <div class="fakt"><dt>${esc(u.symbol)}</dt><dd><span class="sym" aria-hidden="true">${glyph(i)}</span><small>${esc(d.name)}</small></dd></div>
 </dl>
 <div class="lese">
 <section class="karte horo-karte" id="heute" aria-labelledby="heuteTitel">
-  <span class="eyebrow">${esc(u.heute)}</span>
   <h2 id="heuteTitel">${esc(u.heuteTitel.replace("{name}", d.name))}</h2>
   <div class="horo" id="horo" aria-live="polite"><p class="laedt"><span>${tx(l, "js.laedt")}</span></p></div>
   <noscript><style>#horo{display:none}</style><p>${esc(u.ohneJs)}</p></noscript>
@@ -899,7 +919,7 @@ ${krumen(l, teile)}
 <header class="z-kopf">
   <span class="eyebrow linien">${tx(l, "zk.eyebrow")}</span>
   <h1>${esc(u.hubH1)}</h1>
-  ${kurzMehr(l, [u.hubIntro], { min: 70, max: 170, cls: "intro", minRest: 50 })}
+  ${kurzMehr(l, [u.hubIntro], { min: 0, max: 0, cls: "intro", minRest: 30 })}
 </header>
 <div class="zk-grid">${karten}</div>
 <a class="pille-link hub-mond" href="${mondZiel}">${esc(u.hubMond)}</a>

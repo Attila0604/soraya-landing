@@ -118,14 +118,6 @@
     },
     {
      "@type": "Question",
-     "name": "What do Sun and Moon signs tell you?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Your Sun sign describes your core – how you show yourself and what drives you. Your Moon sign stands for your emotional world: what touches you and what you need to feel safe. Together with the ascendant they form the foundation of your birth chart."
-     }
-    },
-    {
-     "@type": "Question",
      "name": "How are the readings created?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -138,14 +130,6 @@
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Yes. Open Soraya in Safari and tap “Share” → “Add to Home Screen” – it then starts like an app."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Can I use Soraya on my computer?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes. Soraya runs right in your browser – just open app.sorayaluxuryastroguide.com, no installation needed."
      }
     }
    ]
@@ -988,6 +972,65 @@
   .feat:hover,.weg li:hover{transform:none}
   .feat:hover .ico{box-shadow:none}
 
+  /* ---------- Runde 8: radikal kuerzer – je Bildschirm eine Idee, eine Zeile, eine Aktion ---------- */
+  /* Hero: Logo, Name, Mond, ein Satz, Google Play + kleiner Browser-Link, eine winzige Vertrauenszeile */
+  .hero .sub{margin-bottom:28px}
+  html.is-desktop .hero .ios-btn{display:none}
+  html.is-desktop .hero .alt-link.fuer-android{display:block}
+  html.is-desktop .hero .store-btn:not(.ios-btn){background:linear-gradient(180deg,#ead6a6,#cdac6d); border-color:transparent; box-shadow:inset 0 1px 0 rgba(255,255,255,.32); color:#1a1209}
+  html.is-desktop .hero .store-btn:not(.ios-btn) :is(svg,.st-big){color:#1a1209}
+  html.is-desktop .hero .store-btn:not(.ios-btn) .st-small{color:rgba(26,18,9,.7)}
+  .hero .vertrauen{gap:0; margin-top:16px; font-size:12px; letter-spacing:.04em; color:var(--mist-dim)}
+  .hero .vertrauen li::before{content:none}
+  .hero .vertrauen li+li::before{content:"·"; margin:0 9px; color:var(--mist-faint); font-weight:400}
+  @media (min-width:561px){ .hero{min-height:min(100svh,860px)} }
+  /* Gratis-Test: Tageshoroskop = Stimmung + 2 Zeilen, Tipp erst nach "Mehr lesen" */
+  .horo p.kurz{--zeilen:2}
+  html.js .horo .kurz.zu ~ .tipp{display:none}
+  .tcard h3{margin-bottom:14px}
+  .tcard .hint{margin-bottom:14px}
+  /* Deutung: drei knappe Schritte (Titel + Beispiel) */
+  .weg li{padding:22px 20px 20px}
+  .weg h3{margin-bottom:0}
+  .probe{padding-top:14px}
+  @media (max-width:900px){ .weg li{grid-template-columns:34px 1fr; align-items:center} .weg .nr{grid-row:auto} .probe{grid-column:1 / -1} }
+  /* Funktionen: vier Kacheln, nur Symbol + Titel */
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; max-width:960px; margin:0 auto}
+  .feat{display:flex; flex-direction:column; align-items:center; text-align:center; padding:26px 14px 24px}
+  .feat .ico{margin:0 0 14px}
+  .feat h3{font-size:21px; line-height:1.2; margin:0}
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:560px){ .grid{gap:10px} .feat{display:flex; padding:20px 10px 18px} .feat .ico{grid-row:auto; margin:0 0 12px; width:42px; height:42px} .feat h3{font-size:18.5px} }
+  /* Video: Ueberschrift + ein Satz */
+  .showcase .copy .lede{margin-bottom:0}
+  #versprechen{padding-top:clamp(24px,4vw,44px)}
+  /* Versprechen: drei kurze Punkte in einer Reihe */
+  .werte{grid-template-columns:repeat(3,minmax(0,1fr)); max-width:860px; margin:0 auto}
+  .werte li{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:22px 12px}
+  .werte svg{margin:0; width:24px; height:24px}
+  .werte b{font-size:17px; line-height:1.3}
+  .werte li:nth-child(n+3){border-top:0} .werte li:nth-child(3){border-left:1px solid var(--line-soft)}
+  @media (max-width:520px){ .werte{grid-template-columns:repeat(3,minmax(0,1fr))} .werte li{padding:16px 6px!important} .werte li+li{border-top:0; border-left:1px solid var(--line-soft)!important} .werte b{font-size:15px} }
+  /* Schluss-Aufruf: Ueberschrift + Knoepfe */
+  .cta{padding:clamp(38px,6vw,60px) clamp(20px,5vw,56px)}
+  .cta h2{margin-bottom:24px}
+  /* Fusszeile: kompakt und mittig */
+  footer{padding:40px 0 30px}
+  footer .fuss{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
+  footer .fuss .name{display:inline-flex; align-items:center; gap:9px; font-size:13px; letter-spacing:.32em; color:var(--gold-soft)}
+  footer .fuss .name img{width:20px; height:auto}
+  footer .f-claim{margin:-4px 0 4px; font:italic 500 15.5px/1.4 var(--display); color:var(--mist-dim)}
+  footer .f-links{flex-direction:row; flex-wrap:wrap; justify-content:center; gap:0 22px}
+  footer .f-links a{font-size:13.5px; padding:8px 0}
+  footer .langs{margin:0}
+  footer .f-recht{justify-content:center; gap:0 16px}
+  footer .f-recht a{font-size:12px; padding:6px 0; color:var(--mist-faint)}
+  footer .f-unten{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:4px 8px; margin:2px 0 0; padding:0; border:0; font-size:11.5px}
+  footer .f-unten .trenn{color:var(--mist-faint)}
+  footer .copy{font-size:11.5px}
+  footer .powered{font-size:10px; letter-spacing:.2em; gap:6px}
+  footer .powered .pw-ico{width:12px; height:12px}
+
   /* Druck: helle Seite, alle Inhalte sichtbar, keine Animationen/Bedienelemente */
   @media print{
     @page{margin:16mm 14mm}
@@ -1066,7 +1109,6 @@
     <div class="kicker">Luxury Astro Guide</div>
     <p class="himmel-heute warten" id="himmelHeute" aria-hidden="true"><span class="mond">☽︎</span>&nbsp;</p>
     <p class="sub" data-t="hero.sub">The sky, <span class="zl">read for you alone.</span></p>
-    <p class="wert" data-t="hero.wert">Birth chart, daily horoscope and partner match – calculated for you and explained in plain words.</p>
 
     <div class="stores">
       <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en" aria-label="Get it on Google Play" data-t-aria="store.play.aria">
@@ -1078,15 +1120,8 @@
         <span class="st-txt"><span class="st-small"><span class="fuer-ios" data-t="store.ios.small">On iPhone</span><span class="fuer-desk" data-t="store.web.small">On computer &amp; iPhone</span></span><span class="st-big" data-t="store.ios.big">Open in browser</span></span>
       </a>
     </div>
-    <p class="ios-hint" data-t="ios.hint">On iPhone, Soraya opens in Safari. Tap <b>Share</b> there and then <b>“Add to Home Screen”</b> – and Soraya is on your phone like an app.</p>
     <p class="alt-link fuer-android" data-t="alt.ios">iPhone? <a href="https://app.sorayaluxuryastroguide.com/?lang=en">Open Soraya in your browser ›</a></p>
     <p class="alt-link fuer-ios" data-t="alt.android">Android? <a href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en">Get it on Google Play ›</a></p>
-    <a class="try-link pfeil" href="#probieren" data-t="try.link">✦ Try free: your Sun&nbsp;&amp;&nbsp;Moon in seconds</a>
-    <ul class="vertrauen">
-      <li data-t="trust.1">Free</li>
-      <li data-t="trust.2">Try without an account</li>
-      <li data-t="trust.3">Delete your data anytime</li>
-    </ul>
   </div>
 
   <div class="scroll-cue"><span data-t="cue">Discover</span><span class="line"></span></div>
@@ -1102,7 +1137,6 @@
     <div class="try-grid">
       <form class="tcard reveal" id="vorschauForm" novalidate>
         <h3 data-t="pv.h">Your Sun &amp; Moon sign</h3>
-        <p class="hint" data-t="pv.p">Your birth date is enough – the time makes the Moon more precise. Nothing is stored.</p>
         <div class="felder">
           <div><label for="pvDatum" data-t="pv.datum">Date of birth</label><input type="date" id="pvDatum" required min="1900-01-01"></div>
           <div><label for="pvZeit" data-t="pv.zeit">Time (optional)</label><input type="time" id="pvZeit"></div>
@@ -1144,26 +1178,19 @@
       <li class="reveal">
         <span class="nr" aria-hidden="true">1</span>
         <h3 data-t="deut.1h">Your birth details</h3>
-        <p class="kurz" data-t="deut.1p">Date, time and place – the more precise, the more personal your reading.</p>
         <div class="probe"><span class="probe-tag" data-t="deut.bsp">Example</span><span class="probe-daten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span data-t="deut.ort">5 Nov 1990 · 05:15 · Vienna</span></span></div>
       </li>
       <li class="reveal">
         <span class="nr" aria-hidden="true">2</span>
         <h3 data-t="deut.2h">Astronomically calculated</h3>
-        <p class="kurz" data-t="deut.2p">Soraya calculates the positions of the Sun, Moon and planets for exactly that moment and place – with the Swiss Ephemeris, the calculation basis of many professional astrology programs.</p>
         <div class="probe"><span class="probe-tag" data-t="deut.bsp">Example</span><span class="probe-pos"><span><i>☉</i>♏&#xFE0E; 12°</span><span><i>☽&#xFE0E;</i>♊&#xFE0E; 14°</span><span><i>ASC</i>♎&#xFE0E; 25°</span></span></div>
       </li>
       <li class="reveal">
         <span class="nr" aria-hidden="true">3</span>
         <h3 data-t="deut.3h">Personally interpreted</h3>
-        <p class="kurz" data-t="deut.3p">An AI translates your calculated chart into clear, personal words – in your language, without ready-made text blocks.</p>
         <div class="probe"><span class="probe-tag" data-t="deut.bsp">Example</span><q class="probe-zitat" data-t="deut.zitat">You like to get to the bottom of things – and you sense moods before others put them into words.</q></div>
       </li>
     </ol>
-    <div class="ablauf-cta reveal">
-      <a class="btn-zweit nur-andere" href="https://app.sorayaluxuryastroguide.com/?lang=en" data-t="how.cta">Start now – it's free ✦</a>
-      <a class="btn-zweit nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en" data-t="how.cta">Start now – it's free ✦</a>
-    </div>
   </div>
 </section>
 
@@ -1179,37 +1206,21 @@
       <article class="feat reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><line x1="12" y1="3" x2="12" y2="8.6"/><line x1="12" y1="15.4" x2="12" y2="21"/><line x1="3" y1="12" x2="8.6" y2="12"/><line x1="15.4" y1="12" x2="21" y2="12"/></svg></div>
         <h3 data-t="f1.h">Birth chart</h3>
-        <p class="kurz" data-t="f1.p">The sky at the moment you were born – calculated precisely from your date, time and place of birth.</p>
-      </article>
-
-      <article class="feat reveal">
-        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.6C10 5.1 7 4.6 3.5 5.1v13.2c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5.1C17 4.6 14 5.1 12 6.6z"/><path d="M12 6.6v13.2"/><path d="M6.5 9h2.6M6.5 12h2.6M14.9 9h2.6M14.9 12h2.6"/></svg></div>
-        <h3 data-t="f2.h">Personal analysis</h3>
-        <p class="kurz" data-t="f2.p">Soraya writes a detailed, personal reading of your birth chart – in clear, simple words.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 13.5A8 8 0 1 1 10.5 5a6.3 6.3 0 0 0 8.5 8.5z"/><circle cx="16" cy="7" r=".7" fill="currentColor" stroke="none"/></svg></div>
         <h3 data-t="f3.h">Daily horoscope</h3>
-        <p class="kurz" data-t="f3.p">New every day and based on your own birth chart – not the same text everyone of your sign gets.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="9" cy="12" r="5.4"/><circle cx="15" cy="12" r="5.4"/></svg></div>
         <h3 data-t="f4.h">Partner match</h3>
-        <p class="kurz" data-t="f4.p">How well do you fit together? Your two birth charts compared – with a percentage and an honest reading.</p>
       </article>
 
       <article class="feat reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3.5c.5 4.2 1.6 5.3 5.8 5.8-4.2.5-5.3 1.6-5.8 5.8-.5-4.2-1.6-5.3-5.8-5.8C10.4 8.8 11.5 7.7 12 3.5z"/><path d="M18 15.5c.2 1.6.6 2 2.2 2.2-1.6.2-2 .6-2.2 2.2-.2-1.6-.6-2-2.2-2.2 1.6-.2 2-.6 2.2-2.2z"/></svg></div>
         <h3 data-t="f5.h">Chat with Soraya</h3>
-        <p class="kurz" data-t="f5.p">Ask Soraya anything – about love, work or your day. The answers come from your own birth chart.</p>
-      </article>
-
-      <article class="feat reveal">
-        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="3.8" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
-        <h3 data-t="f6.h">In your language</h3>
-        <p class="kurz" data-t="f6.p">English, Deutsch, Magyar, Italiano – horoscopes, analyses and chat in your language.</p>
       </article>
     </div>
   </div>
@@ -1268,11 +1279,6 @@
         <span class="eyebrow" data-t="show.eyebrow">A look inside Soraya</span>
         <h2 class="head" data-t="show.head">Beautiful from the <span class="gold">very first second</span></h2>
         <p class="lede" data-t="show.lede">Not a cluttered astro tool, but a calm, luxurious space for your questions to the sky.</p>
-        <ul>
-          <li><span class="dot"></span><span data-t="show.l1">An elegant interface that feels like a ritual</span></li>
-          <li><span class="dot"></span><span data-t="show.l2">Answers in plain language – clear instead of cryptic</span></li>
-          <li><span class="dot"></span><span data-t="show.l3">An app for Android and iPhone – right from your home screen</span></li>
-        </ul>
       </div>
     </div>
   </div>
@@ -1283,10 +1289,9 @@
   <div class="wrap">
     <h2 class="eyebrow werte-titel" id="werteTitel" data-t="w.titel">Our promise</h2>
     <ul class="werte reveal">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 19.5 9 8.5l3.7 6 2.6-3.8 6.2 8.8z"/><path d="m7.4 11.2 1.6.9 1.4-1"/><circle cx="17.5" cy="5.5" r="1.6"/></svg><b data-t="w.1h">Made in Tyrol</b><span data-t="w.1p">Independently built in Austria – with love for every detail.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 19 6v5.5c0 4.3-3 7.8-7 9-4-1.2-7-4.7-7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><b data-t="w.2h">No ads, no third‑party trackers</b><span data-t="w.2p">No adverts, no tracking cookies. Delete your account anytime.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="14" height="10" rx="1.5"/><path d="M6.5 18.5h6M9.5 14.5v4"/><rect x="15.5" y="9" width="6" height="11" rx="1.5"/><path d="M17.8 17.6h1.4"/></svg><b data-t="w.3h">On every device</b><span data-t="w.3p">As an app for Android, and right in the browser on iPhone and computer.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9C10.5 6 7 5.5 7 7.8 7 9 12 9 12 9Zm0 0c1.5-3 5-3.5 5-1.2C17 9 12 9 12 9Z"/></svg><b data-t="w.4h">Free to start</b><span data-t="w.4p">No credit card, no payment details – just begin.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 19.5 9 8.5l3.7 6 2.6-3.8 6.2 8.8z"/><path d="m7.4 11.2 1.6.9 1.4-1"/><circle cx="17.5" cy="5.5" r="1.6"/></svg><b data-t="w.1h">Made in Tyrol</b></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 19 6v5.5c0 4.3-3 7.8-7 9-4-1.2-7-4.7-7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><b data-t="w.2h">No ads, no third‑party trackers</b></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="14" height="10" rx="1.5"/><path d="M6.5 18.5h6M9.5 14.5v4"/><rect x="15.5" y="9" width="6" height="11" rx="1.5"/><path d="M17.8 17.6h1.4"/></svg><b data-t="w.3h">On every device</b></li>
     </ul>
   </div>
 </section>
@@ -1302,10 +1307,8 @@
       <details><summary data-t="faq.1q">Is Soraya free?</summary><p data-t="faq.1a">Yes. You can see your Sun and Moon sign right away, without an account. Birth chart, personal daily horoscope, partner match and chat with Soraya come with a free account.</p></details>
       <details><summary data-t="faq.2q">Do I need my birth time?</summary><p data-t="faq.2a">No, but it makes the reading more precise: with time and place Soraya also calculates your ascendant and houses.</p></details>
       <details><summary data-t="faq.3q">What happens to my data?</summary><p data-t="faq.3a">Soraya uses your birth details only for your calculations. You can delete your account with all data at any time.</p></details>
-      <details><summary data-t="faq.5q">What do Sun and Moon signs tell you?</summary><p data-t="faq.5a">Your Sun sign describes your core – how you show yourself and what drives you. Your Moon sign stands for your emotional world: what touches you and what you need to feel safe. Together with the ascendant they form the foundation of your birth chart.</p></details>
       <details><summary data-t="faq.7q">How are the readings created?</summary><p data-t="faq.7a">First, Soraya calculates the planetary positions at your birth with astronomical precision (Swiss Ephemeris). From that, an AI writes your personal reading. The texts are meant as an impulse for self-reflection – not as medical, legal or financial advice.</p></details>
       <details><summary data-t="faq.4q">Is Soraya available for iPhone?</summary><p data-t="faq.4a">Yes. Open Soraya in Safari and tap “Share” → “Add to Home Screen” – it then starts like an app.</p></details>
-      <details><summary data-t="faq.6q">Can I use Soraya on my computer?</summary><p data-t="faq.6a">Yes. Soraya runs right in your browser – just open <a href="https://app.sorayaluxuryastroguide.com/?lang=en">app.sorayaluxuryastroguide.com</a>, no installation needed.</p></details>
     </div>
   </div>
 </section>
@@ -1316,7 +1319,6 @@
     <div class="sec-head reveal">
       <span class="eyebrow" data-t="zk.eyebrow">Astro knowledge</span>
       <h2 class="head" data-t="zk.head">The 12 <span class="gold">zodiac signs</span></h2>
-      <p class="lede" data-t="zk.lede">Personality, love, strengths and today's horoscope – discover what your sign says about you.</p>
     </div>
     <div class="zk-grid reveal" id="zeichenListe"><!-- ZEICHEN:START --><a class="zk" href="/en/zodiac/aries"><span class="zk-sym" aria-hidden="true">♈︎</span><b>Aries</b><small><span>21 Mar –</span> <span>19 Apr</span></small></a><a class="zk" href="/en/zodiac/taurus"><span class="zk-sym" aria-hidden="true">♉︎</span><b>Taurus</b><small><span>20 Apr –</span> <span>20 May</span></small></a><a class="zk" href="/en/zodiac/gemini"><span class="zk-sym" aria-hidden="true">♊︎</span><b>Gemini</b><small><span>21 May –</span> <span>20 Jun</span></small></a><a class="zk" href="/en/zodiac/cancer"><span class="zk-sym" aria-hidden="true">♋︎</span><b>Cancer</b><small><span>21 Jun –</span> <span>22 Jul</span></small></a><a class="zk" href="/en/zodiac/leo"><span class="zk-sym" aria-hidden="true">♌︎</span><b>Leo</b><small><span>23 Jul –</span> <span>22 Aug</span></small></a><a class="zk" href="/en/zodiac/virgo"><span class="zk-sym" aria-hidden="true">♍︎</span><b>Virgo</b><small><span>23 Aug –</span> <span>22 Sept</span></small></a><a class="zk" href="/en/zodiac/libra"><span class="zk-sym" aria-hidden="true">♎︎</span><b>Libra</b><small><span>23 Sept –</span> <span>22 Oct</span></small></a><a class="zk" href="/en/zodiac/scorpio"><span class="zk-sym" aria-hidden="true">♏︎</span><b>Scorpio</b><small><span>23 Oct –</span> <span>21 Nov</span></small></a><a class="zk" href="/en/zodiac/sagittarius"><span class="zk-sym" aria-hidden="true">♐︎</span><b>Sagittarius</b><small><span>22 Nov –</span> <span>21 Dec</span></small></a><a class="zk" href="/en/zodiac/capricorn"><span class="zk-sym" aria-hidden="true">♑︎</span><b>Capricorn</b><small><span>22 Dec –</span> <span>19 Jan</span></small></a><a class="zk" href="/en/zodiac/aquarius"><span class="zk-sym" aria-hidden="true">♒︎</span><b>Aquarius</b><small><span>20 Jan –</span> <span>18 Feb</span></small></a><a class="zk" href="/en/zodiac/pisces"><span class="zk-sym" aria-hidden="true">♓︎</span><b>Pisces</b><small><span>19 Feb –</span> <span>20 Mar</span></small></a><!-- ZEICHEN:END --></div>
     <a class="zk-alle" id="zeichenAlle" data-zk-hub href="/en/zodiac" data-t="zk.alle">All zodiac signs at a glance ›</a>
@@ -1330,7 +1332,6 @@
     <div class="cta reveal">
       <img class="sigil-lg" src="/brand/zeichen.svg" alt="" width="64" height="61">
       <h2 data-t="cta.head">Your sky is waiting.</h2>
-      <p data-t="cta.p">Free for Android, and right in your browser on iPhone and computer – start with your personal birth chart.</p>
       <div class="stores">
         <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en" aria-label="Get it on Google Play" data-t-aria="store.play.aria">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.7 2.3 13.6 12l-9.9 9.7c-.3-.3-.5-.8-.5-1.4V3.7c0-.6.2-1.1.5-1.4z"/><path opacity=".78" d="M3.7 2.3c.4-.4 1.1-.5 1.8-.1L17 8.8 13.6 12z"/><path opacity=".58" d="M3.7 21.7 13.6 12l3.4 3.2-11.5 6.6c-.7.4-1.4.3-1.8-.1z"/><path opacity=".88" d="m17 8.8 3.5 2c1.1.6 1.1 1.8 0 2.4l-3.5 2-3.4-3.2z"/></svg>
@@ -1344,11 +1345,6 @@
       <p class="ios-hint" data-t="ios.hint">On iPhone, Soraya opens in Safari. Tap <b>Share</b> there and then <b>“Add to Home Screen”</b> – and Soraya is on your phone like an app.</p>
       <p class="alt-link fuer-android" data-t="alt.ios">iPhone? <a href="https://app.sorayaluxuryastroguide.com/?lang=en">Open Soraya in your browser ›</a></p>
       <p class="alt-link fuer-ios" data-t="alt.android">Android? <a href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en">Get it on Google Play ›</a></p>
-      <ul class="vertrauen">
-        <li data-t="trust.1">Free</li>
-        <li data-t="w.2h">No ads, no third‑party trackers</li>
-        <li data-t="trust.3">Delete your data anytime</li>
-      </ul>
     </div>
   </div>
 </section>
@@ -1360,40 +1356,27 @@
 
 <!-- ========== FOOTER ========== -->
 <footer>
-  <div class="wrap foot">
-    <div class="f-marke">
-      <span class="name"><img src="/brand/zeichen.svg" alt="" width="22" height="21">SORAYA</span>
-      <p data-t="hero.sub">The sky, <span class="zl">read for you alone.</span></p>
-    </div>
-    <div>
-      <h3 data-t="foot.entdecken">Discover</h3>
-      <div class="f-links">
-        <a href="#probieren" data-t="foot.try">Try for free</a>
-        <a href="#features" data-t="foot.feat">Features</a>
-        <a href="#faq" data-t="foot.faq">FAQ</a>
-        <a href="/en/zodiac" data-zk-hub data-t="foot.zeichen">Zodiac signs</a>
-        <a class="nur-andere" href="https://app.sorayaluxuryastroguide.com/?lang=en" data-t="foot.app">Open the app</a>
-        <a class="nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en" data-t="foot.app">Open the app</a>
-      </div>
-    </div>
-    <div>
-      <h3 data-t="foot.lang">Language</h3>
-      <nav class="langs" aria-label="Sprache · Language · Nyelv · Lingua">
+  <div class="wrap fuss">
+    <a class="name" href="#" aria-label="Soraya"><img src="/brand/zeichen.svg" alt="" width="20" height="19">SORAYA</a>
+    <p class="f-claim" data-t="hero.sub">The sky, <span class="zl">read for you alone.</span></p>
+    <nav class="f-links" aria-label="Discover" data-t-aria="foot.entdecken">
+      <a href="/en/zodiac" data-zk-hub data-t="foot.zeichen">Zodiac signs</a>
+      <a class="nur-andere" href="https://app.sorayaluxuryastroguide.com/?lang=en" data-t="foot.app">Open the app</a>
+      <a class="nur-android" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=en" data-t="foot.app">Open the app</a>
+      <a href="#faq" data-t="foot.faq">FAQ</a>
+    </nav>
+    <nav class="langs" aria-label="Sprache · Language · Nyelv · Lingua">
         <a href="/" data-lang="de" lang="de">DE</a>
         <a href="/en" data-lang="en" lang="en" class="active" aria-current="true">EN</a>
         <a href="/hu" data-lang="hu" lang="hu">HU</a>
         <a href="/it" data-lang="it" lang="it">IT</a>
       </nav>
-      <div class="f-recht">
-        <a href="https://app.sorayaluxuryastroguide.com/impressum-en" data-legal="impressum" data-t="foot.imprint">Legal notice</a>
-        <a href="https://app.sorayaluxuryastroguide.com/datenschutz-en" data-legal="datenschutz" data-t="foot.privacy">Privacy</a>
-        <a href="https://app.sorayaluxuryastroguide.com/nutzungsbedingungen-en" data-legal="nutzungsbedingungen" data-t="foot.terms">Terms of use</a>
-      </div>
+    <div class="f-recht">
+      <a href="https://app.sorayaluxuryastroguide.com/impressum-en" data-legal="impressum" data-t="foot.imprint">Legal notice</a>
+      <a href="https://app.sorayaluxuryastroguide.com/datenschutz-en" data-legal="datenschutz" data-t="foot.privacy">Privacy</a>
+      <a href="https://app.sorayaluxuryastroguide.com/nutzungsbedingungen-en" data-legal="nutzungsbedingungen" data-t="foot.terms">Terms of use</a>
     </div>
-    <div class="f-unten">
-    <span class="copy">© 2026 Soraya · Luxury Astro Guide</span>
-    <span class="powered"><svg class="pw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5l2.4 6.6L21 11.5l-6.6 2.4L12 20.5l-2.4-6.6L3 11.5l6.6-2.4z"/><circle cx="18.5" cy="4.5" r="1" fill="currentColor" stroke="none"/><circle cx="5" cy="17" r=".8" fill="currentColor" stroke="none"/></svg>Powered by <strong>Attila</strong></span>
-    </div>
+    <p class="f-unten"><span class="copy">© 2026 Soraya</span><span class="trenn" aria-hidden="true">·</span><span class="powered"><svg class="pw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5l2.4 6.6L21 11.5l-6.6 2.4L12 20.5l-2.4-6.6L3 11.5l6.6-2.4z"/><circle cx="18.5" cy="4.5" r="1" fill="currentColor" stroke="none"/><circle cx="5" cy="17" r=".8" fill="currentColor" stroke="none"/></svg>Powered by <strong>Attila</strong></span></p>
   </div>
 </footer>
 
@@ -1879,7 +1862,8 @@
       // nur kuerzen, wenn sich das lohnt (mindestens anderthalb Zeilen verborgen) - sonst ganz zeigen
       k.el.classList.remove("zu"); var voll = k.el.getBoundingClientRect().height;
       k.el.classList.add("zu"); var kurz = k.el.getBoundingClientRect().height;
-      var lohnt = voll - kurz >= (parseFloat(getComputedStyle(k.el).lineHeight) || 24) * 1.5;
+      // data-mehr-immer: dahinter liegt noch etwas Verborgenes (z. B. der Tipp beim Tageshoroskop)
+      var lohnt = k.el.hasAttribute("data-mehr-immer") || voll - kurz >= (parseFloat(getComputedStyle(k.el).lineHeight) || 24) * 1.5;
       k.el.classList.toggle("zu", lohnt); k.b.hidden = !lohnt;
     }
     function umschalten(k){
@@ -2092,7 +2076,7 @@
           var tag = "";
           try { tag = new Intl.DateTimeFormat(LOCALE[lang] || "de-DE", {weekday: "long", day: "numeric", month: "long"}).format(new Date()); } catch (e6) {}
           box.innerHTML = '<span class="horo-datum">' + esc(tr("js.heute", "Heute")) + (tag ? " · " + esc(tag) : "") + "</span>" +
-            (h.stimmung ? "<h4>" + esc(h.stimmung) + "</h4>" : "") + '<p class="kurz">' + esc(h.text) + "</p>" +
+            (h.stimmung ? "<h4>" + esc(h.stimmung) + "</h4>" : "") + '<p class="kurz"' + (h.tipp ? " data-mehr-immer" : "") + ">" + esc(h.text) + "</p>" +
             (h.tipp ? '<p class="tipp"><b>' + esc(tr("js.tipp", "Tipp")) + ":</b> " + esc(h.tipp) + "</p>" : "");
           if (!REDUCE) neuAnimieren(box);
           if (window.sorayaKuerzen) box.querySelectorAll(".kurz").forEach(window.sorayaKuerzen);
