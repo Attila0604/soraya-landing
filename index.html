@@ -458,9 +458,10 @@
   .felder>div{min-width:0}
   @media (max-width:460px){ .felder{grid-template-columns:1fr} }
   .felder label{display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mist-dim); margin:0 0 6px}
-  .felder input{width:100%; box-sizing:border-box; background:rgba(11,7,19,.7); border:1px solid var(--line-soft); color:#f4eedd;
-                border-radius:12px; padding:12px 12px; font:inherit; font-size:16px; color-scheme:dark}
-  .felder input:focus{outline:none; border-color:var(--gold)}
+  .felder input{width:100%; box-sizing:border-box; background:rgba(195,183,218,.06); border:1px solid rgba(201,168,106,.24); color:#f1e4c3;
+                border-radius:12px; padding:12px 12px; font:inherit; font-size:16px; color-scheme:dark; caret-color:var(--gold);
+                transition:border-color .2s, background .2s, box-shadow .2s}
+  .felder input:focus{outline:none; border-color:var(--gold); background:rgba(195,183,218,.09); box-shadow:0 0 0 3px rgba(201,168,106,.14)}
   /* Datum/Uhrzeit zum Eintippen (statt der Kalender-/Uhr-Fenster von Android): Tag · Monat · Jahr, nach 2 Ziffern weiter */
   .teile{display:flex; align-items:center; gap:8px}
   .teile input{text-align:center; min-width:0; flex:1 1 0; letter-spacing:.04em; font-variant-numeric:tabular-nums}
