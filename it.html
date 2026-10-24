@@ -461,6 +461,14 @@
   .felder input{width:100%; box-sizing:border-box; background:rgba(11,7,19,.7); border:1px solid var(--line-soft); color:#f4eedd;
                 border-radius:12px; padding:12px 12px; font:inherit; font-size:16px; color-scheme:dark}
   .felder input:focus{outline:none; border-color:var(--gold)}
+  /* Datum/Uhrzeit zum Eintippen (statt der Kalender-/Uhr-Fenster von Android): Tag · Monat · Jahr, nach 2 Ziffern weiter */
+  .teile{display:flex; align-items:center; gap:8px}
+  .teile input{text-align:center; min-width:0; flex:1 1 0; letter-spacing:.04em; font-variant-numeric:tabular-nums}
+  .teile input::placeholder{color:var(--mist-faint); letter-spacing:.08em}
+  .teile .t-jahr{flex-grow:1.7}
+  .teile.zeit{max-width:220px}
+  .t-doppel{color:var(--mist-dim)}
+  html[lang="hu"] .teile.datum .t-jahr{order:1} html[lang="hu"] .teile.datum .t-monat{order:2} html[lang="hu"] .teile.datum .t-tag{order:3}
   .gold-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; border:0; cursor:pointer;
             background:linear-gradient(180deg,#e6cf9c,#c9a86a); color:#1a1209; font:600 15px/1 var(--ui); letter-spacing:.02em;
             border-radius:var(--r-pill); padding:15px 22px; box-shadow:0 10px 30px -12px rgba(201,168,106,.6)}
@@ -561,7 +569,7 @@
   .schritt b{line-height:1.25}
 
   /* ---------- Formular: Fehler, Warten ---------- */
-  .felder input[aria-invalid="true"]{border-color:var(--ok-red); box-shadow:0 0 0 3px rgba(240,196,188,.12)}
+  .teile[aria-invalid="true"] input,.felder input[aria-invalid="true"]{border-color:var(--ok-red); box-shadow:0 0 0 3px rgba(240,196,188,.12)}
   .fehler{color:var(--ok-red); font-size:14px; margin:10px 0 0; display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
   .fehler .nochmal{background:transparent; border:1px solid rgba(240,196,188,.45); color:var(--ok-red); border-radius:var(--r-pill);
     padding:7px 14px; font:500 13px var(--ui); cursor:pointer}
@@ -1160,8 +1168,18 @@
       <form class="tcard reveal" id="vorschauForm" novalidate>
         <h3 data-t="pv.h">Il tuo segno solare e lunare</h3>
         <div class="felder">
-          <div><label for="pvDatum" data-t="pv.datum">Data di nascita</label><input type="date" id="pvDatum" required min="1900-01-01"></div>
-          <div><label for="pvZeit" data-t="pv.zeit">Ora (facoltativa)</label><input type="time" id="pvZeit"></div>
+          <div><label for="pvTag" data-t="pv.datum">Data di nascita</label>
+            <div class="teile datum" role="group" aria-label="Data di nascita" data-t-aria="pv.datum">
+              <input id="pvTag" class="t-tag" inputmode="numeric" maxlength="2" placeholder="TT" aria-label="Tag" autocomplete="bday-day">
+              <input id="pvMonat" class="t-monat" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Monat" autocomplete="bday-month">
+              <input id="pvJahr" class="t-jahr" inputmode="numeric" maxlength="4" placeholder="JJJJ" aria-label="Jahr" autocomplete="bday-year">
+            </div><input type="hidden" id="pvDatum"></div>
+          <div><label for="pvStunde" data-t="pv.zeit">Ora (facoltativa)</label>
+            <div class="teile zeit" role="group" aria-label="Ora (facoltativa)" data-t-aria="pv.zeit">
+              <input id="pvStunde" inputmode="numeric" maxlength="2" placeholder="hh" aria-label="Stunde">
+              <span class="t-doppel" aria-hidden="true">:</span>
+              <input id="pvMinute" inputmode="numeric" maxlength="2" placeholder="mm" aria-label="Minute">
+            </div><input type="hidden" id="pvZeit"></div>
         </div>
         <button class="gold-btn" type="submit" id="pvKnopf" data-t="pv.knopf">Mostra Sole e Luna</button>
         <div class="ergebnis" id="pvErgebnis" aria-live="polite" aria-atomic="true"></div>
@@ -1486,7 +1504,7 @@
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy", "foot.terms": "Terms of use",
         "foot.entdecken": "Discover", "foot.try": "Try for free", "foot.feat": "Features", "foot.faq": "FAQ", "foot.folge": "Follow Soraya", "foot.app": "Open the app", "foot.lang": "Language",
         "js.erg": "Your sky at birth", "js.langsam": "Taking a little longer than usual – just a moment …", "js.nochmal": "Try again", "js.limit": "You've used up today's free previews – see you tomorrow ✨ Your personal horoscope is always waiting for you in Soraya.",
-        "js.datumZukunft": "That date is in the future – please check your date of birth.", "js.datumAlt": "Please enter a date between 1900 and today.",
+        "js.datumZukunft": "That date is in the future – please check your date of birth.", "js.datumAlt": "Please enter a date between 1900 and today.", "js.datumFalsch": "This date doesn't exist – please check day, month and year (e.g. 05 · 11 · 1990).", "js.zeitFalsch": "Please enter the time as hour 0–23 and minute 0–59 – or leave it empty.",
         "js.unsicherMond": "Without a birth time your Moon isn't quite certain – it could also be {alt}.", "js.unsicherSonne": "Without a birth time your Sun isn't quite certain – it could also be {alt}.",
         "js.zeitErgaenzen": "Add your birth time", "js.zumHoro": "Your horoscope today for {sign} ↓",
         "og.desc": "Birth chart, daily horoscope, partner match and chat – precisely calculated and clearly explained. Try your Sun & Moon sign for free.",
@@ -1606,7 +1624,7 @@
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem", "foot.terms": "Felhasználási feltételek",
         "foot.entdecken": "Fedezd fel", "foot.try": "Ingyenes kipróbálás", "foot.feat": "Funkciók", "foot.faq": "Kérdések", "foot.folge": "Kövesd a Sorayát", "foot.app": "Az app megnyitása", "foot.lang": "Nyelv",
         "js.erg": "Az égbolt a születésedkor", "js.langsam": "Most egy kicsit tovább tart – még egy pillanat …", "js.nochmal": "Próbáld újra", "js.limit": "A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában.",
-        "js.datumZukunft": "Ez a dátum a jövőben van – kérlek, ellenőrizd a születési dátumodat.", "js.datumAlt": "Kérlek, 1900 és a mai nap közötti dátumot adj meg.",
+        "js.datumZukunft": "Ez a dátum a jövőben van – kérlek, ellenőrizd a születési dátumodat.", "js.datumAlt": "Kérlek, 1900 és a mai nap közötti dátumot adj meg.", "js.datumFalsch": "Ilyen dátum nincs – kérlek, ellenőrizd az évet, a hónapot és a napot (pl. 1990 · 11 · 05).", "js.zeitFalsch": "Az időt óraként (0–23) és percként (0–59) add meg – vagy hagyd üresen.",
         "js.unsicherMond": "Születési időpont nélkül a Holdad nem teljesen biztos – lehet {alt} is.", "js.unsicherSonne": "Születési időpont nélkül a Napod nem teljesen biztos – lehet {alt} is.",
         "js.zeitErgaenzen": "Add meg az időpontot", "js.zumHoro": "A mai horoszkópod ({sign}) ↓",
         "og.desc": "Születési képlet, napi horoszkóp, párkapcsolati összevetés és chat – pontosan kiszámolva, érthetően elmagyarázva. Nézd meg ingyen a Nap- és Hold-jegyedet.",
@@ -1726,7 +1744,7 @@
         "foot.imprint": "Note legali", "foot.privacy": "Privacy", "foot.terms": "Condizioni d'uso",
         "foot.entdecken": "Scopri", "foot.try": "Prova gratis", "foot.feat": "Funzioni", "foot.faq": "Domande", "foot.folge": "Segui Soraya", "foot.app": "Apri l'app", "foot.lang": "Lingua",
         "js.erg": "Il tuo cielo alla nascita", "js.langsam": "Ci vuole un po' più del solito – ancora un attimo …", "js.nochmal": "Riprova", "js.limit": "Per oggi le anteprime gratuite sono esaurite – ci vediamo domani ✨ Il tuo oroscopo personale ti aspetta sempre in Soraya.",
-        "js.datumZukunft": "Questa data è nel futuro: controlla la tua data di nascita.", "js.datumAlt": "Inserisci una data tra il 1900 e oggi.",
+        "js.datumZukunft": "Questa data è nel futuro: controlla la tua data di nascita.", "js.datumAlt": "Inserisci una data tra il 1900 e oggi.", "js.datumFalsch": "Questa data non esiste – controlla giorno, mese e anno (es. 05 · 11 · 1990).", "js.zeitFalsch": "Inserisci l'ora come ore 0–23 e minuti 0–59 – oppure lascia vuoto.",
         "js.unsicherMond": "Senza l'ora di nascita la tua Luna non è del tutto sicura – potrebbe essere anche {alt}.", "js.unsicherSonne": "Senza l'ora di nascita il tuo Sole non è del tutto sicuro – potrebbe essere anche {alt}.",
         "js.zeitErgaenzen": "Aggiungi l'ora di nascita", "js.zumHoro": "Il tuo oroscopo di oggi per {sign} ↓",
         "og.desc": "Tema natale, oroscopo del giorno, affinità di coppia e chat – calcolati con precisione e spiegati con chiarezza. Scopri gratis il tuo segno solare e lunare.",
@@ -1859,7 +1877,7 @@
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href="#probieren"]');
     if (!a) return;
-    var f = document.getElementById("pvDatum"), ziel = document.getElementById("vorschauForm") || document.getElementById("probieren");
+    var f = document.documentElement.lang === "hu" ? document.getElementById("pvJahr") : document.getElementById("pvTag"), ziel = document.getElementById("vorschauForm") || document.getElementById("probieren");
     if (!ziel) return;
     e.preventDefault();
     var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2030,9 +2048,39 @@
 
     // --- Sonne & Mond
     var form = document.getElementById("vorschauForm"), datumFeld = document.getElementById("pvDatum");
+    var datumTeile = document.querySelector(".teile.datum");
+    // Platzhalter und Reihenfolge je Sprache (Ungarisch: Jahr · Monat · Tag)
+    var PH = {de: ["TT", "MM", "JJJJ", "Std", "Min", "Tag", "Monat", "Jahr", "Stunde", "Minute"],
+              en: ["DD", "MM", "YYYY", "hh", "mm", "Day", "Month", "Year", "Hour", "Minute"],
+              hu: ["NN", "HH", "ÉÉÉÉ", "óó", "pp", "Nap", "Hónap", "Év", "Óra", "Perc"],
+              it: ["GG", "MM", "AAAA", "hh", "mm", "Giorno", "Mese", "Anno", "Ora", "Minuti"]}[lang] || null;
+    var TEILE = ["pvTag", "pvMonat", "pvJahr", "pvStunde", "pvMinute"].map(function(id){ return document.getElementById(id); });
+    if (PH) TEILE.forEach(function(f, i){ if (f) { f.placeholder = PH[i]; f.setAttribute("aria-label", PH[i + 5]); } });
+    var REIHE = lang === "hu" ? [TEILE[2], TEILE[1], TEILE[0], TEILE[3], TEILE[4]] : TEILE;   // Tipp-Reihenfolge
+    REIHE.forEach(function(f, i){
+      if (!f) return;
+      f.addEventListener("input", function(){
+        var v = f.value.replace(/\D/g, "").slice(0, f.maxLength); if (v !== f.value) f.value = v;
+        if (datumTeile) datumTeile.removeAttribute("aria-invalid");
+        var naechstes = REIHE[i + 1];
+        // nach voller Laenge weiter (nicht vom Datum in die freiwillige Uhrzeit springen)
+        if (v.length === f.maxLength && naechstes && i !== 2) naechstes.focus();
+        else if (v.length === 1 && f.maxLength === 2 && +v > (f === TEILE[0] ? 3 : f === TEILE[1] ? 1 : f === TEILE[3] ? 2 : 5) && naechstes && i !== 2) { f.value = "0" + v; naechstes.focus(); }
+      });
+      f.addEventListener("keydown", function(e){ if (e.key === "Backspace" && !f.value && i > 0 && i !== 3) REIHE[i - 1].focus(); });
+    });
+    var zwei = function(x){ return ("0" + x).slice(-2); };
+    function zusammensetzen(){
+      var t = TEILE[0].value, m = TEILE[1].value, j = TEILE[2].value, h = TEILE[3].value, mi = TEILE[4].value;
+      datumFeld.value = t && m && j.length === 4 ? j + "-" + zwei(m) + "-" + zwei(t) : (t || m || j ? "ungueltig" : "");
+      if (datumFeld.value.length === 10) {
+        var probe = new Date(Date.UTC(+j, +m - 1, +t));
+        if (probe.getUTCMonth() !== +m - 1 || probe.getUTCDate() !== +t) datumFeld.value = "ungueltig";
+      }
+      var zf = document.getElementById("pvZeit");
+      zf.value = h !== "" && +h <= 23 && (mi === "" || +mi <= 59) ? zwei(h) + ":" + zwei(mi || "0") : (h || mi ? "ungueltig" : "");
+    }
     if (datumFeld) {
-      datumFeld.max = heuteIso();
-      datumFeld.addEventListener("input", function(){ datumFeld.removeAttribute("aria-invalid"); });
     }
     if (form) form.addEventListener("submit", function(ev){
       ev.preventDefault();
@@ -2040,18 +2088,23 @@
       var weiter = document.getElementById("pvWeiter"), teilen = document.getElementById("pvTeilen"), zumHoro = document.getElementById("pvZumHoro");
       var plus = document.getElementById("pvPlus"), info = document.getElementById("pvWeiterInfo");
       function folgeschritte(an){ [weiter, teilen, zumHoro, plus, info].forEach(function(x){ if (x) x.hidden = !an; }); form.classList.toggle("fertig", !!an); }
+      zusammensetzen();
       var d = datumFeld.value, z = document.getElementById("pvZeit").value;
-      var problem = !/^\d{4}-\d{2}-\d{2}$/.test(d) ? tr("js.datum", "Bitte gib dein Geburtsdatum ein.")
+      var problem = d === "ungueltig" ? tr("js.datumFalsch", "Dieses Datum gibt es nicht – bitte prüf Tag, Monat und Jahr (z. B. 05 · 11 · 1990).")
+        : z === "ungueltig" ? tr("js.zeitFalsch", "Bitte die Uhrzeit als Stunde 0–23 und Minute 0–59 eingeben – oder leer lassen.")
+        : !/^\d{4}-\d{2}-\d{2}$/.test(d) ? tr("js.datum", "Bitte gib dein Geburtsdatum ein.")
         : d > heuteIso() ? tr("js.datumZukunft", "Dieses Datum liegt in der Zukunft – bitte prüf dein Geburtsdatum.")
         : d < "1900-01-01" ? tr("js.datumAlt", "Bitte gib ein Datum zwischen 1900 und heute ein.") : "";
       if (problem) {
         box.classList.remove("neu");
         box.innerHTML = '<p class="fehler" role="alert">' + esc(problem) + "</p>";
-        datumFeld.setAttribute("aria-invalid", "true"); datumFeld.focus();
+        var fehlZeit = z === "ungueltig" && d !== "ungueltig" && /^\d{4}/.test(d);
+        if (!fehlZeit && datumTeile) datumTeile.setAttribute("aria-invalid", "true");
+        (fehlZeit ? TEILE[3] : REIHE.slice(0, 3).filter(function(f){ return !f.value; })[0] || REIHE[0]).focus();
         folgeschritte(false);
         return;
       }
-      datumFeld.removeAttribute("aria-invalid");
+      if (datumTeile) datumTeile.removeAttribute("aria-invalid");
       var t = d.split("-"), body = {year: +t[0], month: +t[1], day: +t[2]}, mitZeit = /^\d{2}:\d{2}/.test(z);
       if (mitZeit) { body.hour = +z.slice(0, 2); body.minute = +z.slice(3, 5); }
       knopf.disabled = true; box.classList.remove("neu"); box.innerHTML = laedtHtml();
@@ -2079,7 +2132,7 @@
             (hinweis ? '<p class="erg-hinweis">' + hinweis + (mitZeit ? "" : '<button type="button" class="zeit-ergaenzen">' + esc(tr("js.zeitErgaenzen", "Uhrzeit ergänzen")) + " ›</button>") + "</p>" : "");
           if (!REDUCE) neuAnimieren(box);
           var zb = box.querySelector(".zeit-ergaenzen");
-          if (zb) zb.onclick = function(){ var f = document.getElementById("pvZeit"); f.focus(); try { f.scrollIntoView({block: "center", behavior: REDUCE ? "auto" : "smooth"}); } catch (e4) {} };
+          if (zb) zb.onclick = function(){ var f = document.getElementById("pvStunde"); f.focus(); try { f.scrollIntoView({block: "center", behavior: REDUCE ? "auto" : "smooth"}); } catch (e4) {} };
           zumHoro.textContent = tr("js.zumHoro", "Dein Tageshoroskop heute für {sign} ↓").replace("{sign}", name(a.sun.sign));
           try { var wu = new URL(weiter.href); wu.searchParams.set("geb", d); if (/^\d{2}:\d{2}/.test(z)) wu.searchParams.set("zeit", z.slice(0, 5)); else wu.searchParams.delete("zeit"); weiter.href = wu.toString(); } catch (e2) {}
           folgeschritte(true);
