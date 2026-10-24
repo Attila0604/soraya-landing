@@ -63,6 +63,7 @@
    "logo": "https://www.sorayaluxuryastroguide.com/apple-touch-icon.png",
    "sameAs": [
     "https://www.instagram.com/soraya.astroguide/",
+    "https://www.tiktok.com/@soraya.astroguide",
     "https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa"
    ]
   },
@@ -1027,6 +1028,15 @@
   footer .fuss .name img{width:20px; height:auto}
   footer .f-claim{margin:-4px 0 4px; font:italic 500 15.5px/1.4 var(--display); color:var(--mist-dim)}
   footer .f-links{flex-direction:row; flex-wrap:wrap; justify-content:center; gap:0 22px}
+  footer .f-social{display:flex; flex-direction:column; align-items:center; gap:10px; margin:4px 0 6px}
+  footer .f-social-titel{font-size:10.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold)}
+  footer .f-social-icons{display:flex; gap:12px}
+  footer .f-social a{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--gold-dim); color:var(--gold-soft); transition:color .2s, border-color .2s, background .2s}
+  footer .f-social a[hidden]{display:none}
+  footer .f-social a:hover{color:#f4e6c4; border-color:var(--gold-soft); background:rgba(201,168,106,.08)}
+  footer .f-social a:focus-visible{outline:2px solid var(--gold-soft); outline-offset:3px}
+  footer .f-social svg{width:19px; height:19px}
   footer .f-links a{font-size:13.5px; padding:8px 0}
   footer .langs{margin:0}
   footer .f-recht{justify-content:center; gap:0 16px}
@@ -1371,6 +1381,15 @@
   <div class="wrap fuss">
     <a class="name" href="#" aria-label="Soraya"><img src="/brand/zeichen.svg" alt="" width="20" height="19">SORAYA</a>
     <p class="f-claim" data-t="hero.sub">The sky, <span class="zl">read for you alone.</span></p>
+    <!-- Folge Soraya: nur die Profile der Marke (Facebook erscheint, sobald die Seiten-Adresse eingetragen ist) -->
+    <nav class="f-social" aria-label="Follow Soraya" data-t-aria="foot.folge">
+      <span class="f-social-titel" data-t="foot.folge">Follow Soraya</span>
+      <span class="f-social-icons">
+        <a href="https://www.instagram.com/soraya.astroguide/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.tiktok.com/@soraya.astroguide" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.2v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9.3a6.1 6.1 0 1 0 5.3 6.1V8.6a7.6 7.6 0 0 0 4.4 1.4V6.8a4.4 4.4 0 0 1-4.4-4.4z"/></svg></a>
+        <a href="" target="_blank" rel="noopener" aria-label="Facebook" data-fb hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a>
+      </span>
+    </nav>
     <nav class="f-links" aria-label="Discover" data-t-aria="foot.entdecken">
       <a href="/en/zodiac" data-zk-hub data-t="foot.zeichen">Zodiac signs</a>
       <a class="nur-andere" href="https://app.sorayaluxuryastroguide.com/?lang=en" data-t="foot.app">Open the app</a>
@@ -1465,7 +1484,7 @@
         "cta.p": "Free for Android, and right in your browser on iPhone and computer – start with your personal birth chart.",
         "alt.ios": "iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Open Soraya in your browser ›</a>", "alt.android": "Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Get it on Google Play ›</a>",
         "foot.imprint": "Legal notice", "foot.privacy": "Privacy", "foot.terms": "Terms of use",
-        "foot.entdecken": "Discover", "foot.try": "Try for free", "foot.feat": "Features", "foot.faq": "FAQ", "foot.app": "Open the app", "foot.lang": "Language",
+        "foot.entdecken": "Discover", "foot.try": "Try for free", "foot.feat": "Features", "foot.faq": "FAQ", "foot.folge": "Follow Soraya", "foot.app": "Open the app", "foot.lang": "Language",
         "js.erg": "Your sky at birth", "js.langsam": "Taking a little longer than usual – just a moment …", "js.nochmal": "Try again", "js.limit": "You've used up today's free previews – see you tomorrow ✨ Your personal horoscope is always waiting for you in Soraya.",
         "js.datumZukunft": "That date is in the future – please check your date of birth.", "js.datumAlt": "Please enter a date between 1900 and today.",
         "js.unsicherMond": "Without a birth time your Moon isn't quite certain – it could also be {alt}.", "js.unsicherSonne": "Without a birth time your Sun isn't quite certain – it could also be {alt}.",
@@ -1585,7 +1604,7 @@
         "cta.p": "Ingyenes Androidra, iPhone-on és számítógépen pedig közvetlenül a böngészőben fut – kezdd a személyes születési képleteddel.",
         "alt.ios": "iPhone-od van? <a href=\"https://app.sorayaluxuryastroguide.com/\">Nyisd meg a Sorayát a böngészőben ›</a>", "alt.android": "Androidod van? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Töltsd le a Google Playről ›</a>",
         "foot.imprint": "Impresszum", "foot.privacy": "Adatvédelem", "foot.terms": "Felhasználási feltételek",
-        "foot.entdecken": "Fedezd fel", "foot.try": "Ingyenes kipróbálás", "foot.feat": "Funkciók", "foot.faq": "Kérdések", "foot.app": "Az app megnyitása", "foot.lang": "Nyelv",
+        "foot.entdecken": "Fedezd fel", "foot.try": "Ingyenes kipróbálás", "foot.feat": "Funkciók", "foot.faq": "Kérdések", "foot.folge": "Kövesd a Sorayát", "foot.app": "Az app megnyitása", "foot.lang": "Nyelv",
         "js.erg": "Az égbolt a születésedkor", "js.langsam": "Most egy kicsit tovább tart – még egy pillanat …", "js.nochmal": "Próbáld újra", "js.limit": "A mai ingyenes lekérdezések elfogytak – holnap folytatjuk ✨ A személyes horoszkópodat bármikor megtalálod a Sorayában.",
         "js.datumZukunft": "Ez a dátum a jövőben van – kérlek, ellenőrizd a születési dátumodat.", "js.datumAlt": "Kérlek, 1900 és a mai nap közötti dátumot adj meg.",
         "js.unsicherMond": "Születési időpont nélkül a Holdad nem teljesen biztos – lehet {alt} is.", "js.unsicherSonne": "Születési időpont nélkül a Napod nem teljesen biztos – lehet {alt} is.",
@@ -1705,7 +1724,7 @@
         "cta.p": "Gratis per Android, e direttamente nel browser su iPhone e computer – inizia con il tuo tema natale personale.",
         "alt.ios": "Hai un iPhone? <a href=\"https://app.sorayaluxuryastroguide.com/\">Apri Soraya nel browser ›</a>", "alt.android": "Usi Android? <a href=\"https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa\">Scaricala da Google Play ›</a>",
         "foot.imprint": "Note legali", "foot.privacy": "Privacy", "foot.terms": "Condizioni d'uso",
-        "foot.entdecken": "Scopri", "foot.try": "Prova gratis", "foot.feat": "Funzioni", "foot.faq": "Domande", "foot.app": "Apri l'app", "foot.lang": "Lingua",
+        "foot.entdecken": "Scopri", "foot.try": "Prova gratis", "foot.feat": "Funzioni", "foot.faq": "Domande", "foot.folge": "Segui Soraya", "foot.app": "Apri l'app", "foot.lang": "Lingua",
         "js.erg": "Il tuo cielo alla nascita", "js.langsam": "Ci vuole un po' più del solito – ancora un attimo …", "js.nochmal": "Riprova", "js.limit": "Per oggi le anteprime gratuite sono esaurite – ci vediamo domani ✨ Il tuo oroscopo personale ti aspetta sempre in Soraya.",
         "js.datumZukunft": "Questa data è nel futuro: controlla la tua data di nascita.", "js.datumAlt": "Inserisci una data tra il 1900 e oggi.",
         "js.unsicherMond": "Senza l'ora di nascita la tua Luna non è del tutto sicura – potrebbe essere anche {alt}.", "js.unsicherSonne": "Senza l'ora di nascita il tuo Sole non è del tutto sicuro – potrebbe essere anche {alt}.",
