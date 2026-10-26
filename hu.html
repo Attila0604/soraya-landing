@@ -299,6 +299,8 @@
     font-size:13px; color:var(--mist); letter-spacing:.02em}
   .himmel-heute.warten{visibility:hidden} .himmel-heute.da{animation:einblenden .8s ease both}
   .himmel-heute .mond{font-family:var(--ui); color:var(--gold-soft); font-size:15px}
+  .himmel-heute .mond.echt{display:inline-flex; filter:drop-shadow(0 0 6px rgba(255,226,155,.45))}
+  .himmel-heute .mond.echt svg{display:block}
   .himmel-heute b{color:var(--gold-soft); font-weight:600}
   .himmel-heute .trenn{color:var(--mist-faint)}
   @media (max-width:520px){ .himmel-heute{font-size:12.5px; gap:6px; padding:6px 14px} .himmel-heute .naechst{display:none} }
@@ -2000,6 +2002,18 @@
       en: {heute: "Today", mondIn: "Moon in", voll: "Full Moon", neu: "New Moon", inT: function(n){ return n === 0 ? "today" : n === 1 ? "tomorrow" : "in " + n + " days"; }},
       hu: {heute: "Ma", mondIn: "Hold", nach: " jegyben", voll: "Telihold", neu: "Újhold", inT: function(n){ return n === 0 ? "ma" : n === 1 ? "holnap" : n + " nap múlva"; }},
       it: {heute: "Oggi", mondIn: "Luna in", voll: "Luna piena", neu: "Luna nuova", inT: function(n){ return n === 0 ? "oggi" : n === 1 ? "domani" : "tra " + n + " giorni"; }}};
+    function mondSvg(elong, r){
+      var c = r + 1, e = ((elong % 360) + 360) % 360, rx = Math.abs(Math.cos(e * Math.PI / 180)) * r;
+      var zu = e < 180, sichel = zu ? e < 90 : e > 270;
+      var rand = zu ? "M " + c + " " + (c - r) + " A " + r + " " + r + " 0 0 1 " + c + " " + (c + r)
+                    : "M " + c + " " + (c - r) + " A " + r + " " + r + " 0 0 0 " + c + " " + (c + r);
+      var grenze = "A " + rx.toFixed(2) + " " + r + " 0 0 " + (zu ? (sichel ? 0 : 1) : (sichel ? 1 : 0)) + " " + c + " " + (c - r);
+      var bild = function(extra){ return '<image href="/brand/mond.webp" x="1" y="1" width="' + 2 * r + '" height="' + 2 * r + '"' + extra + "/>"; };
+      var id = "mk" + Math.round(e);
+      return '<svg viewBox="0 0 ' + 2 * c + " " + 2 * c + '" width="' + 2 * c + '" height="' + 2 * c + '"><defs><clipPath id="' + id + '"><path d="' + rand + " " + grenze + ' Z"/></clipPath></defs>' +
+        bild(' opacity=".5"') + '<circle cx="' + c + '" cy="' + c + '" r="' + r + '" fill="#0b0716" fill-opacity=".8"/>' +
+        (e < 1 || e > 359 ? "" : e > 178 && e < 182 ? bild("") : bild(' clip-path="url(#' + id + ')"')) + "</svg>";
+    }
     (function himmelHeute(){
       var box = document.getElementById("himmelHeute"); if (!box || !window.fetch) return;
       var T = HIMMEL_T[lang] || HIMMEL_T.en, ph = PHASEN[lang] || PHASEN.en;
@@ -2009,7 +2023,10 @@
         function tage(iso){ if (!iso) return 99; var t = new Date(iso); t.setHours(0, 0, 0, 0); return Math.round((t - heute) / 86400000); }
         var nv = tage(d.next_full_moon), nn = tage(d.next_new_moon);
         var naechst = nv <= nn ? T.voll + " " + T.inT(nv) : T.neu + " " + T.inT(nn);
-        box.innerHTML = '<span class="mond" aria-hidden="true">\u263D\uFE0E</span><span>' + esc(T.mondIn) + " <b>" + esc(name(m.sign)) + "</b>" + esc(T.nach || "") + "</span>" +
+        // echter Mond (gleiches Bild wie in App und Posts), Lichtseite nach Beleuchtung und zu-/abnehmend
+        var ill = Math.max(0, Math.min(100, +m.illumination || 0)), e = Math.acos(1 - 2 * ill / 100) * 180 / Math.PI;
+        if (m.phase_index != null && +m.phase_index > 4) e = 360 - e;
+        box.innerHTML = '<span class="mond echt" aria-hidden="true">' + mondSvg(e, 13) + '</span><span>' + esc(T.mondIn) + " <b>" + esc(name(m.sign)) + "</b>" + esc(T.nach || "") + "</span>" +
           '<span class="trenn">·</span><span>' + esc(ph[m.phase_index] || m.phase || "") + "</span>" +
           (Math.min(nv, nn) <= 14 ? '<span class="trenn naechst">·</span><span class="naechst">' + esc(naechst) + "</span>" : "");
         box.setAttribute("aria-label", T.heute + ": " + box.textContent);
