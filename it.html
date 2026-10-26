@@ -696,9 +696,15 @@
   /* Tierkreis hinter dem Logo (Linienzeichnung, dreht sich sehr langsam) */
   .marke{position:relative; isolation:isolate}
   .hero .rad{position:absolute; left:50%; top:50%; width:min(780px,140vw); height:auto; z-index:-1; pointer-events:none; color:var(--gold);
-    opacity:.2; transform:translate(-50%,-50%);
-    -webkit-mask-image:linear-gradient(180deg,transparent 16%,#000 32%,#000 40%,rgba(0,0,0,.35) 53%,transparent 66%); mask-image:linear-gradient(180deg,transparent 16%,#000 32%,#000 40%,rgba(0,0,0,.35) 53%,transparent 66%)}
-  .hero .rad-dreh{transform-box:view-box; transform-origin:50% 50%; animation:kreisen 420s linear infinite}
+    opacity:.36; transform:translate(-50%,-50%); filter:drop-shadow(0 0 10px rgba(233,207,156,.35));
+    -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 52%,rgba(0,0,0,.55) 66%,transparent 74%); mask-image:radial-gradient(circle at 50% 50%,#000 52%,rgba(0,0,0,.55) 66%,transparent 74%)}
+  /* Rad dreht sich sichtbar (eine Runde in 3 Minuten), die Zeichen leuchten sanft */
+  .hero .rad-dreh{transform-box:view-box; transform-origin:50% 50%; animation:kreisen 180s linear infinite}
+  .hero .rad text{animation:zeichenGlanz 6s ease-in-out infinite}
+  @keyframes zeichenGlanz{50%{opacity:.55}}
+  .marke::before{content:""; position:absolute; left:50%; top:42%; width:340px; height:340px; transform:translate(-50%,-50%); z-index:-1;
+    border-radius:50%; background:radial-gradient(circle,rgba(233,207,156,.16),transparent 65%); animation:halo 7s ease-in-out infinite; pointer-events:none}
+  @keyframes halo{50%{opacity:.55; transform:translate(-50%,-50%) scale(1.08)}}
   .hero .rad text{font-family:"SorayaZeichen",serif}
   @keyframes kreisen{to{transform:rotate(360deg)}}
   /* eine klare Hauptaktion: der passende Knopf fuers Geraet ist gold */
@@ -717,7 +723,7 @@
   .chip{overflow-wrap:normal}
   @media (max-width:560px){
     .nav .name{display:none}
-    .hero .rad{width:112vw; opacity:.24}
+    .hero .rad{width:118vw; opacity:.4}
     .sec-head .eyebrow,.werte-titel{letter-spacing:.26em}
     .chip{display:flex; flex-direction:column; align-items:center; gap:3px; border-radius:14px; padding:9px 2px 8px!important; font-size:12.5px!important; line-height:1.2}
     .chip .z{margin:0; font-size:17px; line-height:1}
@@ -1091,7 +1097,7 @@
   @media (prefers-reduced-motion:reduce){
     .store-btn::after{animation:none!important; display:none}
     .weg li{transition:none}
-    .hero .rad-dreh{animation:none}
+    .hero .rad-dreh,.hero .rad text,.marke::before{animation:none}
     html{scroll-behavior:auto}
     html.js .reveal{opacity:1; transform:none; transition:none}
     .scroll-cue span.line{animation:none}
@@ -1448,7 +1454,7 @@
         "pv.zeit": "Time (optional)",
         "pv.knopf": "Reveal my Sun &amp; Moon",
         "pv.weiter": "Your full horoscope – free",
-        "pv.teilen": "Share with friends ↗", "js.teiltext": "I'm a {sun} with my Moon in {moon} ✨ What are you? Find out free:", "js.kopiert": "Link copied ✓",
+        "pv.teilen": "Share with friends ↗", "js.teiltext": "I'm a {sun} with my Moon in {moon} ✨ What are you? Find out free:", "js.karteFrage": "And you? Find out for free.", "js.kopiert": "Link copied ✓",
         "th.h": "Your horoscope for today",
         "th.p": "Choose your sign.",
         "th.leer": "Tap your sign and Soraya will read your day.",
@@ -1568,7 +1574,7 @@
         "pv.zeit": "Születési idő (nem kötelező)",
         "pv.knopf": "Mutasd a Nap- és Hold-jegyemet",
         "pv.weiter": "A teljes horoszkópod – ingyen",
-        "pv.teilen": "Megosztás a barátaiddal ↗", "js.teiltext": "{sun} vagyok, a Hold-jegyem {moon} ✨ És te? Nézd meg ingyen:", "js.kopiert": "Link kimásolva ✓",
+        "pv.teilen": "Megosztás a barátaiddal ↗", "js.teiltext": "{sun} vagyok, a Hold-jegyem {moon} ✨ És te? Nézd meg ingyen:", "js.karteFrage": "És te? Nézd meg ingyen.", "js.kopiert": "Link kimásolva ✓",
         "th.h": "A mai horoszkópod",
         "th.p": "Válaszd ki a csillagjegyedet.",
         "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
@@ -1688,7 +1694,7 @@
         "pv.zeit": "Ora (facoltativa)",
         "pv.knopf": "Mostra Sole e Luna",
         "pv.weiter": "Il tuo oroscopo completo – gratis",
-        "pv.teilen": "Condividi con gli amici ↗", "js.teiltext": "Sono {sun} con la Luna in {moon} ✨ E tu? Scoprilo gratis:", "js.kopiert": "Link copiato ✓",
+        "pv.teilen": "Condividi con gli amici ↗", "js.teiltext": "Sono {sun} con la Luna in {moon} ✨ E tu? Scoprilo gratis:", "js.karteFrage": "E tu? Scoprilo gratis.", "js.kopiert": "Link copiato ✓",
         "th.h": "Il tuo oroscopo di oggi",
         "th.p": "Scegli il tuo segno.",
         "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
@@ -2002,6 +2008,51 @@
       en: {heute: "Today", mondIn: "Moon in", voll: "Full Moon", neu: "New Moon", inT: function(n){ return n === 0 ? "today" : n === 1 ? "tomorrow" : "in " + n + " days"; }},
       hu: {heute: "Ma", mondIn: "Hold", nach: " jegyben", voll: "Telihold", neu: "Újhold", inT: function(n){ return n === 0 ? "ma" : n === 1 ? "holnap" : n + " nap múlva"; }},
       it: {heute: "Oggi", mondIn: "Luna in", voll: "Luna piena", neu: "Luna nuova", inT: function(n){ return n === 0 ? "oggi" : n === 1 ? "domani" : "tra " + n + " giorni"; }}};
+    // Teilen-Karte 1080x1350: Sonne und Mond als grosse Zeichen, edel wie die Posts -- auf dem Geraet gezeichnet
+    function teilKarte(a){
+      try {
+        var W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+        var g = cv.getContext("2d"); if (!g || !cv.toBlob) return Promise.resolve(null);
+        return (document.fonts && document.fonts.load ? Promise.all([document.fonts.load('200px "SorayaZeichen"', GLYPH),
+          document.fonts.load('600 80px "Cormorant Garamond"'), document.fonts.load('600 40px "Cinzel"'), document.fonts.load('500 30px "Inter"')])
+          : Promise.resolve()).catch(function(){}).then(function(){
+          var v = g.createLinearGradient(0, 0, 0, H); v.addColorStop(0, "#2a1650"); v.addColorStop(.55, "#120a26"); v.addColorStop(1, "#07040f");
+          g.fillStyle = v; g.fillRect(0, 0, W, H);
+          var s = 7; function zz(){ s = (s * 9301 + 49297) % 233280; return s / 233280; }
+          for (var i = 0; i < 170; i++) { var gold = zz() < .14; g.fillStyle = gold ? "rgba(233,207,156," + (.45 + zz() * .5) + ")" : "rgba(188,178,214," + (.2 + zz() * .45) + ")";
+            g.beginPath(); g.arc(zz() * W, zz() * H, .7 + zz() * (gold ? 2.6 : 1.6), 0, 7); g.fill(); }
+          g.strokeStyle = "rgba(233,207,156,.45)"; g.lineWidth = 2; g.strokeRect(36, 36, W - 72, H - 72);
+          g.strokeStyle = "rgba(233,207,156,.18)"; g.lineWidth = 1; g.strokeRect(50, 50, W - 100, H - 100);
+          g.textAlign = "center"; g.textBaseline = "alphabetic";
+          function gesperrt(t, y, schrift, farbe, abstand, cx){ g.font = schrift; g.fillStyle = farbe; cx = cx == null ? W / 2 : cx;
+            var breite = 0, i; for (i = 0; i < t.length; i++) breite += g.measureText(t[i]).width + (i < t.length - 1 ? abstand : 0);
+            var x = cx - breite / 2; g.textAlign = "left";
+            for (i = 0; i < t.length; i++) { g.fillText(t[i], x, y); x += g.measureText(t[i]).width + abstand; } g.textAlign = "center"; }
+          gesperrt("SORAYA", 150, '600 46px "Cinzel"', "#e6cf9c", 16);
+          gesperrt("LUXURY ASTRO GUIDE", 196, '500 20px "Inter"', "rgba(195,183,218,.8)", 7);
+          function medaillon(cx, cy, key, oben, unten){
+            var schein = g.createRadialGradient(cx, cy, 20, cx, cy, 230); schein.addColorStop(0, "rgba(233,207,156,.22)"); schein.addColorStop(1, "rgba(233,207,156,0)");
+            g.fillStyle = schein; g.beginPath(); g.arc(cx, cy, 230, 0, 7); g.fill();
+            g.strokeStyle = "rgba(233,207,156,.75)"; g.lineWidth = 3; g.beginPath(); g.arc(cx, cy, 165, 0, 7); g.stroke();
+            g.strokeStyle = "rgba(233,207,156,.25)"; g.lineWidth = 1.5; g.beginPath(); g.arc(cx, cy, 182, 0, 7); g.stroke();
+            g.fillStyle = "#f6e3b4"; g.font = '190px "SorayaZeichen"'; g.textBaseline = "middle"; g.fillText(GLYPH[KEYS.indexOf(key)] || "", cx, cy + 8);
+            g.textBaseline = "alphabetic";
+            gesperrt(oben.toUpperCase(), cy + 228, '600 24px "Inter"', "rgba(195,183,218,.85)", 6, cx);
+            g.font = '600 60px "Cormorant Garamond"'; g.fillStyle = "#f6e3b4"; g.fillText(unten, cx, cy + 292);
+          }
+          medaillon(300, 540, a.sun.sign, "☉ " + tr("js.sonne", "Sonne"), name(a.sun.sign));
+          medaillon(780, 540, a.moon.sign, "☽ " + tr("js.mond", "Mond"), name(a.moon.sign));
+          g.font = 'italic 500 50px "Cormorant Garamond"'; g.fillStyle = "rgba(228,220,242,.92)";
+          g.fillText(tr("js.karteFrage", "Und du? Finde es gratis heraus."), W / 2, 1010);
+          var kw = 640, kx = W / 2 - kw / 2, ky = 1080, kh = 92;
+          var kg = g.createLinearGradient(0, ky, 0, ky + kh); kg.addColorStop(0, "#e6cf9c"); kg.addColorStop(1, "#c9a86a");
+          g.fillStyle = kg; g.beginPath(); if (g.roundRect) g.roundRect(kx, ky, kw, kh, 46); else g.rect(kx, ky, kw, kh); g.fill();
+          g.fillStyle = "#1a1209"; g.font = '600 34px "Inter"'; g.textBaseline = "middle"; g.fillText("sorayaluxuryastroguide.com", W / 2, ky + kh / 2 + 2);
+          g.textBaseline = "alphabetic";
+          return new Promise(function(ok){ cv.toBlob(function(b){ ok(b); }, "image/png"); });
+        });
+      } catch (e) { return Promise.resolve(null); }
+    }
     function mondSvg(elong, r){
       var c = r + 1, e = ((elong % 360) + 360) % 360, rx = Math.abs(Math.cos(e * Math.PI / 180)) * r;
       var zu = e < 180, sichel = zu ? e < 90 : e > 270;
@@ -2158,7 +2209,22 @@
             var url = "https://www.sorayaluxuryastroguide.com/?q=teilen-landing&lang=" + lang;
             var text = tr("js.teiltext", "Ich bin {sun} mit Mond in {moon} ✨ Und du? Hier gratis ausprobieren:")
               .replace("{sun}", name(a.sun.sign)).replace("{moon}", name(a.moon.sign));
-            if (navigator.share) { navigator.share({text: text, url: url}).catch(function(){}); return; }
+            // zuerst als schoene Bildkarte (Story-tauglich), wenn das Geraet Bilder teilen kann
+            teilKarte(a).then(function(blob){
+              var datei = blob && window.File ? new File([blob], "soraya-" + a.sun.sign + ".png", {type: "image/png"}) : null;
+              if (datei && navigator.canShare && navigator.canShare({files: [datei]})) {
+                return navigator.share({files: [datei], text: text + " " + url}).catch(function(){});
+              }
+              if (navigator.share) return navigator.share({text: text, url: url}).catch(function(){});
+              if (blob) {      // Computer: Bild herunterladen und Text kopieren
+                var l = document.createElement("a"); l.href = URL.createObjectURL(blob); l.download = "soraya-" + a.sun.sign + ".png";
+                document.body.appendChild(l); l.click(); setTimeout(function(){ URL.revokeObjectURL(l.href); l.remove(); }, 1500);
+              }
+              try { navigator.clipboard.writeText(text + " " + url).then(function(){
+                var alt = teilen.textContent; teilen.textContent = tr("js.kopiert", "Link kopiert ✓");
+                setTimeout(function(){ teilen.textContent = alt; }, 2200); }).catch(function(){}); } catch (e2) {}
+            });
+            return;
             try { navigator.clipboard.writeText(text + " " + url).then(function(){
               var alt = teilen.textContent; teilen.textContent = tr("js.kopiert", "Link kopiert ✓");
               setTimeout(function(){ teilen.textContent = alt; }, 2200); }); } catch (e2) {}
