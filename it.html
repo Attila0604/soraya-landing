@@ -1107,6 +1107,7 @@
     .gold-btn,.chip,.store-btn,.feat{transition:none!important}
   }
 </style>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -1896,12 +1897,33 @@
     try { history.replaceState(null, "", location.pathname + location.search + "#probieren"); } catch (e3) {}
   });
 
+  // Woher kommt ein Besuch ohne Link-Kennung? Nur die Art der Seite wird gezaehlt, nie die Adresse selbst.
+  function herkunft(){
+    var r = String(document.referrer || "").toLowerCase(), h = "";
+    try { h = new URL(r).hostname.replace(/^www\./, ""); } catch (e) {}
+    if (/sorayaluxuryastroguide\.com$/.test(h)) return "";      // innerhalb der Seite: schon gezaehlt
+    if (!r) return "direkt";
+    if (/(^|\.)google\.|googlequicksearchbox/.test(r)) return "ref-google";
+    if (/instagram/.test(r)) return "ref-ig";
+    if (/facebook\.com|fb\.me|messenger|com\.facebook/.test(r)) return "ref-fb";
+    if (/tiktok|musical\.ly/.test(r)) return "ref-tt";
+    if (/pinterest|pin\.it/.test(r)) return "ref-pin";
+    if (/linkedin|lnkd\.in/.test(r)) return "ref-li";
+    if (/bing\.|duckduckgo|ecosia|yahoo\.|search\.brave|qwant|startpage/.test(r)) return "ref-suche";
+    if (/whatsapp|telegram|t\.me\/|signal/.test(r)) return "ref-chat";
+    if (/(^|\/\/)(t\.co|x\.com|twitter\.com)/.test(r)) return "ref-x";
+    return "ref-andere";
+  }
+
   // Wirkung pro Post: Link-Kennung (?q=p123 / ?q=bio-ig) anonym zaehlen und an die App
   // weiterreichen (dort qs=1, damit der Besuch nicht doppelt zaehlt). Nur Anzahlen.
   (function(){
     try {
       var q = (new URLSearchParams(location.search).get("q") || "").trim().toLowerCase();
-      if (!/^[a-z0-9-]{2,32}$/.test(q)) return;
+      // ohne Link-Kennung: Herkunft aus der vorherigen Seite (z. B. Google, Instagram) -- sonst "direkt"
+      var abgeleitet = !/^[a-z0-9-]{2,32}$/.test(q);
+      if (abgeleitet) q = herkunft();
+      if (!q) return;
       var ENGINE = "https://astro-engine-production-7b18.up.railway.app";
       function zaehle(kind) {
         try {
@@ -1912,8 +1934,8 @@
       var schon = false;
       try { schon = sessionStorage.getItem("soraya_besuch_" + q) === "1"; sessionStorage.setItem("soraya_besuch_" + q, "1"); } catch (e) {}
       if (!schon) zaehle("besuch");
-      // Begruessung nach Herkunft (nicht bei Google-Besuchen ueber die Sternzeichen-Seiten)
-      if (!/^seo-/.test(q)) {
+      // Begruessung nach Herkunft (nur bei unseren Links, nicht bei Google-Besuchen ueber die Sternzeichen-Seiten)
+      if (!abgeleitet && !/^seo-/.test(q)) {
         var T = (window.SORAYA || {}).T || {}, art =
           /^p\d+$/.test(q) ? "post" : /^teilen/.test(q) ? "teilen" : /^(bio-)?(ig|insta)/.test(q) ? "ig" :
           /^(bio-)?(tt|tiktok)/.test(q) ? "tt" : /^(bio-)?(fb|facebook)/.test(q) ? "fb" : /^(bio-)?(li|linkedin)/.test(q) ? "li" : "allg";
