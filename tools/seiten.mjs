@@ -662,6 +662,7 @@ ${KOPF_SCRIPT}
 <link rel="preload" href="/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="${CSS_DATEI}?v=${CSS_VERSION}" />
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
