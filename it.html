@@ -316,6 +316,15 @@
   /* klare Aussage, was Soraya ist (unter dem poetischen Satz) */
   .hero .wert{max-width:42ch; margin:-20px auto 28px; color:var(--mist-dim); font-size:clamp(14.5px,1.5vw,16px); line-height:1.55}
   /* Gratis-Vorschau als echter Knopf statt kleinem Textlink */
+  .hero-horo{margin:20px auto 4px; max-width:360px}
+  .hh-titel{margin:0 0 10px; font-size:14px; letter-spacing:.02em; color:var(--champagne, #E7D3A1)}
+  .hh-zeichen{display:grid; grid-template-columns:repeat(6, 1fr); gap:8px}
+  .hh-zeichen button{all:unset; box-sizing:border-box; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:52px; border-radius:14px; border:1px solid rgba(201,162,75,.38); background:rgba(201,162,75,.06); color:#F4EEDD; transition:background .15s, border-color .15s}
+  .hh-zeichen button .z{font-family:"SorayaZeichen", "Cormorant Garamond", serif; font-size:22px; line-height:1; color:#E7D3A1}
+  .hh-zeichen button small{font-size:10px; margin-top:4px; color:rgba(244,238,221,.72); max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 2px}
+  .hh-zeichen button:hover,.hh-zeichen button:focus-visible{background:rgba(201,162,75,.16); border-color:#C9A24B}
+  .hh-zeichen button:focus-visible{outline:2px solid #E7D3A1; outline-offset:2px}
   .try-link{display:inline-flex; align-items:center; gap:8px; margin-top:22px; padding:11px 20px; font-size:14px; font-weight:500; line-height:1.35;
     color:var(--gold-soft); border:1px solid var(--gold-dim); border-radius:var(--r-pill); background:rgba(201,168,106,.07); transition:.25s}
   .try-link:hover{border-color:var(--gold-soft); background:rgba(201,168,106,.13)}
@@ -1152,6 +1161,11 @@
       <a class="gold-btn gruss-btn" href="#probieren" data-t="gruss.knopf">Prova gratis – senza account</a>
     </div>
 
+    <div class="hero-horo" id="heroHoro">
+      <p class="hh-titel" data-t="hh.titel">Il tuo oroscopo di oggi – tocca il tuo segno</p>
+      <div class="hh-zeichen" id="hhZeichen" role="group" aria-label="Segni zodiacali" data-t-aria="hh.aria"></div>
+    </div>
+
     <div class="stores">
       <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.sorayaluxuryastroguide.app.twa&amp;hl=it" aria-label="Scarica da Google Play" data-t-aria="store.play.aria">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.7 2.3 13.6 12l-9.9 9.7c-.3-.3-.5-.8-.5-1.4V3.7c0-.6.2-1.1.5-1.4z"/><path opacity=".78" d="M3.7 2.3c.4-.4 1.1-.5 1.8-.1L17 8.8 13.6 12z"/><path opacity=".58" d="M3.7 21.7 13.6 12l3.4 3.2-11.5 6.6c-.7.4-1.4.3-1.8-.1z"/><path opacity=".88" d="m17 8.8 3.5 2c1.1.6 1.1 1.8 0 2.4l-3.5 2-3.4-3.2z"/></svg>
@@ -1449,7 +1463,7 @@
       en: {
         "title": "Soraya — Horoscope & Birth Chart | Luxury Astro Guide",
         "mehr.auf": "Read more", "mehr.zu": "Show less",
-        "try.link": "✦ Try free: your Sun&nbsp;&amp;&nbsp;Moon in seconds", "gruss.post": "Glad you came from our post ✨", "gruss.ig": "Welcome from Instagram ✨", "gruss.tt": "Welcome from TikTok ✨", "gruss.fb": "Welcome from Facebook ✨", "gruss.li": "Welcome from LinkedIn ✨", "gruss.teilen": "Someone shared Soraya with you ✨", "gruss.allg": "Lovely to have you here ✨", "gruss.knopf": "Try it free – no account",
+        "hh.titel": "Your horoscope today – tap your sign", "hh.aria": "Zodiac signs", "try.link": "✦ Try free: your Sun&nbsp;&amp;&nbsp;Moon in seconds", "gruss.post": "Glad you came from our post ✨", "gruss.ig": "Welcome from Instagram ✨", "gruss.tt": "Welcome from TikTok ✨", "gruss.fb": "Welcome from Facebook ✨", "gruss.li": "Welcome from LinkedIn ✨", "gruss.teilen": "Someone shared Soraya with you ✨", "gruss.allg": "Lovely to have you here ✨", "gruss.knopf": "Try it free – no account",
         "try.eyebrow": "Free, no account",
         "try.head": "Try it <span class=\"gold\">right now</span>",
         "pv.h": "Your Sun &amp; Moon sign",
@@ -1569,7 +1583,7 @@
       hu: {
         "title": "Soraya — Horoszkóp és születési képlet | Luxury Astro Guide",
         "mehr.auf": "Tovább olvasom", "mehr.zu": "Kevesebb",
-        "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Üdv a Facebookról ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Próbáld ki ingyen – fiók nélkül",
+        "hh.titel": "A mai horoszkópod – koppints a jegyedre", "hh.aria": "Csillagjegyek", "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Üdv a Facebookról ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Próbáld ki ingyen – fiók nélkül",
         "try.eyebrow": "Ingyen, fiók nélkül",
         "try.head": "Próbáld ki <span class=\"gold\">most rögtön</span>",
         "pv.h": "A Nap- és Hold-jegyed",
@@ -1689,7 +1703,7 @@
       it: {
         "title": "Soraya — Oroscopo e tema natale | Luxury Astro Guide",
         "mehr.auf": "Leggi di più", "mehr.zu": "Mostra meno",
-        "try.link": "✦ Prova gratis: Sole e&nbsp;Luna subito", "gruss.post": "Che bello che arrivi dal nostro post ✨", "gruss.ig": "Benvenuti da Instagram ✨", "gruss.tt": "Benvenuti da TikTok ✨", "gruss.fb": "Benvenuti da Facebook ✨", "gruss.li": "Benvenuti da LinkedIn ✨", "gruss.teilen": "Qualcuno ha condiviso Soraya con te ✨", "gruss.allg": "Che bello averti qui ✨", "gruss.knopf": "Prova gratis – senza account",
+        "hh.titel": "Il tuo oroscopo di oggi – tocca il tuo segno", "hh.aria": "Segni zodiacali", "try.link": "✦ Prova gratis: Sole e&nbsp;Luna subito", "gruss.post": "Che bello che arrivi dal nostro post ✨", "gruss.ig": "Benvenuti da Instagram ✨", "gruss.tt": "Benvenuti da TikTok ✨", "gruss.fb": "Benvenuti da Facebook ✨", "gruss.li": "Benvenuti da LinkedIn ✨", "gruss.teilen": "Qualcuno ha condiviso Soraya con te ✨", "gruss.allg": "Che bello averti qui ✨", "gruss.knopf": "Prova gratis – senza account",
         "try.eyebrow": "Gratis, senza account",
         "try.head": "Provalo <span class=\"gold\">subito</span>",
         "pv.h": "Il tuo segno solare e lunare",
@@ -1933,6 +1947,7 @@
             body: JSON.stringify({ kind: kind, q: q }), keepalive: true }).catch(function () {});
         } catch (e) {}
       }
+      window.sorayaZaehle = zaehle;
       var schon = false;
       try { schon = sessionStorage.getItem("soraya_besuch_" + q) === "1"; sessionStorage.setItem("soraya_besuch_" + q, "1"); } catch (e) {}
       if (!schon) zaehle("besuch");
@@ -2269,6 +2284,17 @@
     // --- Tageshoroskop
     var chips = document.getElementById("thZeichen"), aktuell = null;
     if (chips) chips.innerHTML = KEYS.map(function(k){ return '<button type="button" class="chip" aria-pressed="false" data-zeichen="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span>" + esc(name(k)) + "</button>"; }).join("");
+    // Gleich im Hero: 12 Zeichen zum Antippen -> Tageshoroskop weiter unten (ein Tipp statt drei Felder)
+    var hh = document.getElementById("hhZeichen");
+    if (hh && chips) {
+      hh.innerHTML = KEYS.map(function(k){ return '<button type="button" data-hh="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span><small>" + esc(name(k)) + "</small></button>"; }).join("");
+      hh.addEventListener("click", function(ev){
+        var b = ev.target.closest("[data-hh]"); if (!b) return;
+        var k = b.getAttribute("data-hh"), karte = document.getElementById("tageshoroskop") || chips;
+        wahl(k); zeigeHoroskop(k);
+        try { karte.scrollIntoView({block: "start", behavior: REDUCE ? "auto" : "smooth"}); } catch (e) { karte.scrollIntoView(); }
+      });
+    }
     // App-Vorschau im Handy: Sternzeichen-Namen in der Seitensprache
     document.querySelectorAll("[data-mock-sign]").forEach(function(el){ el.textContent = name(el.getAttribute("data-mock-sign")); });
     // Die 12 Sternzeichen: auf / zeigen die Karten auf die Sternzeichen-Seiten der angezeigten Sprache
@@ -2301,6 +2327,7 @@
           if (!REDUCE) neuAnimieren(box);
           if (window.sorayaKuerzen) box.querySelectorAll(".kurz").forEach(window.sorayaKuerzen);
           document.getElementById("thWeiter").hidden = false;
+          try { if (window.sorayaZaehle && sessionStorage.getItem("soraya_horo") !== "1") { sessionStorage.setItem("soraya_horo", "1"); window.sorayaZaehle("horoskop_gelesen"); } } catch (e8) {}
         })
         .catch(function(e){
           if (aktuell !== key) return;
