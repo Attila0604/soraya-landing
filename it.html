@@ -498,6 +498,9 @@
   .licht .zeichen{font-family:var(--display); font-size:28px; font-weight:600; color:#f4eedd; line-height:1.15}
   .licht .klein{font-size:12.5px; color:var(--mist-dim)}
   .weiter{display:block; text-align:center; margin-top:4px}
+  .th-persoenlich{margin:16px 0 6px; padding:16px; border-radius:14px; border:1px solid rgba(201,162,75,.32); background:rgba(201,162,75,.07); text-align:center}
+  .th-persoenlich p{margin:0 0 12px; font-size:14.5px; line-height:1.5; color:rgba(244,238,221,.86)}
+  .th-persoenlich .gold-btn{min-height:46px; padding:0 22px}
   .fehler{color:#f0c4bc; font-size:14px; margin-top:10px}
   .chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
   .chip .z{color:var(--gold-soft); margin-right:5px}
@@ -1226,6 +1229,10 @@
         <p class="hint" data-t="th.p">Scegli il tuo segno.</p>
         <div class="chips" id="thZeichen" role="group" aria-label="Segni zodiacali" data-t-aria="th.aria"></div>
         <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tocca il tuo segno: Soraya ti racconta la giornata di oggi.</p></div>
+        <div class="th-persoenlich" id="thPersoenlich" hidden>
+          <p data-t="thp.text">Questa era la giornata per tutto il tuo segno. Soraya la legge solo per te dalla tua data di nascita – gratis.</p>
+          <a class="gold-btn" href="#probieren" data-t="thp.knopf">Continua con il mio compleanno</a>
+        </div>
         <a class="weiter" id="thWeiter" href="https://app.sorayaluxuryastroguide.com/?lang=it" hidden data-t="th.weiter">Il tuo oroscopo del giorno personale – dal tuo tema natale ›</a>
       </div>
     </div>
@@ -1476,7 +1483,7 @@
         "th.h": "Your horoscope for today",
         "th.p": "Choose your sign.",
         "th.leer": "Tap your sign and Soraya will read your day.",
-        "th.weiter": "Your personal daily horoscope – from your own birth chart ›",
+        "thp.text": "That was the day for everyone with your sign. Soraya reads it just for you from your birthday – free.", "thp.knopf": "Continue with my birthday", "th.weiter": "Your personal daily horoscope – from your own birth chart ›",
         "faq.eyebrow": "Questions",
         "faq.head": "Good to <span class=\"gold\">know</span>",
         "zk.eyebrow": "Astro knowledge", "zk.head": "The 12 <span class=\"gold\">zodiac signs</span>",
@@ -1596,7 +1603,7 @@
         "th.h": "A mai horoszkópod",
         "th.p": "Válaszd ki a csillagjegyedet.",
         "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
-        "th.weiter": "A személyes napi horoszkópod – a saját születési képletedből ›",
+        "thp.text": "Ez volt a nap mindenkinek, aki a te jegyedben született. Soraya személyesen a születésnapodból olvassa ki – ingyen.", "thp.knopf": "Tovább a születésnapommal", "th.weiter": "A személyes napi horoszkópod – a saját születési képletedből ›",
         "faq.eyebrow": "Kérdések",
         "faq.head": "Jó <span class=\"gold\">tudni</span>",
         "zk.eyebrow": "Asztro-tudás", "zk.head": "A 12 <span class=\"gold\">csillagjegy</span>",
@@ -1716,7 +1723,7 @@
         "th.h": "Il tuo oroscopo di oggi",
         "th.p": "Scegli il tuo segno.",
         "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
-        "th.weiter": "Il tuo oroscopo del giorno personale – dal tuo tema natale ›",
+        "thp.text": "Questa era la giornata per tutto il tuo segno. Soraya la legge solo per te dalla tua data di nascita – gratis.", "thp.knopf": "Continua con il mio compleanno", "th.weiter": "Il tuo oroscopo del giorno personale – dal tuo tema natale ›",
         "faq.eyebrow": "Domande",
         "faq.head": "Buono a <span class=\"gold\">sapersi</span>",
         "zk.eyebrow": "Sapere astrologico", "zk.head": "I 12 <span class=\"gold\">segni zodiacali</span>",
@@ -2326,7 +2333,9 @@
             (h.tipp ? '<p class="tipp"><b>' + esc(tr("js.tipp", "Tipp")) + ":</b> " + esc(h.tipp) + "</p>" : "");
           if (!REDUCE) neuAnimieren(box);
           if (window.sorayaKuerzen) box.querySelectorAll(".kurz").forEach(window.sorayaKuerzen);
-          document.getElementById("thWeiter").hidden = false;
+          // ein nächster Schritt statt zwei: persönlich weiter mit dem Geburtstag (der App-Link bleibt für das Tageslimit)
+          var pers = document.getElementById("thPersoenlich");
+          if (pers) pers.hidden = false; else document.getElementById("thWeiter").hidden = false;
           try { if (window.sorayaZaehle && sessionStorage.getItem("soraya_horo") !== "1") { sessionStorage.setItem("soraya_horo", "1"); window.sorayaZaehle("horoskop_gelesen"); } } catch (e8) {}
         })
         .catch(function(e){
