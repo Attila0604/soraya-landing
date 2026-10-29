@@ -1119,6 +1119,14 @@
     .faq details::details-content{transition:none!important}
     .gold-btn,.chip,.store-btn,.feat{transition:none!important}
   }
+  /* Tageshoroskop: die 12 Zeichen stehen schon im Hero -> hier nur eine schmale Zeile zum Wischen (kein zweites Raster) */
+  #tageshoroskop .chips{display:flex!important; flex-wrap:nowrap; overflow-x:auto; gap:8px!important; margin:0 -4px 16px; padding:2px 4px 8px;
+    scroll-snap-type:x proximity; scrollbar-width:none; -webkit-mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  #tageshoroskop .chips::-webkit-scrollbar{display:none}
+  #tageshoroskop .chip{flex:none; display:inline-flex!important; flex-direction:row!important; align-items:center; gap:6px; min-height:40px;
+    padding:0 14px!important; border-radius:999px!important; font-size:13.5px!important; white-space:nowrap; scroll-snap-align:start}
+  #tageshoroskop .chip .z{font-size:15px; margin:0}
+  #tageshoroskop .hint{margin-bottom:10px}
 </style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -2320,7 +2328,8 @@
     function zeigeHoroskop(key){
       if (!chips || aktuell === key) return;
       aktuell = key;
-      chips.querySelectorAll(".chip").forEach(function(c){ var on = c.getAttribute("data-zeichen") === key; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on ? "true" : "false"); });
+      chips.querySelectorAll(".chip").forEach(function(c){ var on = c.getAttribute("data-zeichen") === key; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on ? "true" : "false");
+        if (on) try { chips.scrollTo({left: c.offsetLeft - 8, behavior: REDUCE ? "auto" : "smooth"}); } catch (e0) {} });
       var box = document.getElementById("thText");
       box.classList.remove("neu"); box.innerHTML = laedtHtml();
       holen(ENGINE + "/public/sign-horoscope?sign=" + key + "&lang=" + lang, {}, box)
