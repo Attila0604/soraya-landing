@@ -1139,6 +1139,21 @@
     padding:0 14px!important; border-radius:999px!important; font-size:13.5px!important; white-space:nowrap; scroll-snap-align:start}
   #tageshoroskop .chip .z{font-size:15px; margin:0}
   #tageshoroskop .hint{margin-bottom:10px}
+  .datum-ein{width:100%; text-align:center; font-size:20px; letter-spacing:.08em; font-variant-numeric:tabular-nums}
+  /* Runde 10: besser lesbar (auch fuer aeltere Augen) -- kleine Beschriftungen mindestens ~12,5 px, Fliesstext 13+ */
+  .sr-only{position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  .hh-zeichen button small{font-size:12px}
+  .store-btn .st-small{font-size:11px}
+  .felder label,.licht .was,.licht .elem,.erg-kopf .erg-titel{font-size:12.5px}
+  footer h3,.konto-plus .kp-titel,.horo .horo-datum,footer .f-social-titel,.probe-tag{font-size:12px}
+  .konto-plus li::before{font-size:12px}
+  .zk small{font-size:12.5px}
+  @media (max-width:560px){ .zk small{font-size:12px} }
+  .langs a,.nav .to-app{font-size:12.5px}
+  footer .f-unten,footer .copy{font-size:13px}
+  footer .powered{font-size:11px}
+  /* sanfteres, frueheres Einblenden: Inhalte sind da, bevor man hinscrollt (nie leere Flaechen) */
+  html.js .reveal{transform:translateY(10px); transition:opacity .45s ease, transform .45s ease}
 </style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -1173,7 +1188,7 @@
     <div class="marke">
       <svg class="rad" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false"><g class="rad-dreh"><g fill="none" stroke="currentColor"><circle r="296" stroke-width=".8"/><circle r="288" stroke-width=".5" opacity=".7"/><circle r="244" stroke-width=".8"/><circle r="170" stroke-width=".5" stroke-dasharray="2 6" opacity=".8"/><path stroke-width=".7" d="M288.0 0.0L280.0 0.0M286.9 25.1L282.9 24.8M283.6 50.0L279.7 49.3M278.2 74.5L274.3 73.5M270.6 98.5L266.9 97.1M261.0 121.7L257.4 120.0M249.4 144.0L242.5 140.0M235.9 165.2L232.6 162.9M220.6 185.1L217.6 182.6M203.6 203.6L200.8 200.8M185.1 220.6L182.6 217.6M165.2 235.9L162.9 232.6M144.0 249.4L140.0 242.5M121.7 261.0L120.0 257.4M98.5 270.6L97.1 266.9M74.5 278.2L73.5 274.3M50.0 283.6L49.3 279.7M25.1 286.9L24.8 282.9M0.0 288.0L0.0 280.0M-25.1 286.9L-24.8 282.9M-50.0 283.6L-49.3 279.7M-74.5 278.2L-73.5 274.3M-98.5 270.6L-97.1 266.9M-121.7 261.0L-120.0 257.4M-144.0 249.4L-140.0 242.5M-165.2 235.9L-162.9 232.6M-185.1 220.6L-182.6 217.6M-203.6 203.6L-200.8 200.8M-220.6 185.1L-217.6 182.6M-235.9 165.2L-232.6 162.9M-249.4 144.0L-242.5 140.0M-261.0 121.7L-257.4 120.0M-270.6 98.5L-266.9 97.1M-278.2 74.5L-274.3 73.5M-283.6 50.0L-279.7 49.3M-286.9 25.1L-282.9 24.8M-288.0 0.0L-280.0 0.0M-286.9 -25.1L-282.9 -24.8M-283.6 -50.0L-279.7 -49.3M-278.2 -74.5L-274.3 -73.5M-270.6 -98.5L-266.9 -97.1M-261.0 -121.7L-257.4 -120.0M-249.4 -144.0L-242.5 -140.0M-235.9 -165.2L-232.6 -162.9M-220.6 -185.1L-217.6 -182.6M-203.6 -203.6L-200.8 -200.8M-185.1 -220.6L-182.6 -217.6M-165.2 -235.9L-162.9 -232.6M-144.0 -249.4L-140.0 -242.5M-121.7 -261.0L-120.0 -257.4M-98.5 -270.6L-97.1 -266.9M-74.5 -278.2L-73.5 -274.3M-50.0 -283.6L-49.3 -279.7M-25.1 -286.9L-24.8 -282.9M-0.0 -288.0L-0.0 -280.0M25.1 -286.9L24.8 -282.9M50.0 -283.6L49.3 -279.7M74.5 -278.2L73.5 -274.3M98.5 -270.6L97.1 -266.9M121.7 -261.0L120.0 -257.4M144.0 -249.4L140.0 -242.5M165.2 -235.9L162.9 -232.6M185.1 -220.6L182.6 -217.6M203.6 -203.6L200.8 -200.8M220.6 -185.1L217.6 -182.6M235.9 -165.2L232.6 -162.9M249.4 -144.0L242.5 -140.0M261.0 -121.7L257.4 -120.0M270.6 -98.5L266.9 -97.1M278.2 -74.5L274.3 -73.5M283.6 -50.0L279.7 -49.3M286.9 -25.1L282.9 -24.8M244.0 0.0L280.0 0.0M211.3 122.0L242.5 140.0M122.0 211.3L140.0 242.5M0.0 244.0L0.0 280.0M-122.0 211.3L-140.0 242.5M-211.3 122.0L-242.5 140.0M-244.0 0.0L-280.0 0.0M-211.3 -122.0L-242.5 -140.0M-122.0 -211.3L-140.0 -242.5M-0.0 -244.0L-0.0 -280.0M122.0 -211.3L140.0 -242.5M211.3 -122.0L242.5 -140.0"/></g><g class="rad-z" fill="currentColor" font-size="22" text-anchor="middle" dominant-baseline="central"><text x="67.8" y="-253.1">♈&#xFE0E;</text><text x="185.3" y="-185.3">♉&#xFE0E;</text><text x="253.1" y="-67.8">♊&#xFE0E;</text><text x="253.1" y="67.8">♋&#xFE0E;</text><text x="185.3" y="185.3">♌&#xFE0E;</text><text x="67.8" y="253.1">♍&#xFE0E;</text><text x="-67.8" y="253.1">♎&#xFE0E;</text><text x="-185.3" y="185.3">♏&#xFE0E;</text><text x="-253.1" y="67.8">♐&#xFE0E;</text><text x="-253.1" y="-67.8">♑&#xFE0E;</text><text x="-185.3" y="-185.3">♒&#xFE0E;</text><text x="-67.8" y="-253.1">♓&#xFE0E;</text></g></g></svg>
       <img class="sigil-lg" src="/brand/zeichen.svg" alt="" width="110" height="104" fetchpriority="high">
-      <h1 class="word">SORAYA</h1>
+      <h1 class="word">SORAYA<span class="sr-only" data-t="h1.zusatz"> – your personal horoscope and birth chart</span></h1>
     </div>
     <div class="kicker">Luxury Astro Guide</div>
     <p class="himmel-heute warten" id="himmelHeute" aria-hidden="true"><span class="mond">☽︎</span>&nbsp;</p>
@@ -1218,8 +1233,9 @@
       <form class="tcard reveal" id="vorschauForm" novalidate>
         <h3 data-t="pv.h">Your Sun &amp; Moon sign</h3>
         <div class="felder">
-          <div><label for="pvTag" data-t="pv.datum">Date of birth</label>
-            <div class="teile datum" role="group" aria-label="Date of birth" data-t-aria="pv.datum">
+          <div><label for="pvDatumEin" data-t="pv.datum">Date of birth</label>
+            <input id="pvDatumEin" class="datum-ein" inputmode="numeric" autocomplete="bday" maxlength="11" placeholder="TT.MM.JJJJ" aria-label="Date of birth" data-t-aria="pv.datum">
+            <div class="teile datum" role="group" aria-label="Date of birth" data-t-aria="pv.datum" style="display:none">
               <input id="pvTag" class="t-tag" inputmode="numeric" maxlength="2" placeholder="TT" aria-label="Tag" autocomplete="bday-day">
               <input id="pvMonat" class="t-monat" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Monat" autocomplete="bday-month">
               <input id="pvJahr" class="t-jahr" inputmode="numeric" maxlength="4" placeholder="JJJJ" aria-label="Jahr" autocomplete="bday-year">
@@ -1490,7 +1506,7 @@
       en: {
         "title": "Soraya — Horoscope & Birth Chart | Luxury Astro Guide",
         "mehr.auf": "Read more", "mehr.zu": "Show less",
-        "hh.titel": "Your horoscope today – tap your sign", "hh.aria": "Zodiac signs", "try.link": "✦ Try free: your Sun&nbsp;&amp;&nbsp;Moon in seconds", "gruss.post": "Glad you came from our post ✨", "gruss.ig": "Welcome from Instagram ✨", "gruss.tt": "Welcome from TikTok ✨", "gruss.fb": "Welcome from Facebook ✨", "gruss.li": "Welcome from LinkedIn ✨", "gruss.teilen": "Someone shared Soraya with you ✨", "gruss.allg": "Lovely to have you here ✨", "gruss.knopf": "Try it free – no account",
+        "h1.zusatz": " – your personal horoscope and birth chart", "hh.titel": "Your horoscope today – tap your sign", "hh.aria": "Zodiac signs", "try.link": "✦ Try free: your Sun&nbsp;&amp;&nbsp;Moon in seconds", "gruss.post": "Glad you came from our post ✨", "gruss.ig": "Welcome from Instagram ✨", "gruss.tt": "Welcome from TikTok ✨", "gruss.fb": "Welcome from Facebook ✨", "gruss.li": "Welcome from LinkedIn ✨", "gruss.teilen": "Someone shared Soraya with you ✨", "gruss.allg": "Lovely to have you here ✨", "gruss.knopf": "Try it free – no account",
         "try.eyebrow": "Free, no account",
         "try.head": "Try it <span class=\"gold\">right now</span>",
         "pv.h": "Your Sun &amp; Moon sign",
@@ -1610,7 +1626,7 @@
       hu: {
         "title": "Soraya — Horoszkóp és születési képlet | Luxury Astro Guide",
         "mehr.auf": "Tovább olvasom", "mehr.zu": "Kevesebb",
-        "hh.titel": "A mai horoszkópod – koppints a jegyedre", "hh.aria": "Csillagjegyek", "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Üdv a Facebookról ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Próbáld ki ingyen – fiók nélkül",
+        "h1.zusatz": " – személyes horoszkópod és születési képleted", "hh.titel": "A mai horoszkópod – koppints a jegyedre", "hh.aria": "Csillagjegyek", "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Üdv a Facebookról ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Próbáld ki ingyen – fiók nélkül",
         "try.eyebrow": "Ingyen, fiók nélkül",
         "try.head": "Próbáld ki <span class=\"gold\">most rögtön</span>",
         "pv.h": "A Nap- és Hold-jegyed",
@@ -1730,7 +1746,7 @@
       it: {
         "title": "Soraya — Oroscopo e tema natale | Luxury Astro Guide",
         "mehr.auf": "Leggi di più", "mehr.zu": "Mostra meno",
-        "hh.titel": "Il tuo oroscopo di oggi – tocca il tuo segno", "hh.aria": "Segni zodiacali", "try.link": "✦ Prova gratis: Sole e&nbsp;Luna subito", "gruss.post": "Che bello che arrivi dal nostro post ✨", "gruss.ig": "Benvenuti da Instagram ✨", "gruss.tt": "Benvenuti da TikTok ✨", "gruss.fb": "Benvenuti da Facebook ✨", "gruss.li": "Benvenuti da LinkedIn ✨", "gruss.teilen": "Qualcuno ha condiviso Soraya con te ✨", "gruss.allg": "Che bello averti qui ✨", "gruss.knopf": "Prova gratis – senza account",
+        "h1.zusatz": " – il tuo oroscopo personale e tema natale", "hh.titel": "Il tuo oroscopo di oggi – tocca il tuo segno", "hh.aria": "Segni zodiacali", "try.link": "✦ Prova gratis: Sole e&nbsp;Luna subito", "gruss.post": "Che bello che arrivi dal nostro post ✨", "gruss.ig": "Benvenuti da Instagram ✨", "gruss.tt": "Benvenuti da TikTok ✨", "gruss.fb": "Benvenuti da Facebook ✨", "gruss.li": "Benvenuti da LinkedIn ✨", "gruss.teilen": "Qualcuno ha condiviso Soraya con te ✨", "gruss.allg": "Che bello averti qui ✨", "gruss.knopf": "Prova gratis – senza account",
         "try.eyebrow": "Gratis, senza account",
         "try.head": "Provalo <span class=\"gold\">subito</span>",
         "pv.h": "Il tuo segno solare e lunare",
@@ -1931,7 +1947,7 @@
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href="#probieren"]');
     if (!a) return;
-    var f = document.documentElement.lang === "hu" ? document.getElementById("pvJahr") : document.getElementById("pvTag"), ziel = document.getElementById("vorschauForm") || document.getElementById("probieren");
+    var f = document.getElementById("pvDatumEin") || (document.documentElement.lang === "hu" ? document.getElementById("pvJahr") : document.getElementById("pvTag")), ziel = document.getElementById("vorschauForm") || document.getElementById("probieren");
     if (!ziel) return;
     e.preventDefault();
     var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2193,6 +2209,24 @@
     var TEILE = ["pvTag", "pvMonat", "pvJahr", "pvStunde", "pvMinute"].map(function(id){ return document.getElementById(id); });
     if (PH) TEILE.forEach(function(f, i){ if (f) { f.placeholder = PH[i]; f.setAttribute("aria-label", PH[i + 5]); } });
     var REIHE = lang === "hu" ? [TEILE[2], TEILE[1], TEILE[0], TEILE[3], TEILE[4]] : TEILE;   // Tipp-Reihenfolge
+    // Ein Datumsfeld statt drei: die Punkte kommen von selbst (Ungarisch: JJJJ.MM.TT.), die Teile landen in den alten Feldern
+    var EIN = document.getElementById("pvDatumEin");
+    if (EIN) {
+      EIN.placeholder = {de: "TT.MM.JJJJ", en: "DD/MM/YYYY", hu: "ÉÉÉÉ.HH.NN.", it: "GG/MM/AAAA"}[lang] || "TT.MM.JJJJ";
+      var formatiere = function(roh){
+        var z = String(roh || "").replace(/\D/g, "").slice(0, 8);
+        if (lang === "hu") return [z.slice(0, 4), z.slice(4, 6), z.slice(6, 8)].filter(Boolean).join(".") + (z.length === 8 ? "." : "");
+        return [z.slice(0, 2), z.slice(2, 4), z.slice(4, 8)].filter(Boolean).join(lang === "de" ? "." : "/");
+      };
+      EIN.addEventListener("input", function(ev){
+        if (!(ev.inputType && ev.inputType.indexOf("delete") === 0)) EIN.value = formatiere(EIN.value);
+        var z = EIN.value.replace(/\D/g, ""), voll = z.length === 8;
+        var teile = lang === "hu" ? [z.slice(6, 8), z.slice(4, 6), z.slice(0, 4)] : [z.slice(0, 2), z.slice(2, 4), z.slice(4, 8)];
+        TEILE[0].value = voll ? teile[0] : ""; TEILE[1].value = voll ? teile[1] : ""; TEILE[2].value = voll ? teile[2] : "";
+        EIN.removeAttribute("aria-invalid"); if (datumTeile) datumTeile.removeAttribute("aria-invalid");
+      });
+      EIN.addEventListener("keydown", function(ev){ if (ev.key === "Enter") { ev.preventDefault(); form.requestSubmit ? form.requestSubmit() : document.getElementById("pvKnopf").click(); } });
+    }
     REIHE.forEach(function(f, i){
       if (!f) return;
       f.addEventListener("input", function(){
@@ -2236,7 +2270,8 @@
         box.innerHTML = '<p class="fehler" role="alert">' + esc(problem) + "</p>";
         var fehlZeit = z === "ungueltig" && d !== "ungueltig" && /^\d{4}/.test(d);
         if (!fehlZeit && datumTeile) datumTeile.setAttribute("aria-invalid", "true");
-        (fehlZeit ? TEILE[3] : REIHE.slice(0, 3).filter(function(f){ return !f.value; })[0] || REIHE[0]).focus();
+        if (!fehlZeit && EIN) EIN.setAttribute("aria-invalid", "true");
+        (fehlZeit ? TEILE[3] : EIN || REIHE.slice(0, 3).filter(function(f){ return !f.value; })[0] || REIHE[0]).focus();
         folgeschritte(false);
         return;
       }
@@ -2504,7 +2539,7 @@
     });
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    }, {threshold:0, rootMargin:'0px 0px 20% 0px'});
     els.forEach(function(el){ io.observe(el); });
   })();
 
