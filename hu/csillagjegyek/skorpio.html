@@ -169,10 +169,24 @@
 </footer>
 <script>(function(C){
   var q = ""; try { q = (new URLSearchParams(location.search).get("q") || "").trim().toLowerCase(); } catch (e) {}
-  if (!/^[a-z0-9-]{2,32}$/.test(q)) q = C.q;
+  // ohne Link-Kennung: nur echte Suchmaschinen-Besucher zaehlen als "seo-<zeichen>" (Google), sonst die wahre Herkunft
+  var zaehlen = true;
+  if (!/^[a-z0-9-]{2,32}$/.test(q)) {
+    var r = String(document.referrer || "").toLowerCase(), h = "";
+    try { h = new URL(r).hostname.replace(/^www./, ""); } catch (e) {}
+    q = C.q;
+    if (/sorayaluxuryastroguide.com$/.test(h)) zaehlen = false;          // von der eigenen Seite: schon gezaehlt
+    else if (!r) q = "direkt";
+    else if (/(^|.)google.|googlequicksearchbox|bing.|duckduckgo|ecosia|yahoo.|search.brave|qwant|startpage/.test(r)) q = C.q;
+    else if (/instagram/.test(r)) q = "ref-ig";
+    else if (/facebook.com|fb.me|messenger|com.facebook/.test(r)) q = "ref-fb";
+    else if (/tiktok|musical.ly/.test(r)) q = "ref-tt";
+    else if (/pinterest|pin.it/.test(r)) q = "ref-pin";
+    else q = "ref-andere";
+  }
   function zaehle(kind){ try { fetch(C.engine + "/public/event", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({kind: kind, q: q}), keepalive: true}).catch(function(){}); } catch (e) {} }
   var schon = false; try { schon = sessionStorage.getItem("soraya_besuch_" + q) === "1"; sessionStorage.setItem("soraya_besuch_" + q, "1"); } catch (e) {}
-  if (!schon) zaehle("besuch");
+  if (!schon && zaehlen) zaehle("besuch");
   document.querySelectorAll('a[href^="https://app.sorayaluxuryastroguide.com/"]:not([data-legal])').forEach(function(a){
     try { var u = new URL(a.href); u.searchParams.set("q", q); u.searchParams.set("qs", "1"); a.href = u.toString(); } catch (e) {}
   });
