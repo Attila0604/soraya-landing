@@ -163,7 +163,9 @@
     if ((lang || "en") !== "de") { h.classList.add("i18n-warten"); setTimeout(function(){ h.classList.remove("i18n-warten"); }, 2500); }
   })();
 </script>
-<style>html.i18n-warten body{visibility:hidden}</style>
+<style>html.i18n-warten body{visibility:hidden}  /* Sternzeichen waehlt man oben im Hero -- im Tageshoroskop-Kasten keine zweite Auswahl */
+  html.mit-hero-horo #tageshoroskop .chips, html.mit-hero-horo #tageshoroskop .hint{display:none!important}
+</style>
 <link rel="preload" href="fonts/soraya-zeichen.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/cinzel.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
@@ -1264,7 +1266,7 @@
         <h3 data-t="th.h">Dein Tageshoroskop heute</h3>
         <p class="hint" data-t="th.p">Wähle dein Sternzeichen.</p>
         <div class="chips" id="thZeichen" role="group" aria-label="Sternzeichen" data-t-aria="th.aria"></div>
-        <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tippe auf dein Sternzeichen – Soraya liest dir den heutigen Tag.</p></div>
+        <div class="horo" id="thText" aria-live="polite"><p class="leer" data-t="th.leer">Tippe oben auf dein Sternzeichen – Soraya liest dir den heutigen Tag.</p></div>
         <div class="th-persoenlich" id="thPersoenlich" hidden>
           <p data-t="thp.text">Das war der Tag für alle mit deinem Zeichen. Ganz persönlich liest Soraya ihn aus deinem Geburtstag – gratis.</p>
           <a class="gold-btn" href="#probieren" data-t="thp.knopf">Mit meinem Geburtstag weiter</a>
@@ -1518,7 +1520,7 @@
         "pv.teilen": "Share with friends ↗", "js.teiltext": "I'm a {sun} with my Moon in {moon} ✨ What are you? Find out free:", "js.karteFrage": "And you? Find out for free.", "js.kopiert": "Link copied ✓",
         "th.h": "Your horoscope for today",
         "th.p": "Choose your sign.",
-        "th.leer": "Tap your sign and Soraya will read your day.",
+        "th.leer": "Tap your sign above and Soraya will read your day.",
         "thp.text": "That was the day for everyone with your sign. Soraya reads it just for you from your birthday – free.", "thp.knopf": "Continue with my birthday", "th.weiter": "Your personal daily horoscope – from your own birth chart ›",
         "faq.eyebrow": "Questions",
         "faq.head": "Good to <span class=\"gold\">know</span>",
@@ -1626,7 +1628,7 @@
       hu: {
         "title": "Soraya — Horoszkóp és születési képlet | Luxury Astro Guide",
         "mehr.auf": "Tovább olvasom", "mehr.zu": "Kevesebb",
-        "h1.zusatz": " – személyes horoszkópod és születési képleted", "hh.titel": "A mai horoszkópod – koppints a jegyedre", "hh.aria": "Csillagjegyek", "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Üdv a Facebookról ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Próbáld ki ingyen – fiók nélkül",
+        "h1.zusatz": " – személyes horoszkópod és születési képleted", "hh.titel": "A mai horoszkópod – koppints a jegyedre", "hh.aria": "Csillagjegyek", "try.link": "✦ Ingyenes teszt: a Nap- és Hold-jegyed", "gruss.post": "Örülünk, hogy a posztunkról érkeztél ✨", "gruss.ig": "Üdv az Instagramról ✨", "gruss.tt": "Üdv a TikTokról ✨", "gruss.fb": "Szia! A Facebook-oldalunkról jöttél? ✨", "gruss.li": "Üdv a LinkedInről ✨", "gruss.teilen": "Valaki megosztotta veled a Sorayát ✨", "gruss.allg": "Örülünk, hogy itt vagy ✨", "gruss.knopf": "Horoszkópod 10 mp alatt – ingyen",
         "try.eyebrow": "Ingyen, fiók nélkül",
         "try.head": "Próbáld ki <span class=\"gold\">most rögtön</span>",
         "pv.h": "A Nap- és Hold-jegyed",
@@ -1638,7 +1640,7 @@
         "pv.teilen": "Megosztás a barátaiddal ↗", "js.teiltext": "{sun} vagyok, a Hold-jegyem {moon} ✨ És te? Nézd meg ingyen:", "js.karteFrage": "És te? Nézd meg ingyen.", "js.kopiert": "Link kimásolva ✓",
         "th.h": "A mai horoszkópod",
         "th.p": "Válaszd ki a csillagjegyedet.",
-        "th.leer": "Koppints a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
+        "th.leer": "Koppints fent a csillagjegyedre – Soraya elmondja, mit hoz a mai nap.",
         "thp.text": "Ez volt a nap mindenkinek, aki a te jegyedben született. Soraya személyesen a születésnapodból olvassa ki – ingyen.", "thp.knopf": "Tovább a születésnapommal", "th.weiter": "A személyes napi horoszkópod – a saját születési képletedből ›",
         "faq.eyebrow": "Kérdések",
         "faq.head": "Jó <span class=\"gold\">tudni</span>",
@@ -1758,7 +1760,7 @@
         "pv.teilen": "Condividi con gli amici ↗", "js.teiltext": "Sono {sun} con la Luna in {moon} ✨ E tu? Scoprilo gratis:", "js.karteFrage": "E tu? Scoprilo gratis.", "js.kopiert": "Link copiato ✓",
         "th.h": "Il tuo oroscopo di oggi",
         "th.p": "Scegli il tuo segno.",
-        "th.leer": "Tocca il tuo segno: Soraya ti racconta la giornata di oggi.",
+        "th.leer": "Tocca il tuo segno qui sopra: Soraya ti racconta la giornata di oggi.",
         "thp.text": "Questa era la giornata per tutto il tuo segno. Soraya la legge solo per te dalla tua data di nascita – gratis.", "thp.knopf": "Continua con il mio compleanno", "th.weiter": "Il tuo oroscopo del giorno personale – dal tuo tema natale ›",
         "faq.eyebrow": "Domande",
         "faq.head": "Buono a <span class=\"gold\">sapersi</span>",
@@ -1995,10 +1997,12 @@
       try { schon = sessionStorage.getItem("soraya_besuch_" + q) === "1"; sessionStorage.setItem("soraya_besuch_" + q, "1"); } catch (e) {}
       if (!schon) zaehle("besuch");
       // Begruessung nach Herkunft (nur bei unseren Links, nicht bei Google-Besuchen ueber die Sternzeichen-Seiten)
-      if (!abgeleitet && !/^seo-/.test(q)) {
+      // auch ohne Link-Kennung begruessen, wenn jemand aus der Facebook-/Instagram-/TikTok-App kommt (Reels haben keinen Link)
+      var gq = q.replace(/^ref-/, "");
+      if (!/^seo-/.test(q) && (!abgeleitet || /^ref-(fb|ig|tt)$/.test(q))) {
         var T = (window.SORAYA || {}).T || {}, art =
-          /^p\d+$/.test(q) ? "post" : /^teilen/.test(q) ? "teilen" : /^(bio-)?(ig|insta)/.test(q) ? "ig" :
-          /^(bio-)?(tt|tiktok)/.test(q) ? "tt" : /^(bio-)?(fb|facebook)/.test(q) ? "fb" : /^(bio-)?(li|linkedin)/.test(q) ? "li" : "allg";
+          /^p\d+$/.test(gq) ? "post" : /^teilen/.test(gq) ? "teilen" : /^(bio-)?(ig|insta)/.test(gq) ? "ig" :
+          /^(bio-)?(tt|tiktok)/.test(gq) ? "tt" : /^(bio-)?(fb|facebook)/.test(gq) ? "fb" : /^(bio-)?(li|linkedin)/.test(gq) ? "li" : "allg";
         var DE = {post: "Schön, dass du vom Post kommst ✨", ig: "Willkommen von Instagram ✨", tt: "Willkommen von TikTok ✨",
           fb: "Willkommen von Facebook ✨", li: "Willkommen von LinkedIn ✨", teilen: "Jemand hat Soraya mit dir geteilt ✨", allg: "Schön, dass du da bist ✨"};
         var gruss = document.getElementById("gruss"), gt = document.getElementById("grussText"), tl = document.getElementById("tryLink");
@@ -2349,6 +2353,7 @@
     // Gleich im Hero: 12 Zeichen zum Antippen -> Tageshoroskop weiter unten (ein Tipp statt drei Felder)
     var hh = document.getElementById("hhZeichen");
     if (hh && chips) {
+      document.documentElement.classList.add("mit-hero-horo");
       hh.innerHTML = KEYS.map(function(k){ return '<button type="button" data-hh="' + k + '"><span class="z" aria-hidden="true">' + glyph(k) + "</span><small>" + esc(name(k)) + "</small></button>"; }).join("");
       hh.addEventListener("click", function(ev){
         var b = ev.target.closest("[data-hh]"); if (!b) return;
